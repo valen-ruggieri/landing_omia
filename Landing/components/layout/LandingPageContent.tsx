@@ -1,6 +1,6 @@
 'use client'; 
 import React, { useEffect, useState, useCallback, useMemo, useRef } from "react";
-import { motion, useScroll, useTransform, useMotionValue, useSpring, } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 // HACK: Define the custom element type directly in the file to resolve linter issues.
@@ -24,7 +24,7 @@ import {
   SmartSection,
   ConsultingSection,
   ProcessSection,
-  MultiagenteSection,
+  MultiAgentSection,
   FAQSectionNew,
 } from '@Landing/sections';
 
@@ -37,113 +37,15 @@ const SCROLL_CONFIGS = {
 };
 
 const ANIMATIONS = {
-    LOADING_DURATION: 1.2,
-    CURSOR_SPRING: { stiffness: 400, damping: 25 },
-    SECTION_DELAY: 0.15,
-    PARTICLES_COUNT: 10,
-    STAGGER_DELAY: 0.1
+    LOADING_DURATION: 0.2,
+    SECTION_DELAY: 0.02,
+    STAGGER_DELAY: 0.02
 };
 
-// --- COMPONENTES OPTIMIZADOS ---
-// Partículas solo en cliente para evitar hydration mismatch (Math.random distinto en server vs client)
-const AnimatedParticles = React.memo(() => {
-    const [particles, setParticles] = useState<Array<{ id: number; left: string; top: string; delay: number; duration: number }>>([]);
-
-    useEffect(() => {
-        setParticles(
-            Array.from({ length: ANIMATIONS.PARTICLES_COUNT }, (_, i) => ({
-                id: i,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                delay: Math.random() * 10,
-                duration: 10 + Math.random() * 1
-            }))
-        );
-    }, []);
-
-    if (particles.length === 0) return <div className="absolute inset-0 pointer-events-none" />;
-
-    return (
-        <div className="absolute inset-0 pointer-events-none">
-            {particles.map((particle) => (
-                <motion.div
-                    key={particle.id}
-                    className="absolute w-30 h-30 bg-gradient-to-r from-emerald-400/10 to-violet-600/10 rounded-full "
-                    style={{ left: particle.left, top: particle.top, filter: "blur(20px)" }}
-                    animate={{
-                        y: [0, -40, 0],
-                        opacity: [0, 1, 0],
-                        scale: [0.5, 1.2, 0.5]
-                    }}
-                    transition={{
-                        duration: particle.duration,
-                        repeat: Infinity,
-                        delay: particle.delay,
-                        ease: "easeInOut"
-                    }}
-                />
-            ))}
-        </div>
-    );
-});
-const GlowCursor = () => {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    // Suavizar con resorte (spring)
-    const springX = useSpring(x, { stiffness: 100, damping: 20 });
-    const springY = useSpring(y, { stiffness: 100, damping: 20 });
-
-    useEffect(() => {
-        const updateMouse = (e: MouseEvent) => {
-            x.set(e.clientX - 150); // centrado por tamaño del glow
-            y.set(e.clientY - 150);
-        };
-
-        window.addEventListener("mousemove", updateMouse);
-        return () => window.removeEventListener("mousemove", updateMouse);
-    }, [x, y]);
-
-    return (
-        <motion.div
-            className="fixed pointer-events-none z-10"
-            style={{
-                top: springY,
-                left: springX,
-                width: 300,
-                height: 300,
-                borderRadius: "9999px",
-                background: `radial-gradient(circle, 
-          rgba(59, 131, 246, 0.65) 0%, 
-          rgba(169, 85, 247, 0.25) 40%, 
-          transparent 80%)`,
-                filter: "blur(80px)",
-                opacity: 0.5,
-            }}
-        />
-    );
-};
-const AdvancedBackground = React.memo(({ }: {
-    mousePosition: { x: number; y: number };
-    y1: any;
-    y2: any;
-}) => (
+// Fondo sin partículas ni glow para mejor rendimiento
+const AdvancedBackground = React.memo(() => (
     <div className="fixed inset-0 z-0 pointer-events-none select-none">
-        {/* Fondo base dark con degradado profundo */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0c0e15]/4 via-[#0a0a0f] to-[#0c0e15]" />
-
-        {/* Glow radial sutil que sigue el mouse */}
-
-
-
-
-
-        {/* Partículas decorativas (opcional si ya son sutiles) */}
-        <AnimatedParticles />
-
-
-
-
     </div>
 ));
 
@@ -219,48 +121,11 @@ const SectionProgressBar = React.memo(({ sections, sectionRefs }: {
 
 
 
-const CursorEffect = React.memo(({ mousePosition }: { mousePosition: { x: number; y: number } }) => {
-    const cursorX = useMotionValue(0);
-    const cursorY = useMotionValue(0);
-    const springConfig = ANIMATIONS.CURSOR_SPRING;
-    const cursorXSpring = useSpring(cursorX, springConfig);
-    const cursorYSpring = useSpring(cursorY, springConfig);
-
-    useEffect(() => {
-        cursorX.set(mousePosition.x * (window.innerWidth / 100) - 16);
-        cursorY.set(mousePosition.y * (window.innerHeight / 100) - 16);
-    }, [mousePosition, cursorX, cursorY]);
-
-    return (
-        <motion.div
-            className="fixed w-8 h-8 border-2 border-blue-400/40 rounded-full pointer-events-none z-50 mix-blend-difference"
-            style={{
-                x: cursorXSpring,
-                y: cursorYSpring,
-            }}
-            animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.6, 0.8, 0.6]
-            }}
-            transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-            }}
-        />
-    );
-});
-
-// --- COMPONENTE PRINCIPAL OPTIMIZADO ---
+// --- COMPONENTE PRINCIPAL ---
 export const LandingPageContent: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
     const [isLoaded, setIsLoaded] = useState(false);
-
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 400], SCROLL_CONFIGS.PARALLAX_Y1);
-    const y2 = useTransform(scrollY, [0, 400], SCROLL_CONFIGS.PARALLAX_Y2);
 
     // Refs para cada sección
     const heroRef = useRef<HTMLDivElement>(null);
@@ -285,17 +150,7 @@ export const LandingPageContent: React.FC = () => {
         setIsScrolled(window.scrollY > SCROLL_CONFIGS.SCROLL_THRESHOLD);
     }, []);
 
-    const handleMouseMove = useCallback((e: MouseEvent) => {
-        requestAnimationFrame(() => {
-            setMousePosition({
-                x: (e.clientX / window.innerWidth) * 100,
-                y: (e.clientY / window.innerHeight) * 100
-            });
-        });
-    }, []);
-
     useEffect(() => {
-        // Event listeners optimizados
         let ticking = false;
         const optimizedHandleScroll = () => {
             if (!ticking) {
@@ -306,30 +161,19 @@ export const LandingPageContent: React.FC = () => {
                 ticking = true;
             }
         };
-
         window.addEventListener('scroll', optimizedHandleScroll, { passive: true });
-        window.addEventListener('mousemove', handleMouseMove, { passive: true });
-
-
-        // Loading mejorado
-        const timer = setTimeout(() => {
-            setIsLoaded(true);
-
-        }, ANIMATIONS.LOADING_DURATION * 1000);
-
+        const timer = setTimeout(() => setIsLoaded(true), ANIMATIONS.LOADING_DURATION * 1000);
         return () => {
             window.removeEventListener('scroll', optimizedHandleScroll);
-            window.removeEventListener('mousemove', handleMouseMove);
             clearTimeout(timer);
-
         };
-    }, [handleScroll, handleMouseMove]);
+    }, [handleScroll]);
 
     // Secciones con configuración mejorada
     const sections = useMemo(() => [
         { Component: Solutions, name: 'Soluciones', color: 'slate', delay: ANIMATIONS.SECTION_DELAY * 2, ref: solutionsRef },
         { Component: AgentsFunctions, name: 'Funciones de Agentes', color: 'purple', delay: ANIMATIONS.SECTION_DELAY * 5, ref: agentsFunctionsRef },
-        { Component: MultiagenteSection, name: 'Multiagente', color: 'violet', delay: ANIMATIONS.SECTION_DELAY * 6, ref: crmIntegradoRef },
+        { Component: MultiAgentSection, name: 'Multiagente', color: 'violet', delay: ANIMATIONS.SECTION_DELAY * 6, ref: crmIntegradoRef },
          { Component: IntegrationsSection, name: 'Integraciones', color: 'orange', delay: ANIMATIONS.SECTION_DELAY * 7, ref: integrationsRef },
         { Component: SmartSection, name: 'Smart Functions', color: 'yellow', delay: ANIMATIONS.SECTION_DELAY * 8, ref: smartRef },
         { Component: ConsultingSection, name: 'Video Demostrativo', color: 'emerald', delay: ANIMATIONS.SECTION_DELAY * 9, ref: videoRef },
@@ -348,11 +192,10 @@ export const LandingPageContent: React.FC = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isLoaded ? 1 : 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="font-sans relative overflow-hidden  bg-[#0c0e15]"
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="font-sans relative overflow-hidden bg-[#0c0e15]"
         >
-            {/* Background System Optimizado */}
-            <AdvancedBackground mousePosition={mousePosition} y1={y1} y2={y2} />
+            <AdvancedBackground />
 
             {/* Progress Bar por Secciones */}
             <SectionProgressBar sections={allSections} sectionRefs={sectionRefs} />
@@ -366,16 +209,9 @@ export const LandingPageContent: React.FC = () => {
                 {/* Navigation mejorada */}
                 <Nav isScrolled={isScrolled} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
-                {/* Hero Section con animación mejorada */}
-                <motion.div
-                    id="hero"
-                    ref={heroRef}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                >
+                <div id="hero" ref={heroRef}>
                     <HeroSection />
-                </motion.div>
+                </div>
 
 
 
@@ -389,7 +225,7 @@ export const LandingPageContent: React.FC = () => {
                         else if (Component === AgentsFunctions) sectionId = 'why'; // Funciones principales
                         else if (Component === IntegrationsSection) sectionId = 'integrations';
                         else if (Component === SmartSection) sectionId = 'smart-functions';
-                        else if (Component === MultiagenteSection) sectionId = 'multiagente';
+                        else if (Component === MultiAgentSection) sectionId = 'multiagente';
                         else if (Component === ConsultingSection) sectionId = 'consulting';
                         else if (Component === TestimonialsSection) sectionId = 'testimonials';
                         else if (Component === MetricsSection) sectionId = 'metrics';
@@ -398,45 +234,22 @@ export const LandingPageContent: React.FC = () => {
                         else sectionId = `section-${index}`;
 
                         return (
-                            <motion.div
+                            <div
                                 key={index}
                                 id={sectionId}
                                 ref={ref}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{
-                                    duration: 0.8,
-                                    delay: delay + (index * ANIMATIONS.STAGGER_DELAY),
-                                    ease: "easeOut"
-                                }}
                                 className="relative"
                             >
                                 <Component />
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>
 
-                {/* Footer */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="relative"
-                >
+                <div className="relative">
                     <Footer />
-                </motion.div>
+                </div>
             </div>
-
-
-            <GlowCursor />
-
-            {/* Cursor Effect Optimizado */}
-            <CursorEffect mousePosition={mousePosition} />
-
-
         </motion.div>
     );
 };

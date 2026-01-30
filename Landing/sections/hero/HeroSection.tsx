@@ -83,60 +83,72 @@ export default function HeroSection() {
                 {/* Contenido central */}
                 <motion.div
                     style={{ y: titleY, opacity: titleOpacity }}
-                    className="relative z-10 h-full grid place-content-center text-center px-6"
+                    className="relative z-10 h-full grid md:place-content-center md:pt-0  place-content-start pt-60   text-center px-6"
                 >
                     
                     
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4, duration: 0.8 }}
-                            className="text-white  leading-[1.03] mx-auto max-w-[16ch] text-[50px] md:text-[64px] font-termina"
+                            transition={{ delay: 0.05, duration: 0.25 }}
+                            className="text-white  leading-[1.03] mx-auto max-w-[16ch] text-[35px] md:text-[64px] font-termina"
                         >
-                        Automatizá tu atención{' '}
+                        Automatiza tu atencion{' '}
                         <span className="font-semibold bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent termina-bold">
                             sin perder clientes
                         </span>
                     </motion.h1>
                     
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6, duration: 0.8 }}
-                            className="text-white mt-4 text-xl md:mt-6 max-w-[70ch] mx-auto font-poppins"
-                        >
-                        
-                        Diseñamos <strong className="text-white bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">asistentes de IA</strong>,
-                        <strong className="text-white"> sistemas personalizados</strong> y
-                        <strong className="text-white"> automatizaciones</strong> que responden a tus clientes, organizan tus procesos y
-                        conectan todas tus plataformas para que tu empresa funcione 24/7 sin depender de vos.
-                    </motion.p>
+                    <motion.p
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.1, duration: 0.25 }}
+  className="text-white mt-10 text-md md:text-xl md:mt-10 max-w-[90ch] mx-auto font-poppins"
+>
+  Diseñamos <strong className="bg-gradient-to-r from-violet-300 to-violet-400 bg-clip-text text-transparent">
+    empleados de IA
+  </strong>, <strong>paginas web y CRMs multiagente</strong>,
+  <strong> integramos plataformas existentes</strong> y
+  <strong> automatizamos procesos</strong> para que tu empresa opere 24/7,
+  con todo conectado y sin depender de vos.
+</motion.p>
+
 
                     {/* Logos + CTAs */}
-                    <motion.div 
+                                      <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8, duration: 0.8 }}
-                        className="mt-6 md:mt-8 flex items-center justify-center gap-6 opacity-90"
+                        transition={{ delay: 0.15, duration: 0.25 }}
+                        className="mt-10 sm:mt-6 md:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-5 md:gap-6 opacity-90"
                     >
-                        <span className="text-white/80 font-semibold text-sm">OSOJI</span>
-                        <span className="text-white/80 font-semibold text-sm">wift</span>
-                        <span className="text-white/80 font-semibold text-sm">dentalink</span>
-                        <span className="text-white/80 font-semibold text-sm">COPEC FI</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm">Grupo Norte</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm">SierraMed</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm">Viajes Centro</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm">Nova IT</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm">Dental Sur</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm">Core Sistemas</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm ">Consultorios Alta</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm ">Turismo Río</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm hidden md:block">Tecno Centro</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm hidden md-block">Salud Norte</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm hidden md:block">Andes Travel</span>
+<span className="text-white/80 font-semibold text-xs sm:text-sm hidden md:block">Data Sur</span>
+
+
                     </motion.div>
 
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 0.8 }}
-                        className="mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+                        transition={{ delay: 0.2, duration: 0.25 }}
+                        className="mt-10 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-6"
                     >
                         <motion.a
                             href="https://wa.me/5491112345678"
                             target="_blank"
                             whileHover={{ scale: 1.02, y: -2 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group bg-gradient-to-r from-violet-400 to-violet-700 hover:bg-violet-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 transition-all duration-300 text-sm sm:text-base"
+                            className="group bg-gradient-to-r from-violet-400 to-violet-700 hover:bg-violet-600 text-white px-8 sm:px-8 py-4 sm:py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 transition-all duration-300 text-md sm:text-base"
                         >
                             <span>Quiero agendar una consultoría</span>
                         </motion.a>

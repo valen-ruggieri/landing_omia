@@ -9,5 +9,5 @@ export { default as AgentsFunctions } from './agents/AgentsFunctions';
 export { default as SmartSection } from './smart/SmartSection';
 export { default as ConsultingSection } from './consulting/Consulting';
 export { default as ProcessSection } from './process/ProcessSection';
-export { default as MultiagenteSection } from './multiagente/MultiagenteSection';
+export { default as MultiAgentSection } from './multi-agent/MultiAgentSection';
 export { default as FAQSectionNew } from './faq/FAQSectionNew';

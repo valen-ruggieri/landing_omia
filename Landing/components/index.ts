@@ -12,13 +12,13 @@ export { default as SmartFunctionCard } from './ui/SmartFunctionCard';
 export { LogoLoop } from './ui/LogoLoop';
 export { default as  OmiaSaasCharts } from './ui/OmiaSaasCharts';
 
-// Secciones reutilizables
-export { default as FAQSection } from './Sections/FAQSection';
+// Bloques reutilizables (CTA, FAQ, Why)
+export { default as FAQSection } from './blocks/FAQSection';
 
-// Componentes compartidos
-export { ChatBubble } from './shared/ChatBubble';
-export { ComparisonItem } from './shared/ComparisonItem';
-export { MobileNavLink } from './shared/MobileNavLink';
-export { NavLink } from './shared/NavLink';
-export { default as ReusableSmartSection } from './shared/ReusableSmartSection';
-export { default as SmartSectionHeader } from './shared/SmartSectionHeader';
+// Componentes comunes
+export { ChatBubble } from './common/ChatBubble';
+export { ComparisonItem } from './common/ComparisonItem';
+export { MobileNavLink } from './common/MobileNavLink';
+export { NavLink } from './common/NavLink';
+export { default as ReusableSmartSection } from './common/ReusableSmartSection';
+export { default as SmartSectionHeader } from './common/SmartSectionHeader';

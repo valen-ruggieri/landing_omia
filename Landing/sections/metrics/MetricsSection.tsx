@@ -32,14 +32,14 @@ export default function MetricsSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.25 }}
                     className="mb-20"
                 >
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.25 }}
                         className="text-center mb-16"
                     >
 
@@ -47,7 +47,7 @@ export default function MetricsSection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.2, duration: 0.6 }}
+                            transition={{ delay: 0.05, duration: 0.2 }}
                             className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl  text-white mb-4 font-termina"
                         >
                             Metricas que{' '}
@@ -85,7 +85,7 @@ export default function MetricsSection() {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.25 }}
                     >
                         <OmiaSaasCharts />
                     </motion.div>

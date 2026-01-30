@@ -119,7 +119,7 @@ export default function TestimonialsSection() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.25 }}
                     className="text-center mb-8 sm:mb-12 lg:mb-5 px-4"
                 >
                     <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4">
@@ -128,7 +128,7 @@ export default function TestimonialsSection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.2, duration: 0.6 }}
+                            transition={{ delay: 0.05, duration: 0.2 }}
                             className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl  text-white mb-4 font-termina"
                         >
                          Qué dicen {' '}

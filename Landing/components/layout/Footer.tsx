@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
         },
         { 
             name: "Instagram", 
-            href: "https://www.instagram.com/omia.io/", 
+            href: "https://www.instagram.com/omia.ai/", 
             icon: <Instagram className="w-5 h-5" />,
             color: "pink"
         },
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.25 }}
                         className="lg:col-span-2"
                     >
                         {/* Logo */}
@@ -110,7 +110,7 @@ export const Footer: React.FC = () => {
                             </div>
                             <div className="flex items-center space-x-3 text-gray-400">
                                 <MapPin className="w-5 h-5" />
-                                <span className="text-sm">Buenos Aires, Argentina</span>
+                                <span className="text-sm"> Cordoba, Argentina</span>
                             </div>
                         </div>
                         
@@ -141,7 +141,7 @@ export const Footer: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
+                        transition={{ duration: 0.25, delay: 0.05 }}
                         className="lg:col-span-1"
                     >
                         <h4 className="text-white font-semibold mb-4">Navegación</h4>
@@ -164,7 +164,7 @@ export const Footer: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.25, delay: 0.05 }}
                         className="lg:col-span-1"
                     >
                         <h4 className="text-white font-semibold mb-4">¿Listo para empezar?</h4>
@@ -192,7 +192,7 @@ export const Footer: React.FC = () => {
                             <span>© 2022 Omia. Todos los derechos reservados.</span>
                         </div>
                         <div className="flex items-center space-x-6">
-                            <span className="text-xs">Buenos Aires, Argentina</span>
+                            <span className="text-xs">Cordoba, Argentina</span>
                         </div>
                     </div>
                 </div>

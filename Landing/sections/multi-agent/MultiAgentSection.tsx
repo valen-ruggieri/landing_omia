@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useMobileDetection } from '@Landing/hooks';
 import { LogoLoop } from '@Landing/components';
 
-const MultiagenteSection: React.FC = () => {
+const MultiAgentSection: React.FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const { isMobile } = useMobileDetection();
@@ -81,7 +81,7 @@ const MultiagenteSection: React.FC = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.25 }}
                     className="px-3 sm:px-4 md:px-6"
                 >
                     {/* Logo y Título principal */}
@@ -119,7 +119,7 @@ const MultiagenteSection: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
+                        transition={{ duration: 0.8, delay: 0.1 }}
                         className="flex flex-col items-center justify-center px-4 "
                     >
 
@@ -201,4 +201,4 @@ const MultiagenteSection: React.FC = () => {
     );
 };
 
-export default MultiagenteSection;
+export default MultiAgentSection;
