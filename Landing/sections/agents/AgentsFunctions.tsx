@@ -263,9 +263,9 @@ return (
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2, duration: 0.6 }}
-                    className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl  text-white mb-4 "
+                    className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl  text-white mb-4 font-termina"
                 >
-                    Una función para  {''}
+                    Una funcion para  {''}
                     <span className={`termina-bold bg-gradient-to-r ${
                         selectedCategory === 'Calendario' ? 'from-blue-400 to-blue-800' :
                         selectedCategory === 'Comunicación' ? 'from-violet-400 to-violet-800' :

@@ -131,8 +131,8 @@ export default function TestimonialsSection() {
                             transition={{ delay: 0.05, duration: 0.2 }}
                             className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl  text-white mb-4 font-termina"
                         >
-                         Qué dicen {' '}
-                            <span className="termina-bold bg-gradient-to-r font-bold from-purple-400 via-purple-500 to-violet-700 bg-clip-text text-transparent">
+                         Que dicen {' '}
+                            <span className="font-termina  termina-bold bg-gradient-to-r font-bold from-purple-400 via-purple-500 to-violet-700 bg-clip-text text-transparent">
                             nuestros clientes 
                             </span>
                         </motion.h2>
