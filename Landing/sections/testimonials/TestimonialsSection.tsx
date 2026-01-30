@@ -148,11 +148,11 @@ export default function TestimonialsSection() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         {/* Columna 1 - Espaciados variables */}
                         <div className="flex flex-col gap-0 ">
-                            {[0, 3, 6, 9, 12, 15].map((index) => {
+                            {[0, 3, 6, 9].map((index, i) => {
 
                                 return testimonials[index] && (
                                     <motion.div
-                                        key={index}
+                                        key={`col1-${i}-${index}`}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
@@ -180,11 +180,11 @@ export default function TestimonialsSection() {
 
                         {/* Columna 2 - Espaciados variables */}
                         <div className="flex flex-col gap-0 pt-15">
-                            {[1, 4, 7, 10, 1, 16].map((index) => {
+                            {[1, 4, 7, 10].map((index, i) => {
 
                                 return testimonials[index] && (
                                     <motion.div
-                                        key={index}
+                                        key={`col2-${i}-${index}`}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
@@ -212,11 +212,11 @@ export default function TestimonialsSection() {
 
                         {/* Columna 3 - Espaciados variables */}
                         <div className="flex flex-col gap-0">
-                            {[2, 5, 8, 11, 14, 17].map((index, i) => {
-                                const spacings = ['mb-6', 'mb-5', 'mb-4', 'mb-6', 'mb-5', 'mb-7'];
+                            {[2, 5, 8, 11].map((index, i) => {
+                                const spacings = ['mb-6', 'mb-5', 'mb-4', 'mb-6'];
                                 return testimonials[index] && (
                                     <motion.div
-                                        key={index}
+                                        key={`col3-${i}-${index}`}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}

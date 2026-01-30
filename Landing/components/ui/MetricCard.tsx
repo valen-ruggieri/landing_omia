@@ -1,9 +1,10 @@
-'use client';  
+'use client';
 
-
-import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { motion } from "framer-motion";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface MetricCardProps {
     title: string;

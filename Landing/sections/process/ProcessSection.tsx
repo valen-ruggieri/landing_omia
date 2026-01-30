@@ -1,8 +1,10 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
+
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function ProcessSection() {
     const steps = [

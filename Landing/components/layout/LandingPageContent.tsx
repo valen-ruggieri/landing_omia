@@ -45,16 +45,23 @@ const ANIMATIONS = {
 };
 
 // --- COMPONENTES OPTIMIZADOS ---
+// Partículas solo en cliente para evitar hydration mismatch (Math.random distinto en server vs client)
 const AnimatedParticles = React.memo(() => {
-    const particles = useMemo(() =>
-        Array.from({ length: ANIMATIONS.PARTICLES_COUNT }, (_, i) => ({
-            id: i,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            delay: Math.random() * 10,
-            duration: 10 + Math.random() * 1
-        })), []
-    );
+    const [particles, setParticles] = useState<Array<{ id: number; left: string; top: string; delay: number; duration: number }>>([]);
+
+    useEffect(() => {
+        setParticles(
+            Array.from({ length: ANIMATIONS.PARTICLES_COUNT }, (_, i) => ({
+                id: i,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                delay: Math.random() * 10,
+                duration: 10 + Math.random() * 1
+            }))
+        );
+    }, []);
+
+    if (particles.length === 0) return <div className="absolute inset-0 pointer-events-none" />;
 
     return (
         <div className="absolute inset-0 pointer-events-none">
