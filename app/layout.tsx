@@ -12,41 +12,87 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Omia",
-  description: "Transforma tu negocio con inteligencia artificial",
-  icons: { 
-    icon: "/omia-icon.svg", 
-    shortcut: "/omia-icon.svg", 
-    apple: "/omia-icon.svg", 
-  }, 
-  metadataBase: new URL("https://omia.io"), 
+const SITE_URL = "https://www.omia.com.ar";
 
-  openGraph: {  
-    title: "Omia", 
-    description: "Transforma tu negocio con inteligencia artificial", 
-    images: [ 
-      { url: "/omia-icon.svg", width: 1200, height: 630, alt: "Omia" },
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Omia | Automatiza tu atención sin perder clientes",
+    template: "%s | Omia",
+  },
+  description:
+    "Diseñamos asistentes de IA, sistemas personalizados y automatizaciones para que tu empresa funcione 24/7 sin depender de vos. Transforma tu negocio con inteligencia artificial.",
+  applicationName: "Omia",
+  keywords: [
+    "omia",
+    "inteligencia artificial",
+    "IA",
+    "asistentes de IA",
+    "automatización",
+    "transformación digital",
+    "negocio",
+    "consultoría",
+    "asesoría",
+    "gestión",
+    "ventas",
+    "marketing",
+    "soporte técnico",
+    "operaciones",
+    "Argentina",
+  ],
+  authors: [{ name: "Omia", url: SITE_URL }],
+  creator: "Omia",
+  publisher: "Omia",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: "/omia-icon.svg",
+    shortcut: "/omia-icon.svg",
+    apple: "/omia-icon.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    url: SITE_URL,
+    siteName: "Omia",
+    title: "Omia | Automatiza tu atención sin perder clientes",
+    description:
+      "Diseñamos asistentes de IA, sistemas personalizados y automatizaciones para que tu empresa funcione 24/7 sin depender de vos.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Omia - Asistentes de IA y automatización para tu empresa",
+        type: "image/png",
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Omia",
-    description: "Transforma tu negocio con inteligencia artificial",
-    images: ["/omia-icon.svg"], 
-    site: "@omia.io", 
-
-
-  }, 
-  keywords: ["omia", "inteligencia artificial", "transformacion", "negocio", "consultoria", "asesoria", "gestion", "ventas", "marketing", "soporte", "tecnico", "administracion", "administrativo", "operaciones", "operacional", "operacionales", "operacionales de negocios", "operacionales de negocios en linea", "operacionales de negocios en linea en argentina", "operacionales de negocios en linea en argentina 2026", "operacionales de negocios en linea en argentina 2027", "operacionales de negocios en linea en argentina 2028", "operacionales de negocios en linea en argentina 2029", "operacionales de negocios en linea en argentina 2030"],
-  authors: [{ name: "Omia", url: "https://omia.io" }],
-  creator: "Omia",
-  publisher: "Omia",
+    site: "@omia.ia",
+    creator: "@omia.ia",
+    title: "Omia | Automatiza tu atención sin perder clientes",
+    description:
+      "Diseñamos asistentes de IA, sistemas personalizados y automatizaciones para que tu empresa funcione 24/7.",
+    images: ["/og-image.png"],
+  },
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
-  }, 
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
+  category: "technology",
+  referrer: "origin-when-cross-origin",
 };
 
 export default function RootLayout({
