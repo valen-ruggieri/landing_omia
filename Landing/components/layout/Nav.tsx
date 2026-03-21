@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Menu,
@@ -15,6 +16,7 @@ import {
     MessageSquare,
     GitBranch,
     HelpCircle,
+    Building2,
     type LucideIcon,
 } from 'lucide-react';
 
@@ -26,28 +28,51 @@ interface NavProps {
     isScrolled: boolean;
     isMenuOpen: boolean;
     setIsMenuOpen: (open: boolean) => void;
+    navigationItems?: NavItem[];
+    mobileMenuSections?: MobileMenuSection[];
+    logoHref?: string;
+    logoType?: 'scroll' | 'route';
 }
 
+type NavItem = {
+    id: string;
+    label: string;
+    href?: string;
+    type?: 'scroll' | 'route';
+};
+
+type MobileMenuItem = {
+    id: string;
+    label: string;
+    description: string;
+    icon: LucideIcon;
+    href?: string;
+    type?: 'scroll' | 'route';
+};
+
+type MobileMenuSection = {
+    title: string;
+    subtitle?: string;
+    items: MobileMenuItem[];
+};
+
 // Items para desktop (orden según LandingPageContent)
-const navigationItems = [
-    { id: 'solutions', label: 'Personalización' },
-    { id: 'why', label: 'Funciones' },
-    { id: 'multiagente', label: 'Multiagente' },
-    { id: 'integrations', label: 'Integraciones' },
-    { id: 'smart-functions', label: 'Smart' },
-    { id: 'consulting', label: 'Consultoría' },
-    { id: 'metrics', label: 'Métricas' },
-    { id: 'testimonials', label: 'Testimonios' },
-    { id: 'process', label: 'Proceso' },
-    { id: 'faq', label: 'FAQ' },
+const defaultNavigationItems: NavItem[] = [
+    { id: 'solutions', label: 'Personalización', href: '#solutions', type: 'scroll' },
+    { id: 'why', label: 'Funciones', href: '#why', type: 'scroll' },
+    { id: 'multiagente', label: 'Multiagente', href: '#multiagente', type: 'scroll' },
+    { id: 'integrations', label: 'Integraciones', href: '#integrations', type: 'scroll' },
+    { id: 'smart-functions', label: 'Smart', href: '#smart-functions', type: 'scroll' },
+    { id: 'consulting', label: 'Consultoría', href: '#consulting', type: 'scroll' },
+    { id: 'services', label: 'Servicios', href: '/servicios', type: 'route' },
+    { id: 'metrics', label: 'Métricas', href: '#metrics', type: 'scroll' },
+    { id: 'testimonials', label: 'Testimonios', href: '#testimonials', type: 'scroll' },
+    { id: 'process', label: 'Proceso', href: '#process', type: 'scroll' },
+    { id: 'faq', label: 'FAQ', href: '#faq', type: 'scroll' },
 ];
 
 // Estructura del sidebar móvil: secciones con icono + título + descripción (estilo Omia)
-const mobileMenuSections: {
-    title: string;
-    subtitle?: string;
-    items: { id: string; label: string; description: string; icon: LucideIcon }[];
-}[] = [
+const defaultMobileMenuSections: MobileMenuSection[] = [
     {
         title: 'SOLUCIONES',
         subtitle: 'Personalización e IA',
@@ -76,10 +101,27 @@ const mobileMenuSections: {
             { id: 'faq', label: 'FAQ', description: 'Preguntas frecuentes', icon: HelpCircle },
         ],
     },
+    {
+        title: 'OMIA',
+        subtitle: 'Página institucional',
+        items: [
+            { id: 'services', label: 'Servicios', description: 'Consultoría, producto digital, automatización e IA', icon: Building2, href: '/servicios', type: 'route' },
+        ],
+    },
 ];
 
-export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen }) => {
+export const Nav: React.FC<NavProps> = ({
+    isScrolled,
+    isMenuOpen,
+    setIsMenuOpen,
+    navigationItems = defaultNavigationItems,
+    mobileMenuSections = defaultMobileMenuSections,
+    logoHref = '#hero',
+    logoType = 'scroll',
+}) => {
     const [activeSection, setActiveSection] = useState('hero');
+    const router = useRouter();
+    const pathname = usePathname();
 
     // Función de scroll optimizada
     const scrollToSection = (sectionId: string) => {
@@ -95,6 +137,19 @@ export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen 
         }
         setActiveSection(sectionId);
         setIsMenuOpen(false);
+    };
+
+    const handleNavigation = (item: NavItem | MobileMenuItem) => {
+        const href = item.href ?? `#${item.id}`;
+        const type = item.type ?? (href.startsWith('#') ? 'scroll' : 'route');
+
+        if (type === 'route') {
+            router.push(href);
+            setIsMenuOpen(false);
+            return;
+        }
+
+        scrollToSection(href.replace('#', ''));
     };
 
     // Detectar sección activa con Intersection Observer
@@ -124,10 +179,9 @@ export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen 
         }, observerOptions);
 
         // Observar todas las secciones en el orden correcto según LandingPageContent
-        const sections = [
-            'hero', 'solutions', 'why', 'multiagente', 'integrations',
-            'smart-functions', 'consulting', 'metrics', 'testimonials', 'process', 'faq'
-        ];
+        const sections = ['hero', ...navigationItems
+            .filter((item) => (item.type ?? 'scroll') === 'scroll')
+            .map((item) => item.id)];
 
         sections.forEach((sectionId) => {
             const element = document.querySelector(`#${sectionId}`);
@@ -144,7 +198,7 @@ export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen 
                 }
             });
         };
-    }, []);
+    }, [navigationItems]);
 
     return (
         <>
@@ -165,7 +219,12 @@ export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen 
                         {/* Logo — centrado en mobile, a la izquierda en desktop */}
                         <div className="flex justify-center lg:flex-initial lg:justify-start">
                             <motion.button
-                                onClick={() => scrollToSection('hero')}
+                                onClick={() => handleNavigation({
+                                    id: 'hero',
+                                    label: 'Inicio',
+                                    href: logoHref,
+                                    type: logoType,
+                                })}
                                 whileHover={{ scale: 1.02 }}
                                 className="flex items-center gap-3 min-w-0 py-2 -my-2 group touch-manipulation"
                                 aria-label="Ir al inicio"
@@ -192,30 +251,36 @@ export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen 
                         </div>
                         {/* Navigation Desktop */}
                         <div className="hidden lg:flex items-center space-x-8 ml-6 mt-3 flex-1">
-                            {navigationItems.map((item) => (
-                                <motion.button
-                                    key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
-                                    whileHover={{ y: -1 }}
-                                    className={`relative text-md font-medium transition-all duration-300 ${activeSection === item.id
-                                        ? 'text-white font-semibold'
-                                        : ' hover:text-white'
-                                        }`}
-                                    animate={activeSection === item.id ? { scale: 1.05 } : { scale: 1 }}
-                                >
-                                    {item.label}
+                            {navigationItems.map((item) => {
+                                const isRoute = (item.type ?? 'scroll') === 'route';
+                                const isActive = isRoute
+                                    ? pathname === item.href
+                                    : activeSection === item.id;
 
-                                    {/* Indicator activo */}
-                                    {activeSection === item.id && (
-                                        <motion.div
-                                            initial={{ scaleX: 0 }}
-                                            animate={{ scaleX: 1 }}
-                                            transition={{ duration: 0.3 }}
-                                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-violet-400 rounded-full"
-                                        />
-                                    )}
-                                </motion.button>
-                            ))}
+                                return (
+                                    <motion.button
+                                        key={item.id}
+                                        onClick={() => handleNavigation(item)}
+                                        whileHover={{ y: -1 }}
+                                        className={`relative text-md font-medium transition-all duration-300 ${isActive
+                                            ? 'text-white font-semibold'
+                                            : ' hover:text-white'
+                                            }`}
+                                        animate={isActive ? { scale: 1.05 } : { scale: 1 }}
+                                    >
+                                        {item.label}
+
+                                        {isActive && (
+                                            <motion.div
+                                                initial={{ scaleX: 0 }}
+                                                animate={{ scaleX: 1 }}
+                                                transition={{ duration: 0.3 }}
+                                                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-violet-400 rounded-full"
+                                            />
+                                        )}
+                                    </motion.button>
+                                );
+                            })}
                         </div>
 
                         {/* En mobile: contenedor derecho para que el logo quede centrado */}
@@ -277,7 +342,12 @@ export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen 
                             <div className="flex-shrink-0 bg-gradient-to-r from-violet-700/10 via-indigo-700/40 to-indigo-800/10 px-5 py- flex items-center justify-between min-h-[64px]">
                                 <div className="flex-1 min-w-0" aria-hidden />
                                 <button
-                                    onClick={() => scrollToSection('hero')}
+                                    onClick={() => handleNavigation({
+                                        id: 'hero',
+                                        label: 'Inicio',
+                                        href: logoHref,
+                                        type: logoType,
+                                    })}
                                     className="flex items-center gap-2.5 shrink-0"
                                     aria-label="Ir al inicio"
                                 >
@@ -310,11 +380,13 @@ export const Nav: React.FC<NavProps> = ({ isScrolled, isMenuOpen, setIsMenuOpen 
                                             <div className="space-y-1">
                                                 {section.items.map((item) => {
                                                     const Icon = item.icon;
-                                                    const isActive = activeSection === item.id;
+                                                    const isActive = (item.type ?? 'scroll') === 'route'
+                                                        ? pathname === item.href
+                                                        : activeSection === item.id;
                                                     return (
                                                         <button
                                                             key={item.id}
-                                                            onClick={() => scrollToSection(item.id)}
+                                                            onClick={() => handleNavigation(item)}
                                                             className={`w-full text-left p-4 rounded-xl transition-all duration-200 flex items-start gap-3 group ${
                                                                 isActive
                                                                     ? 'bg-violet-500/15 border border-violet-500/30'

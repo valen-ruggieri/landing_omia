@@ -2,6 +2,7 @@
 export { Footer } from './layout/Footer';
 export { Nav } from './layout/Nav';
 export { LandingPageContent } from './layout/LandingPageContent';
+export { ServicesPageContent } from './layout/ServicesPageContent';
 
 // Componentes UI
 export { ButtonCtaPrimary } from './ui/ButtonCtaPrimary';

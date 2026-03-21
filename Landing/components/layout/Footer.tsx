@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { 
     MessageSquare, 
@@ -15,7 +17,36 @@ import {
 const OMIA_ICON = '/omia-icon.svg';
 const OMIA_LETRAS = '/omia-letras.svg';
 
-export const Footer: React.FC = () => {
+type FooterQuickLink = {
+    name: string;
+    href: string;
+    type?: 'scroll' | 'route';
+};
+
+interface FooterProps {
+    quickLinks?: FooterQuickLink[];
+}
+
+const defaultQuickLinks: FooterQuickLink[] = [
+    { name: "Transformación", href: "#problems", type: 'scroll' },
+    { name: "Personalización", href: "#solutions", type: 'scroll' },
+    { name: "Funciones", href: "#why", type: 'scroll' },
+    { name: "Integraciones", href: "#integrations", type: 'scroll' },
+    { name: "Servicios", href: "/servicios", type: 'route' },
+    { name: "Smart", href: "#smart-functions", type: 'scroll' },
+    { name: "Consultoría", href: "#video", type: 'scroll' },
+    { name: "Métricas", href: "#metrics", type: 'scroll' },
+    { name: "Testimonios", href: "#testimonials", type: 'scroll' },
+    { name: "Precios", href: "#pricing", type: 'scroll' },
+    { name: "Proceso", href: "#process", type: 'scroll' },
+    { name: "FAQ", href: "#faq", type: 'scroll' }
+];
+
+export const Footer: React.FC<FooterProps> = ({
+    quickLinks = defaultQuickLinks,
+}) => {
+    const router = useRouter();
+
     const scrollToSection = (sectionId: string) => {
         const element = document.querySelector(`#${sectionId}`) as HTMLElement;
         if (element) {
@@ -28,19 +59,16 @@ export const Footer: React.FC = () => {
         }
     };
 
-    const quickLinks = [
-        { name: "Transformación", href: "#problems" },
-        { name: "Personalización", href: "#solutions" },
-        { name: "Funciones", href: "#why" },
-        { name: "Integraciones", href: "#integrations" },
-        { name: "Smart", href: "#smart-functions" },
-        { name: "Consultoría", href: "#video" },
-        { name: "Métricas", href: "#metrics" },
-        { name: "Testimonios", href: "#testimonials" },
-        { name: "Precios", href: "#pricing" },
-        { name: "Proceso", href: "#process" },
-        { name: "FAQ", href: "#faq" }
-    ];
+    const handleQuickLink = (link: FooterQuickLink) => {
+        const type = link.type ?? (link.href.startsWith('#') ? 'scroll' : 'route');
+
+        if (type === 'route') {
+            router.push(link.href);
+            return;
+        }
+
+        scrollToSection(link.href.replace('#', ''));
+    };
 
     const socialLinks = [
         { 
@@ -150,7 +178,7 @@ export const Footer: React.FC = () => {
                                 <motion.button
                                     key={index}
                                     whileHover={{ x: 4 }}
-                                    onClick={() => scrollToSection(link.href.replace('#', ''))}
+                                    onClick={() => handleQuickLink(link)}
                                     className="block text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                                 >
                                     {link.name}
@@ -190,6 +218,9 @@ export const Footer: React.FC = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-center text-gray-400 text-sm">
                         <div className="flex items-center space-x-6 mb-4 sm:mb-0">
                             <span>© 2022 Omia. Todos los derechos reservados.</span>
+                            <Link href="/terminos" className="hover:text-white transition-colors duration-300">Términos y Condiciones</Link>
+                            <Link href="/privacidad" className="hover:text-white transition-colors duration-300">Privacidad</Link>
+                            <Link href="/eliminar-datos" className="hover:text-white transition-colors duration-300">Eliminar datos</Link>
                         </div>
                         <div className="flex items-center space-x-6">
                             <span className="text-xs">Cordoba, Argentina</span>
