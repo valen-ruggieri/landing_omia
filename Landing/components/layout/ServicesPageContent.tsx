@@ -433,7 +433,7 @@ function MobileAppsShowcaseSection() {
           title="Productos pensados para telefono"
           description="Construimos apps moviles para procesos reales: seguimiento, aprobaciones, operacion interna, experiencia de cliente y tareas que necesitan resolverse rapido desde el celular."
           features={mobileFeatures}
-          accentClassName="from-cyan-300 via-blue-500 to-violet-500"
+          accentClassName="from-cyan-300 via-sky-400 to-blue-600"
         />
 
           <motion.div
@@ -534,8 +534,9 @@ function WebShowcaseSection() {
       ]}
       imageSrc="/macbookpro.png"
       imageAlt="Visual de plataforma web"
-      accentClassName="from-violet-300 via-violet-500 to-indigo-600"
+      accentClassName="from-purple-300 via-violet-500 to-purple-700"
       imageClassName="scale-[1.08]"
+      reverse
     />
   );
 }
@@ -553,9 +554,8 @@ function SystemsShowcaseSection() {
       ]}
       imageSrc="/macpc.png"
       imageAlt="Visual de sistema CRM y gestion"
-      accentClassName="from-emerald-300 via-cyan-400 to-blue-500"
+      accentClassName="from-emerald-300 via-teal-400 to-cyan-500"
       imageClassName="scale-[1.62] shadow-none drop-shadow-none"
-      reverse
     />
   );
 }
@@ -573,8 +573,9 @@ function EcommerceShowcaseSection() {
       ]}
       imageSrc="/web.png"
       imageAlt="Visual de ecommerce"
-      accentClassName="from-emerald-300 via-cyan-400 to-violet-500"
+      accentClassName="from-blue-300 via-indigo-500 to-violet-500"
       imageClassName="scale-[1.08]"
+      reverse
     />
   );
 }
@@ -585,7 +586,8 @@ function EndToEndSection() {
   const ActiveIcon = activeFeature.icon;
 
   return (
-    <section className="relative text-white py-20 lg:py-24 px-4 overflow-hidden">
+    <section className="relative overflow-hidden px-4 py-20 text-white lg:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(139,92,246,0.14),transparent_26%),radial-gradient(circle_at_82%_26%,rgba(168,85,247,0.12),transparent_24%),linear-gradient(180deg,rgba(12,14,21,0)_0%,rgba(36,18,56,0.12)_100%)]" />
       <div className="max-w-7xl mx-auto relative z-10">
         <ServicesSectionHeader
           title="Nuestro trabajo"
@@ -1033,7 +1035,7 @@ export function ServicesPageContent() {
   const projectQualityRef = useRef<HTMLDivElement>(null);
   const involvementRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs = [heroRef, endToEndRef, servicesRef, processRef, differentialRef, projectQualityRef, involvementRef];
+  const sectionRefs = [heroRef, servicesRef, endToEndRef, processRef, differentialRef, projectQualityRef, involvementRef];
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > SCROLL_CONFIGS.SCROLL_THRESHOLD);
@@ -1061,8 +1063,8 @@ export function ServicesPageContent() {
   }, [handleScroll]);
 
   const sections = useMemo(() => [
-    { id: 'trabajo', label: 'Trabajo', description: 'De punta a punta', icon: endToEndFeatures[0].icon, href: '#trabajo', type: 'scroll' as const },
     { id: 'servicios-principales', label: 'Servicios', description: 'Oferta principal de Omia', icon: serviceCategories[0].icon, href: '#servicios-principales', type: 'scroll' as const },
+    { id: 'trabajo', label: 'Trabajo', description: 'De punta a punta', icon: endToEndFeatures[0].icon, href: '#trabajo', type: 'scroll' as const },
     { id: 'como-trabajamos', label: 'Proceso', description: 'Cómo trabajamos', icon: endToEndFeatures[1].icon, href: '#como-trabajamos', type: 'scroll' as const },
     { id: 'diferencial', label: 'Diferencial', description: 'Negocio y trazabilidad', icon: endToEndFeatures[4].icon, href: '#diferencial', type: 'scroll' as const },
     { id: 'proyectos-calidad', label: 'Proyectos', description: 'Dónde ayudamos y qué cuidamos', icon: qualityFocus[0].icon as LucideIcon, href: '#proyectos-calidad', type: 'scroll' as const },
@@ -1078,8 +1080,8 @@ export function ServicesPageContent() {
   ];
 
   const footerLinks = [
-    { name: 'Trabajo', href: '#trabajo', type: 'scroll' as const },
     { name: 'Servicios', href: '#servicios-principales', type: 'scroll' as const },
+    { name: 'Trabajo', href: '#trabajo', type: 'scroll' as const },
     { name: 'Proceso', href: '#como-trabajamos', type: 'scroll' as const },
     { name: 'Diferencial', href: '#diferencial', type: 'scroll' as const },
     { name: 'Partner', href: '#partner', type: 'scroll' as const },
@@ -1110,12 +1112,12 @@ export function ServicesPageContent() {
           <ServicesHeroSection />
         </div>
 
-        <div id="trabajo" ref={endToEndRef}>
-          <EndToEndSection />
-        </div>
-
         <div id="servicios-principales" ref={servicesRef}>
           <ServicesMainSection />
+        </div>
+
+        <div id="trabajo" ref={endToEndRef}>
+          <EndToEndSection />
         </div>
 
         <div id="como-trabajamos" ref={processRef}>
