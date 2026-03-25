@@ -194,6 +194,16 @@ body {
 }
 
 /* Negrita en títulos con Termina */
+.termina-light {
+  font-family: "Termina", var(--font-termina), sans-serif;
+  font-weight: 300;
+}
+
+.termina-medium {
+  font-family: "Termina", var(--font-termina), sans-serif;
+  font-weight: 500;
+}
+
 .termina-bold {
   font-family: "Termina", var(--font-termina), sans-serif;
   font-weight: 700;

@@ -33,7 +33,7 @@ const AdvancedBackground = React.memo(() => (
     <div className="absolute -top-32 left-[-8%] h-[30rem] w-[30rem] rounded-full bg-violet-500/12 blur-[120px]" />
     <div className="absolute top-[14%] right-[-10%] h-[28rem] w-[28rem] rounded-full bg-cyan-500/10 blur-[120px]" />
     <div className="absolute bottom-[-8rem] left-[18%] h-[24rem] w-[24rem] rounded-full bg-emerald-500/8 blur-[120px]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.14),transparent_30%),radial-gradient(circle_at_82%_16%,rgba(34,211,238,0.10),transparent_28%),radial-gradient(circle_at_28%_90%,rgba(16,185,129,0.08),transparent_26%),linear-gradient(180deg,rgba(8,10,16,0.92)_0%,rgba(10,11,17,1)_100%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(169, 85, 247, 0),transparent_30%),radial-gradient(circle_at_82%_16%,rgba(34,211,238,0.10),transparent_28%),radial-gradient(circle_at_28%_90%,rgba(16,185,129,0.08),transparent_26%),linear-gradient(180deg,rgba(8,10,16,0.92)_0%,rgba(10,11,17,1)_100%)]" />
   </div>
 ));
 
@@ -122,9 +122,9 @@ function ServicesSectionHeader({
       transition={{ duration: 0.25 }}
       className="text-center mb-8 sm:mb-12 max-w-5xl mx-auto"
     >
-      <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tighter text-white mb-3 sm:mb-4 font-termina">
+      <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tighter text-white mb-3 sm:mb-4 termina-light">
         {title}{' '}
-        <span className={`termina-bold ${accentClassName} bg-clip-text text-transparent`}>
+        <span className={`termina-medium ${accentClassName} bg-clip-text text-transparent`}>
           {highlighted}
         </span>
       </h2>
@@ -141,47 +141,41 @@ function ServicesHeroSection() {
     target: ref,
     offset: ['start start', 'end start'],
   });
+  const heroTitle = 'Tu negocio no necesita mas herramientas. Necesita un sistema.';
+  const heroHighlighted = 'Necesita un sistema.';
+  const heroDescription =
+    'En Omia lo diseniamos, lo construimos y lo hacemos evolucionar.';
 
   const scaleRaw = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.86, 0.72]);
   const scale = useSpring(scaleRaw, { stiffness: 170, damping: 22, mass: 0.3 });
   const translateY = useTransform(scrollYProgress, [0, 1], [0, 10]);
-  const radiusBottom = useTransform(scrollYProgress, [0, 1], ['44px', '48px']);
-  const vignetteOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.38, 0.32, 0.26]);
+  const heroOverlayOpacity = useTransform(scrollYProgress, [0, 1], [0.28, 0.36]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.35, 0.7, 1], [1, 1, 0.85, 0.8]);
   const titleY = useTransform(scrollYProgress, [0, 0.3], [0, -8]);
-  const videoFilter = useTransform(scrollYProgress, [0, 1], ['brightness(0.7) blur(0px)', 'brightness(0.6) blur(1.25px)']);
 
-  const titleParts = servicesHero.title.split(servicesHero.highlighted);
+  const titleParts = heroTitle.split(heroHighlighted);
 
   return (
     <section ref={ref} className="relative pt-1">
       <motion.div
         style={{ scale, y: translateY }}
-        className="sticky top-0 h-[124vh] md:h-[124vh] rounded-b-[44px] overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,.35)] will-change-transform"
+        className="sticky top-0 h-[124vh] md:h-[124vh] overflow-hidden bg-[radial-gradient(circle_at_14%_18%,rgba(120,87,255,0.18),transparent_26%),radial-gradient(circle_at_82%_22%,rgba(12,170,140,0.12),transparent_28%),linear-gradient(180deg,#0b0b14_0%,#091118_100%)] will-change-transform"
       >
-        <motion.div style={{ filter: videoFilter }} className="absolute inset-0">
-          <video
-            className="w-full h-full object-cover"
-            src="/images/video-thumb/clientecansadovideo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
+        <motion.div className="absolute inset-0">
+          <Image
+            src="/heroscreen1.png"
+            alt="Fondo principal de servicios Omia"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center scale-[1.22]"
           />
         </motion.div>
 
         <motion.div
-          style={{
-            borderBottomLeftRadius: radiusBottom,
-            borderBottomRightRadius: radiusBottom,
-            backgroundColor: 'rgb(0, 0, 0)',
-            opacity: vignetteOpacity,
-          }}
-          className="pointer-events-none absolute inset-0"
+          style={{ opacity: heroOverlayOpacity }}
+          className="pointer-events-none absolute inset-0 bg-black"
         />
-
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 md:h-48 bg-gradient-to-t from-black/45 to-transparent" />
 
         <motion.div
           style={{ y: titleY, opacity: titleOpacity }}
@@ -191,11 +185,11 @@ function ServicesHeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05, duration: 0.25 }}
-            className="text-white leading-[1.03] mx-auto max-w-[18ch] text-[35px] md:text-[64px] font-termina"
+            className="text-white leading-[1.03] mx-auto max-w-[18ch] text-[35px] md:text-[64px] termina-light"
           >
             {titleParts[0]}{' '}
-            <span className="font-semibold bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent termina-bold">
-              {servicesHero.highlighted}
+            <span className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent termina-medium">
+              {heroHighlighted}
             </span>
             {titleParts[1]}
           </motion.h1>
@@ -206,7 +200,7 @@ function ServicesHeroSection() {
             transition={{ delay: 0.1, duration: 0.25 }}
             className="text-white mt-10 text-md md:text-xl md:mt-10 max-w-[92ch] mx-auto font-poppins"
           >
-            {servicesHero.description}
+            {heroDescription}
           </motion.p>
 
           <motion.div
@@ -235,7 +229,7 @@ function ServicesHeroSection() {
               whileTap={{ scale: 0.98 }}
               className="group bg-gradient-to-r from-violet-400 to-violet-700 hover:bg-violet-600 text-white px-8 sm:px-8 py-4 sm:py-4 rounded-xl font-semibold flex items-center justify-center space-x-2 transition-all duration-300 text-md sm:text-base"
             >
-              <span>{servicesHero.primaryCta.label}</span>
+              <span>Agenda una consultoria</span>
             </motion.a>
           </motion.div>
         </motion.div>
@@ -423,12 +417,6 @@ function ServicesShowcaseSection() {
 }
 
 function MobileAppsShowcaseSection() {
-  const mobileMetrics = [
-    { label: 'UX', value: 'Clara' },
-    { label: 'Flujos', value: 'Reales' },
-    { label: 'Escala', value: 'Lista' },
-  ];
-
   const mobileFeatures = [
     'Apps para clientes y equipos internos',
     'Experiencias mobile-first con foco operativo',
@@ -439,15 +427,14 @@ function MobileAppsShowcaseSection() {
     <section className="relative px-4 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-14">
-          <ShowcaseContentPanel
-            eyebrow="App movil"
-            eyebrowIcon={MonitorSmartphone}
-            title="Productos pensados para telefono"
-            description="Construimos apps moviles para procesos reales: seguimiento, aprobaciones, operacion interna, experiencia de cliente y tareas que necesitan resolverse rapido desde el celular."
-            metrics={mobileMetrics}
-            features={mobileFeatures}
-            accentClassName="from-cyan-300 via-blue-500 to-indigo-600"
-          />
+        <ShowcaseContentPanel
+          eyebrow="App movil"
+          eyebrowIcon={MonitorSmartphone}
+          title="Productos pensados para telefono"
+          description="Construimos apps moviles para procesos reales: seguimiento, aprobaciones, operacion interna, experiencia de cliente y tareas que necesitan resolverse rapido desde el celular."
+          features={mobileFeatures}
+          accentClassName="from-cyan-300 via-blue-500 to-violet-500"
+        />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -479,7 +466,6 @@ function ServiceVisualSplitSection({
   eyebrow,
   title,
   description,
-  metrics,
   features,
   imageSrc,
   imageAlt,
@@ -491,7 +477,6 @@ function ServiceVisualSplitSection({
   eyebrow: string;
   title: string;
   description: string;
-  metrics: { label: string; value: string }[];
   features: string[];
   imageSrc: string;
   imageAlt: string;
@@ -502,13 +487,12 @@ function ServiceVisualSplitSection({
 }) {
   return (
     <section className="relative px-4 py-20 lg:py-24">
-      <div className={`mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.72fr_1.28fr] xl:gap-16 ${reverse ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}>
+      <div className={`mx-auto flex max-w-7xl flex-col gap-12 lg:min-h-[560px] lg:flex-row lg:items-center lg:justify-between xl:gap-20 ${reverse ? 'lg:flex-row-reverse' : ''}`}>
         <ShowcaseContentPanel
           eyebrow={eyebrow}
           eyebrowIcon={eyebrowIcon}
           title={title}
           description={description}
-          metrics={metrics}
           features={features}
           accentClassName={accentClassName}
         />
@@ -518,9 +502,9 @@ function ServiceVisualSplitSection({
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="relative flex justify-center lg:justify-end"
+          className={`relative flex w-full justify-center ${reverse ? 'lg:justify-start lg:flex-[0_0_52%]' : 'lg:justify-end lg:flex-[0_0_52%]'}`}
         >
-          <div className="relative w-full max-w-[1240px] border-0 bg-transparent shadow-none">
+          <div className="relative w-full max-w-[1400px] border-0 bg-transparent shadow-none">
             <div className="relative aspect-[16/10] border-0 bg-transparent shadow-none">
               <Image
                 src={imageSrc}
@@ -543,11 +527,6 @@ function WebShowcaseSection() {
       eyebrow="Webs"
       title="Sitios y plataformas web"
       description="Desarrollamos sitios institucionales, landings, portales y plataformas web con foco en conversion, claridad de contenido y escalabilidad tecnica."
-      metrics={[
-        { label: 'Marca', value: 'Clara' },
-        { label: 'Conversion', value: 'Alta' },
-        { label: 'Escala', value: 'Lista' },
-      ]}
       features={[
         'Webs institucionales y comerciales',
         'Landings y experiencias orientadas a captacion',
@@ -555,7 +534,7 @@ function WebShowcaseSection() {
       ]}
       imageSrc="/macbookpro.png"
       imageAlt="Visual de plataforma web"
-      accentClassName="from-violet-400 via-fuchsia-500 to-indigo-600"
+      accentClassName="from-violet-300 via-violet-500 to-indigo-600"
       imageClassName="scale-[1.08]"
     />
   );
@@ -567,11 +546,6 @@ function SystemsShowcaseSection() {
       eyebrow="Sistemas"
       title="CRM, gestion y multiagente"
       description="Armamos sistemas internos, CRMs y entornos de gestion con automatizaciones, trazabilidad y logica operativa para equipos que necesitan orden real."
-      metrics={[
-        { label: 'Gestion', value: 'Ordenada' },
-        { label: 'Procesos', value: 'Trazables' },
-        { label: 'Soporte', value: 'Escalable' },
-      ]}
       features={[
         'CRMs y paneles administrativos',
         'Sistemas multiusuario y multiagente',
@@ -580,7 +554,7 @@ function SystemsShowcaseSection() {
       imageSrc="/macpc.png"
       imageAlt="Visual de sistema CRM y gestion"
       accentClassName="from-emerald-300 via-cyan-400 to-blue-500"
-      imageClassName="scale-[1.42]"
+      imageClassName="scale-[1.62] shadow-none drop-shadow-none"
       reverse
     />
   );
@@ -592,11 +566,6 @@ function EcommerceShowcaseSection() {
       eyebrow="Ecommerce"
       title="Tiendas y experiencias de venta"
       description="Disenamos ecommerce, catalogos y funnels con foco en experiencia de compra, rendimiento y una operacion mas conectada con el negocio."
-      metrics={[
-        { label: 'Venta', value: 'Mejor' },
-        { label: 'Catalogo', value: 'Ordenado' },
-        { label: 'Operacion', value: 'Conectada' },
-      ]}
       features={[
         'Ecommerce y catalogos digitales',
         'Experiencias de compra mas claras y rapidas',
@@ -604,7 +573,7 @@ function EcommerceShowcaseSection() {
       ]}
       imageSrc="/web.png"
       imageAlt="Visual de ecommerce"
-      accentClassName="from-amber-300 via-orange-400 to-rose-500"
+      accentClassName="from-emerald-300 via-cyan-400 to-violet-500"
       imageClassName="scale-[1.08]"
     />
   );
@@ -765,7 +734,6 @@ function ShowcaseContentPanel({
   eyebrowIcon: EyebrowIcon,
   title,
   description,
-  metrics,
   features,
   accentClassName,
 }: {
@@ -773,12 +741,11 @@ function ShowcaseContentPanel({
   eyebrowIcon?: LucideIcon;
   title: string;
   description: string;
-  metrics: { label: string; value: string }[];
   features: string[];
   accentClassName: string;
 }) {
   return (
-    <div className="space-y-7 max-w-[560px]">
+    <div className="w-full max-w-[640px] space-y-7 lg:max-w-[640px] lg:flex-[0_0_44%]">
       <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.24em] text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]`}>
         <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r ${accentClassName}`}>
           {EyebrowIcon ? <EyebrowIcon className="h-3 w-3 text-white" /> : <span className="h-1.5 w-1.5 rounded-full bg-white" />}
@@ -788,7 +755,7 @@ function ShowcaseContentPanel({
 
       <div className="space-y-5">
         <div>
-          <h3 className="max-w-[12ch] text-[2.25rem] leading-[0.94] tracking-[-0.05em] text-white sm:text-[3.1rem]">
+          <h3 className="max-w-[16ch] text-[2.25rem] leading-[0.94] tracking-[-0.05em] text-white sm:max-w-[15ch] sm:text-[3.1rem] lg:max-w-[14ch] lg:text-[3.45rem] xl:max-w-[15ch] xl:text-[3.75rem]">
             <span className={`bg-gradient-to-r ${accentClassName} bg-clip-text text-transparent termina-bold`}>
               {title}
             </span>
@@ -796,18 +763,6 @@ function ShowcaseContentPanel({
           <p className="mt-5 max-w-[52ch] text-[1.02rem] leading-[1.8] text-gray-300 sm:text-[1.06rem]">
             {description}
           </p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-3">
-          {metrics.map((metric) => (
-            <div
-              key={metric.label}
-              className="rounded-[1.15rem] border border-white/10 bg-white/[0.02] px-3 py-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
-            >
-              <p className="text-[1.25rem] font-semibold tracking-[-0.03em] text-white">{metric.value}</p>
-              <p className="mt-1.5 text-[10px] uppercase tracking-[0.28em] text-gray-500">{metric.label}</p>
-            </div>
-          ))}
         </div>
 
         <div className="space-y-3.5">
