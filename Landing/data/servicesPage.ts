@@ -39,9 +39,23 @@ export type ServicesCategory = {
   items: string[];
 };
 
+export type ServicesShowcaseSlide = {
+  title: string;
+  eyebrow: string;
+  description: string;
+  icon: LucideIcon;
+  accent: string;
+  surface: string;
+  browserTitle: string;
+  browserRows: string[];
+  phoneTitle: string;
+  phoneRows: string[];
+  metrics: { label: string; value: string }[];
+};
+
 export const servicesHero = {
-  title: 'Construimos sistemas y producto digital con mas claridad',
-  highlighted: 'mas claridad',
+  title: 'Construimos sistemas y producto digital con más claridad',
+  highlighted: 'más claridad',
   description:
     'Omia es una consultora especializada en sistemas y productos digitales. Diseñamos y desarrollamos plataformas, apps, automatizaciones, ecommerce, CRMs y soluciones con IA, acompañando cada proyecto desde la estrategia hasta la implementación y mejora continua.',
   badges: [
@@ -55,6 +69,81 @@ export const servicesHero = {
     href: 'https://wa.me/5491112345678',
   },
 };
+
+export const servicesShowcase: ServicesShowcaseSlide[] = [
+  {
+    title: 'Portal de clientes',
+    eyebrow: 'Web + SaaS',
+    description:
+      'Un tablero limpio para estados, tareas, documentos y validaciones en un mismo lugar.',
+    icon: MonitorSmartphone,
+    accent: 'from-cyan-400 via-blue-500 to-indigo-600',
+    surface: 'from-cyan-500/18 via-blue-500/10 to-transparent',
+    browserTitle: 'Vista web',
+    browserRows: ['Estados de caso', 'Mensajes y validaciones', 'Documentos listos para revisar'],
+    phoneTitle: 'Seguimiento móvil',
+    phoneRows: ['Pendiente', 'En revisión', 'Aprobado'],
+    metrics: [
+      { label: 'Visibilidad', value: 'Total' },
+      { label: 'Estados', value: 'Orden' },
+      { label: 'Usuarios', value: 'Claros' },
+    ],
+  },
+  {
+    title: 'Operación en movimiento',
+    eyebrow: 'App móvil',
+    description:
+      'Interfaces más livianas para equipos que necesitan ejecutar tareas y aprobar pasos rápido.',
+    icon: Compass,
+    accent: 'from-fuchsia-400 via-violet-500 to-purple-600',
+    surface: 'from-fuchsia-500/18 via-violet-500/10 to-transparent',
+    browserTitle: 'Panel operativo',
+    browserRows: ['Tareas activas', 'Avisos urgentes', 'Flujos automáticos'],
+    phoneTitle: 'Vista de campo',
+    phoneRows: ['Captura', 'Checklist', 'Confirmación'],
+    metrics: [
+      { label: 'Velocidad', value: 'Alta' },
+      { label: 'Mobile', value: 'Sí' },
+      { label: 'Fricción', value: 'Menor' },
+    ],
+  },
+  {
+    title: 'Datos y métricas',
+    eyebrow: 'Dashboards',
+    description:
+      'Un resumen ejecutivo con indicadores, tendencias y foco en decisión, no solo en reporte.',
+    icon: BarChart3,
+    accent: 'from-emerald-300 via-teal-400 to-cyan-500',
+    surface: 'from-emerald-500/16 via-teal-500/10 to-transparent',
+    browserTitle: 'Dashboard',
+    browserRows: ['Ingresos y conversión', 'Alertas de operación', 'Seguimiento semanal'],
+    phoneTitle: 'Snapshot',
+    phoneRows: ['KPIs', 'Variación', 'Alertas'],
+    metrics: [
+      { label: 'KPIs', value: 'Visibles' },
+      { label: 'Reporting', value: 'Simple' },
+      { label: 'Decisión', value: 'Más rápida' },
+    ],
+  },
+  {
+    title: 'Automatización e IA',
+    eyebrow: 'Procesos inteligentes',
+    description:
+      'Flujos que conectan herramientas, resuelven tareas repetitivas y suman asistencia con criterio.',
+    icon: BrainCircuit,
+    accent: 'from-amber-300 via-orange-400 to-rose-500',
+    surface: 'from-amber-500/18 via-orange-500/10 to-transparent',
+    browserTitle: 'Orquestación',
+    browserRows: ['Integraciones', 'Triggers y reglas', 'Agentes de IA'],
+    phoneTitle: 'Asistente',
+    phoneRows: ['Consulta', 'Respuesta', 'Acción'],
+    metrics: [
+      { label: 'Automatización', value: 'Real' },
+      { label: 'IA', value: 'Aplicada' },
+      { label: 'Tiempo', value: 'Ahorrado' },
+    ],
+  },
+];
 
 export const endToEndFeatures: ServicesFeature[] = [
   {

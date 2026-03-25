@@ -12,6 +12,7 @@ import {
   qualityFocus,
   serviceCategories,
   servicesHero,
+  servicesShowcase,
   transparencyPoints,
   valueCards,
   workProcess,
@@ -27,7 +28,11 @@ const ANIMATIONS = {
 
 const AdvancedBackground = React.memo(() => (
   <div className="fixed inset-0 z-0 pointer-events-none select-none">
-    <div className="absolute inset-0 bg-gradient-to-br from-[#0c0e15]/4 via-[#0a0a0f] to-[#0c0e15]" />
+    <div className="absolute inset-0 bg-[#0a0b11]" />
+    <div className="absolute -top-32 left-[-8%] h-[30rem] w-[30rem] rounded-full bg-violet-500/12 blur-[120px]" />
+    <div className="absolute top-[14%] right-[-10%] h-[28rem] w-[28rem] rounded-full bg-cyan-500/10 blur-[120px]" />
+    <div className="absolute bottom-[-8rem] left-[18%] h-[24rem] w-[24rem] rounded-full bg-emerald-500/8 blur-[120px]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.14),transparent_30%),radial-gradient(circle_at_82%_16%,rgba(34,211,238,0.10),transparent_28%),radial-gradient(circle_at_28%_90%,rgba(16,185,129,0.08),transparent_26%),linear-gradient(180deg,rgba(8,10,16,0.92)_0%,rgba(10,11,17,1)_100%)]" />
   </div>
 ));
 
@@ -101,10 +106,12 @@ function ServicesSectionHeader({
   title,
   highlighted,
   subtitle,
+  accentClassName = 'bg-gradient-to-r from-violet-400 via-purple-500 to-violet-700',
 }: {
   title: string;
   highlighted: string;
   subtitle: string;
+  accentClassName?: string;
 }) {
   return (
     <motion.div
@@ -116,7 +123,7 @@ function ServicesSectionHeader({
     >
       <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tighter text-white mb-3 sm:mb-4 font-termina">
         {title}{' '}
-        <span className="termina-bold bg-gradient-to-r from-violet-400 via-purple-500 to-violet-700 bg-clip-text text-transparent">
+        <span className={`termina-bold ${accentClassName} bg-clip-text text-transparent`}>
           {highlighted}
         </span>
       </h2>
@@ -232,6 +239,173 @@ function ServicesHeroSection() {
           </motion.div>
         </motion.div>
       </motion.div>
+    </section>
+  );
+}
+
+function ServicesShowcaseSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeSlide = servicesShowcase[activeIndex];
+  const ActiveIcon = activeSlide.icon;
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % servicesShowcase.length);
+    }, 4800);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="relative px-4 py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl">
+        <ServicesSectionHeader
+          title="Ejemplos"
+          highlighted="en contexto"
+          subtitle="Mockups de web y mobile que van rotando para mostrar cómo podrían verse los distintos sistemas que construimos."
+          accentClassName="bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-600"
+        />
+
+        <div className="grid items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] xl:gap-10">
+          <div className="space-y-6">
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_rgba(0,0,0,.22)] backdrop-blur-xl sm:p-8">
+              <div
+                className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${activeSlide.accent} px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90`}
+              >
+                <ActiveIcon className="h-3.5 w-3.5" />
+                <span>{activeSlide.eyebrow}</span>
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSlide.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -18 }}
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
+                  className="mt-5 space-y-5"
+                >
+                  <div>
+                    <h3 className="text-3xl font-termina text-white sm:text-4xl">
+                      <span className={`bg-gradient-to-r ${activeSlide.accent} bg-clip-text text-transparent termina-bold`}>
+                        {activeSlide.title}
+                      </span>
+                    </h3>
+                    <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
+                      {activeSlide.description}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3">
+                    {activeSlide.metrics.map((metric) => (
+                      <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/20 px-3 py-4 text-center">
+                        <p className="text-lg font-semibold text-white">{metric.value}</p>
+                        <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-gray-400">{metric.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {servicesShowcase.map((slide, index) => {
+                  const isActive = index === activeIndex;
+
+                  return (
+                    <button
+                      key={slide.title}
+                      type="button"
+                      onClick={() => setActiveIndex(index)}
+                      className={`rounded-full border px-3 py-2 text-xs font-medium transition-all duration-300 ${
+                        isActive
+                          ? `border-white/15 bg-gradient-to-r ${slide.accent} text-white shadow-[0_12px_30px_rgba(0,0,0,.18)]`
+                          : 'border-white/10 bg-white/5 text-gray-400 hover:border-white/15 hover:text-white'
+                      }`}
+                      aria-label={`Ver ejemplo ${slide.title}`}
+                    >
+                      {slide.title}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSlide.title}
+                initial={{ opacity: 0, scale: 0.96, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: -20 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 p-4 shadow-[0_50px_120px_rgba(0,0,0,.3)] backdrop-blur-2xl sm:p-5"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.surface}`} />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+
+                <div className="relative">
+                  <div className="flex items-center justify-between rounded-[1.4rem] border border-white/10 bg-black/20 px-4 py-3 sm:px-5">
+                    <div className="flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/40" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+                    </div>
+                    <div className={`rounded-full border border-white/10 bg-gradient-to-r ${activeSlide.accent} px-3 py-1 text-[10px] uppercase tracking-[0.26em] text-white/90`}>
+                      {activeSlide.browserTitle}
+                    </div>
+                  </div>
+
+                  <div className="mt-5 grid gap-4 lg:grid-cols-[1.04fr_0.96fr]">
+                    <div className="rounded-[1.8rem] border border-white/10 bg-[#0d1018]/90 p-5 sm:p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.24em] text-gray-400">Web preview</p>
+                          <h4 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{activeSlide.title}</h4>
+                        </div>
+                        <ActiveIcon className="h-10 w-10 text-white/70" />
+                      </div>
+
+                      <div className="mt-6 space-y-3">
+                        {activeSlide.browserRows.map((row, index) => (
+                          <div key={row} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                            <div className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${activeSlide.accent}`} />
+                            <p className="text-sm text-gray-200 sm:text-base">{row}</p>
+                            <span className="ml-auto text-[11px] uppercase tracking-[0.22em] text-gray-500">
+                              {String(index + 1).padStart(2, '0')}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="relative flex items-center justify-center">
+                      <div className={`absolute inset-8 rounded-full bg-gradient-to-br ${activeSlide.accent} opacity-35 blur-3xl`} />
+                      <div className="relative w-full max-w-[280px] rounded-[2.4rem] border border-white/10 bg-[#0d1018]/92 p-3 shadow-[0_40px_100px_rgba(0,0,0,.28)]">
+                        <div className="mx-auto h-5 w-24 rounded-[999px] border border-white/10 bg-black/25" />
+                        <div className="mt-3 rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/6 to-black/20 p-4">
+                          <p className="text-[11px] uppercase tracking-[0.24em] text-gray-400">{activeSlide.phoneTitle}</p>
+                          <div className="mt-4 space-y-3">
+                            {activeSlide.phoneRows.map((row, index) => (
+                              <div key={row} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3">
+                                <div className={`h-9 w-9 rounded-xl bg-gradient-to-br ${activeSlide.accent}`} />
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-sm font-medium text-white">{row}</p>
+                                  <p className="mt-1 text-[11px] text-gray-400">Paso {index + 1}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -691,6 +865,7 @@ export function ServicesPageContent() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const showcaseRef = useRef<HTMLDivElement>(null);
   const endToEndRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const processRef = useRef<HTMLDivElement>(null);
@@ -698,7 +873,7 @@ export function ServicesPageContent() {
   const projectQualityRef = useRef<HTMLDivElement>(null);
   const involvementRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs = [heroRef, endToEndRef, servicesRef, processRef, differentialRef, projectQualityRef, involvementRef];
+  const sectionRefs = [heroRef, showcaseRef, endToEndRef, servicesRef, processRef, differentialRef, projectQualityRef, involvementRef];
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > SCROLL_CONFIGS.SCROLL_THRESHOLD);
@@ -726,6 +901,7 @@ export function ServicesPageContent() {
   }, [handleScroll]);
 
   const sections = useMemo(() => [
+    { id: 'muestras', label: 'Muestras', description: 'Mockups y ejemplos', icon: servicesShowcase[0].icon, href: '#muestras', type: 'scroll' as const },
     { id: 'trabajo', label: 'Trabajo', description: 'De punta a punta', icon: endToEndFeatures[0].icon, href: '#trabajo', type: 'scroll' as const },
     { id: 'servicios-principales', label: 'Servicios', description: 'Oferta principal de Omia', icon: serviceCategories[0].icon, href: '#servicios-principales', type: 'scroll' as const },
     { id: 'como-trabajamos', label: 'Proceso', description: 'Cómo trabajamos', icon: endToEndFeatures[1].icon, href: '#como-trabajamos', type: 'scroll' as const },
@@ -743,6 +919,7 @@ export function ServicesPageContent() {
   ];
 
   const footerLinks = [
+    { name: 'Muestras', href: '#muestras', type: 'scroll' as const },
     { name: 'Trabajo', href: '#trabajo', type: 'scroll' as const },
     { name: 'Servicios', href: '#servicios-principales', type: 'scroll' as const },
     { name: 'Proceso', href: '#como-trabajamos', type: 'scroll' as const },
@@ -773,6 +950,10 @@ export function ServicesPageContent() {
 
         <div id="hero" ref={heroRef}>
           <ServicesHeroSection />
+        </div>
+
+        <div id="muestras" ref={showcaseRef}>
+          <ServicesShowcaseSection />
         </div>
 
         <div id="trabajo" ref={endToEndRef}>
