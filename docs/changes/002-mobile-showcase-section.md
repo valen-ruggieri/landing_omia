@@ -22,6 +22,9 @@ No incluye cambios en otras secciones de la pagina.
 - Se neutralizaron tambien los wrappers de imagen con fondo transparente, sin borde y sin sombra para evitar cualquier estilo residual del contenedor.
 - Se amplio el espacio del contenedor visual desktop y se ajusto la escala por asset para que web, sistemas y ecommerce se lean con un tamano aparente mas uniforme.
 - Se reemplazo la seccion tabulada de `Servicios principales` por bloques independientes, uno por cada tipo de servicio, para que la oferta quede separada y mas clara.
+- Se movio el patron visual de `Apps moviles` a `Servicios principales`, reutilizando ahi los bloques de producto y eliminando la seccion separada de `muestras` para evitar duplicacion.
+- Se removio el encabezado superior de `Apps moviles` para que el bloque empiece directo con el contenido lateral y no duplique titulos dentro de `Servicios principales`.
+- Se centralizo el bloque lateral de producto en un componente compartido para unificar el estilo de badge, titulo, descripcion, metricas y bullets entre mobile, web, sistemas y ecommerce.
 
 ## Archivos afectados
 - `Landing/components/layout/ServicesPageContent.tsx`

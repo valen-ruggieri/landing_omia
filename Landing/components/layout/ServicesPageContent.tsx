@@ -438,51 +438,16 @@ function MobileAppsShowcaseSection() {
   return (
     <section className="relative px-4 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl">
-        <ServicesSectionHeader
-          title="Apps"
-          highlighted="moviles"
-          subtitle="Disenamos y desarrollamos aplicaciones moviles para operacion, seguimiento y experiencia de usuario con foco en negocio."
-          accentClassName="bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-600"
-        />
-
         <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-14">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90">
-              <MonitorSmartphone className="h-3.5 w-3.5" />
-              <span>App movil</span>
-            </div>
-
-            <div className="space-y-5">
-              <div>
-                <h3 className="text-3xl font-termina text-white sm:text-4xl">
-                  <span className="bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-600 bg-clip-text text-transparent termina-bold">
-                    Productos pensados para telefono
-                  </span>
-                </h3>
-                <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
-                  Construimos apps moviles para procesos reales: seguimiento, aprobaciones, operacion interna, experiencia de cliente y tareas que necesitan resolverse rapido desde el celular.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3">
-                {mobileMetrics.map((metric) => (
-                  <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/20 px-3 py-4 text-center">
-                    <p className="text-lg font-semibold text-white">{metric.value}</p>
-                    <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-gray-400">{metric.label}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-3">
-                {mobileFeatures.map((feature) => (
-                  <div key={feature} className="flex items-start gap-3">
-                    <div className="mt-1 h-2.5 w-2.5 rounded-full bg-gradient-to-r from-cyan-300 to-blue-500" />
-                    <p className="text-sm text-gray-200 sm:text-base">{feature}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <ShowcaseContentPanel
+            eyebrow="App movil"
+            eyebrowIcon={MonitorSmartphone}
+            title="Productos pensados para telefono"
+            description="Construimos apps moviles para procesos reales: seguimiento, aprobaciones, operacion interna, experiencia de cliente y tareas que necesitan resolverse rapido desde el celular."
+            metrics={mobileMetrics}
+            features={mobileFeatures}
+            accentClassName="from-cyan-300 via-blue-500 to-indigo-600"
+          />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -520,6 +485,7 @@ function ServiceVisualSplitSection({
   imageAlt,
   accentClassName,
   imageClassName = '',
+  eyebrowIcon,
   reverse = false,
 }: {
   eyebrow: string;
@@ -531,47 +497,21 @@ function ServiceVisualSplitSection({
   imageAlt: string;
   accentClassName: string;
   imageClassName?: string;
+  eyebrowIcon?: LucideIcon;
   reverse?: boolean;
 }) {
   return (
     <section className="relative px-4 py-20 lg:py-24">
       <div className={`mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.72fr_1.28fr] xl:gap-16 ${reverse ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}>
-        <div className="space-y-6">
-          <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90 ${accentClassName}`}>
-            <span>{eyebrow}</span>
-          </div>
-
-          <div className="space-y-5">
-            <div>
-              <h3 className="text-3xl font-termina text-white sm:text-4xl">
-                <span className={`bg-gradient-to-r ${accentClassName} bg-clip-text text-transparent termina-bold`}>
-                  {title}
-                </span>
-              </h3>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
-                {description}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-3 gap-3">
-              {metrics.map((metric) => (
-                <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/20 px-3 py-4 text-center">
-                  <p className="text-lg font-semibold text-white">{metric.value}</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-gray-400">{metric.label}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="space-y-3">
-              {features.map((feature) => (
-                <div key={feature} className="flex items-start gap-3">
-                  <div className={`mt-1 h-2.5 w-2.5 rounded-full bg-gradient-to-r ${accentClassName}`} />
-                  <p className="text-sm text-gray-200 sm:text-base">{feature}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <ShowcaseContentPanel
+          eyebrow={eyebrow}
+          eyebrowIcon={eyebrowIcon}
+          title={title}
+          description={description}
+          metrics={metrics}
+          features={features}
+          accentClassName={accentClassName}
+        />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -800,78 +740,89 @@ function EndToEndSection() {
 
 
 function ServicesMainSection() {
-  const categoryAccents = [
-    'from-cyan-300 via-blue-500 to-indigo-600',
-    'from-violet-400 via-fuchsia-500 to-indigo-600',
-    'from-emerald-300 via-cyan-400 to-blue-500',
-    'from-amber-300 via-orange-400 to-rose-500',
-    'from-sky-300 via-cyan-400 to-teal-500',
-  ];
-
   return (
-    <section className="relative text-white py-20 lg:py-24 px-4 overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section className="relative overflow-hidden py-20 text-white lg:py-24">
+      <div className="mx-auto max-w-7xl px-4">
         <ServicesSectionHeader
           title="Servicios"
           highlighted="principales"
           subtitle="Producto digital, software, automatizacion, IA, ecommerce y datos organizados dentro del mismo lenguaje visual de Omia."
         />
+      </div>
 
-        <div className="space-y-8">
-          {serviceCategories.map((category, index) => {
-            const Icon = category.icon;
-            const accent = categoryAccents[index % categoryAccents.length];
-
-            return (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.25, delay: index * 0.03 }}
-                className="grid gap-8 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm lg:grid-cols-[0.86fr_1.14fr] lg:p-8"
-              >
-                <div className="space-y-5">
-                  <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90 ${accent}`}>
-                    <Icon className="h-3.5 w-3.5" />
-                    <span>{category.title}</span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-3xl font-termina text-white mb-4 sm:text-4xl">
-                      <span className={`bg-gradient-to-r ${accent} bg-clip-text text-transparent termina-bold`}>
-                        {category.title}
-                      </span>
-                    </h3>
-                    <p className="max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
-                      {category.description}
-                    </p>
-                  </div>
-
-                  <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
-                    <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray-400">Enfoque Omia</p>
-                    <p className="text-gray-300 leading-relaxed">
-                      Disenamos cada servicio como una herramienta real para ordenar, automatizar y escalar, no solo como una entrega tecnica.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {category.items.map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-transparent p-5"
-                    >
-                      <p className="text-lg font-medium leading-relaxed text-white">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+      <div className="space-y-0">
+        <MobileAppsShowcaseSection />
+        <WebShowcaseSection />
+        <SystemsShowcaseSection />
+        <EcommerceShowcaseSection />
       </div>
     </section>
+  );
+}
+
+function ShowcaseContentPanel({
+  eyebrow,
+  eyebrowIcon: EyebrowIcon,
+  title,
+  description,
+  metrics,
+  features,
+  accentClassName,
+}: {
+  eyebrow: string;
+  eyebrowIcon?: LucideIcon;
+  title: string;
+  description: string;
+  metrics: { label: string; value: string }[];
+  features: string[];
+  accentClassName: string;
+}) {
+  return (
+    <div className="space-y-7 max-w-[560px]">
+      <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.24em] text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]`}>
+        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r ${accentClassName}`}>
+          {EyebrowIcon ? <EyebrowIcon className="h-3 w-3 text-white" /> : <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+        </span>
+        <span>{eyebrow}</span>
+      </div>
+
+      <div className="space-y-5">
+        <div>
+          <h3 className="max-w-[12ch] text-[2.25rem] leading-[0.94] tracking-[-0.05em] text-white sm:text-[3.1rem]">
+            <span className={`bg-gradient-to-r ${accentClassName} bg-clip-text text-transparent termina-bold`}>
+              {title}
+            </span>
+          </h3>
+          <p className="mt-5 max-w-[52ch] text-[1.02rem] leading-[1.8] text-gray-300 sm:text-[1.06rem]">
+            {description}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-3">
+          {metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="rounded-[1.15rem] border border-white/10 bg-white/[0.02] px-3 py-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+            >
+              <p className="text-[1.25rem] font-semibold tracking-[-0.03em] text-white">{metric.value}</p>
+              <p className="mt-1.5 text-[10px] uppercase tracking-[0.28em] text-gray-500">{metric.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="space-y-3.5">
+          {features.map((feature) => (
+            <div key={feature} className="flex items-start gap-3.5">
+              <div className="relative mt-[0.42rem] flex h-3.5 w-3.5 items-center justify-center">
+                <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${accentClassName} opacity-20`} />
+                <div className={`relative h-2 w-2 rounded-full bg-gradient-to-r ${accentClassName}`} />
+              </div>
+              <p className="text-[0.98rem] leading-[1.65] text-gray-200">{feature}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 function WorkProcessSection() {
@@ -1120,7 +1071,6 @@ export function ServicesPageContent() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const showcaseRef = useRef<HTMLDivElement>(null);
   const endToEndRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const processRef = useRef<HTMLDivElement>(null);
@@ -1128,7 +1078,7 @@ export function ServicesPageContent() {
   const projectQualityRef = useRef<HTMLDivElement>(null);
   const involvementRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs = [heroRef, showcaseRef, endToEndRef, servicesRef, processRef, differentialRef, projectQualityRef, involvementRef];
+  const sectionRefs = [heroRef, endToEndRef, servicesRef, processRef, differentialRef, projectQualityRef, involvementRef];
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > SCROLL_CONFIGS.SCROLL_THRESHOLD);
@@ -1156,7 +1106,6 @@ export function ServicesPageContent() {
   }, [handleScroll]);
 
   const sections = useMemo(() => [
-    { id: 'muestras', label: 'Muestras', description: 'Mockups y ejemplos', icon: servicesShowcase[0].icon, href: '#muestras', type: 'scroll' as const },
     { id: 'trabajo', label: 'Trabajo', description: 'De punta a punta', icon: endToEndFeatures[0].icon, href: '#trabajo', type: 'scroll' as const },
     { id: 'servicios-principales', label: 'Servicios', description: 'Oferta principal de Omia', icon: serviceCategories[0].icon, href: '#servicios-principales', type: 'scroll' as const },
     { id: 'como-trabajamos', label: 'Proceso', description: 'Cómo trabajamos', icon: endToEndFeatures[1].icon, href: '#como-trabajamos', type: 'scroll' as const },
@@ -1174,7 +1123,6 @@ export function ServicesPageContent() {
   ];
 
   const footerLinks = [
-    { name: 'Muestras', href: '#muestras', type: 'scroll' as const },
     { name: 'Trabajo', href: '#trabajo', type: 'scroll' as const },
     { name: 'Servicios', href: '#servicios-principales', type: 'scroll' as const },
     { name: 'Proceso', href: '#como-trabajamos', type: 'scroll' as const },
@@ -1205,13 +1153,6 @@ export function ServicesPageContent() {
 
         <div id="hero" ref={heroRef}>
           <ServicesHeroSection />
-        </div>
-
-        <div id="muestras" ref={showcaseRef}>
-          <MobileAppsShowcaseSection />
-          <WebShowcaseSection />
-          <SystemsShowcaseSection />
-          <EcommerceShowcaseSection />
         </div>
 
         <div id="trabajo" ref={endToEndRef}>
