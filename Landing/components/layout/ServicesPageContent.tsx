@@ -619,8 +619,8 @@ function EndToEndSection() {
           })}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-center">
-          <div className="lg:col-span-6 space-y-4 sm:space-y-5">
+        <div className="grid grid-cols-1 items-center gap-6 sm:gap-8 lg:grid-cols-[0.96fr_1.08fr_72px] lg:gap-10 xl:gap-14">
+          <div className="space-y-4 sm:space-y-5">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeFeature.title}
@@ -628,31 +628,32 @@ function EndToEndSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 30 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="space-y-3 sm:space-y-4 bg-gray-900/30 rounded-xl p-4 sm:p-6"
+                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm sm:p-8"
               >
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-violet-400">{activeFeature.title}</h3>
-                <p className="text-sm sm:text-base text-gray-400">{activeFeature.description}</p>
+                <div className="absolute inset-0 bg-gradient-to-b from-violet-400/8 via-violet-500/3 to-transparent" />
+                <div className="absolute -left-10 bottom-0 h-32 w-32 rounded-full bg-cyan-400/8 blur-3xl" />
+                <div className="relative">
+                <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-violet-300">
+                  Etapa {String(activeIndex + 1).padStart(2, '0')}
+                </p>
+                <h3 className="max-w-[12ch] bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-500 bg-clip-text text-[2.35rem] leading-[0.96] tracking-[-0.05em] text-transparent sm:text-[2.8rem]">
+                  {activeFeature.title}
+                </h3>
+                <p className="mt-5 max-w-[42ch] text-[1rem] leading-[1.75] text-gray-300 sm:text-[1.03rem]">{activeFeature.description}</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 pt-2">
                   {(activeFeature.details ?? []).map((detail) => (
-                    <div key={detail} className="flex items-start space-x-2">
+                    <div key={detail} className="flex items-start gap-3 rounded-2xl border border-white/6 bg-white/[0.02] px-4 py-3">
                       <Check className="w-4 h-4 sm:w-5 sm:h-5 text-violet-400 flex-shrink-0 mt-0.5" />
                       <span className="font-medium text-gray-300 text-xs sm:text-sm leading-relaxed">{detail}</span>
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-between gap-2 sm:gap-3 sm:pt-2 flex-wrap">
-                  {(activeFeature.metrics ?? []).map((metric) => (
-                    <div key={metric.label} className="flex flex-col items-center justify-center px-1 sm:px-2 gap-3 flex-row">
-                      <span className="text-base sm:text-lg font-bold text-white mb-0.5">{metric.value}</span>
-                      <span className="text-xs font-medium text-gray-400 uppercase tracking-wide text-center leading-tight">{metric.label}</span>
-                    </div>
-                  ))}
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="hidden lg:flex justify-center items-center h-[400px] sm:h-[540px] lg:col-span-5">
+          <div className="hidden h-[400px] items-center justify-center sm:h-[540px] lg:flex">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeFeature.title}
@@ -660,47 +661,47 @@ function EndToEndSection() {
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.92, x: -60 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full max-w-2xl h-full rounded-[2rem] border border-violet-400/15 bg-gradient-to-b from-violet-500/10 via-violet-500/5 to-transparent flex flex-col items-center justify-center text-center p-10"
+                className="relative flex h-full w-full max-w-[38rem] flex-col items-center justify-center overflow-hidden rounded-[2.35rem] border border-violet-300/14 bg-white/[0.03] p-10 text-center backdrop-blur-sm"
               >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(168,85,247,0.14),transparent_24%),linear-gradient(180deg,rgba(120,87,255,0.1)_0%,rgba(120,87,255,0.02)_100%)]" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/35 to-transparent" />
+                <div className="absolute left-1/2 top-12 h-40 w-40 -translate-x-1/2 rounded-full bg-violet-400/10 blur-3xl" />
                 <div className="relative mb-8">
-                  <div className="absolute inset-0 bg-violet-500/20 blur-3xl rounded-full" />
-                  <div className="relative w-32 h-32 rounded-[2rem] bg-violet-500/10 border border-violet-400/20 flex items-center justify-center">
+                  <div className="relative flex h-28 w-28 items-center justify-center rounded-[2rem] border border-violet-300/15 bg-violet-400/10">
                     <ActiveIcon className="w-16 h-16 text-violet-400" />
                   </div>
                 </div>
-                <p className="text-sm uppercase tracking-[0.24em] text-violet-400 mb-4">Etapa {String(activeIndex + 1).padStart(2, '0')}</p>
-                <h3 className="text-3xl font-semibold text-white mb-4">{activeFeature.title}</h3>
-                <p className="text-base text-gray-400 max-w-xl">{activeFeature.description}</p>
+                <p className="relative mb-4 text-sm uppercase tracking-[0.24em] text-violet-300">Etapa {String(activeIndex + 1).padStart(2, '0')}</p>
+                <h3 className="relative mb-4 max-w-[12ch] text-[2.6rem] leading-[1.02] tracking-[-0.05em] text-white">{activeFeature.title}</h3>
+                <p className="relative max-w-[26ch] text-base leading-[1.75] text-gray-300">{activeFeature.description}</p>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="hidden lg:flex flex-col items-center gap-6 sm:gap-8 lg:col-span-1 py-4">
+          <div className="hidden py-4 lg:flex lg:flex-col lg:items-center lg:gap-4">
             {endToEndFeatures.map((feature, index) => {
               const Icon = feature.icon;
               const isActive = activeIndex === index;
 
               return (
-                <motion.button
-                  key={feature.title}
-                  onClick={() => setActiveIndex(index)}
-                  whileHover={{
-                    scale: isActive ? 1.22 : 1.12,
-                    filter: isActive
-                      ? 'brightness(1.3) drop-shadow(0 0 18px rgba(168,85,247,0.7))'
-                      : 'brightness(1.1) drop-shadow(0 0 8px rgba(168,85,247,0.4))',
-                    zIndex: 2,
-                  }}
-                  whileTap={{ scale: 0.96 }}
-                  className="bg-transparent border-none p-0 flex items-center justify-center"
-                  aria-label={`Ver etapa ${feature.title}`}
-                >
-                  <Icon
-                    className={`transition-all duration-300 ${
-                      isActive ? 'text-violet-400 w-12 h-12 sm:w-14 sm:h-14' : 'text-gray-600 w-6 h-6 sm:w-7 sm:h-7 opacity-50'
+                <div key={feature.title} className="flex flex-col items-center">
+                  <motion.button
+                    onClick={() => setActiveIndex(index)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    className={`relative flex h-14 w-14 items-center justify-center rounded-2xl border transition-all duration-300 ${
+                      isActive
+                        ? 'border-violet-300/25 bg-violet-400/12 shadow-[0_0_30px_rgba(168,85,247,0.22)]'
+                        : 'border-white/8 bg-white/[0.02]'
                     }`}
-                  />
-                </motion.button>
+                    aria-label={`Ver etapa ${feature.title}`}
+                  >
+                    <Icon className={`${isActive ? 'h-6 w-6 text-violet-300' : 'h-5 w-5 text-gray-500'}`} />
+                  </motion.button>
+                  {index < endToEndFeatures.length - 1 && (
+                    <div className={`mt-2 h-8 w-px ${isActive ? 'bg-gradient-to-b from-violet-300/60 to-white/0' : 'bg-white/10'}`} />
+                  )}
+                </div>
               );
             })}
           </div>
@@ -901,6 +902,56 @@ function DifferentialSection() {
 }
 
 function ProjectsAndQualitySection() {
+  const projectCardAccents = [
+    {
+      border: 'border-emerald-300/12',
+      surface: 'from-emerald-400/14 via-emerald-400/5 to-transparent',
+      glow: 'bg-emerald-400/12',
+      line: 'from-transparent via-emerald-300/50 to-transparent',
+      meta: 'text-emerald-200/80',
+    },
+    {
+      border: 'border-cyan-300/12',
+      surface: 'from-cyan-400/14 via-sky-400/5 to-transparent',
+      glow: 'bg-cyan-400/12',
+      line: 'from-transparent via-cyan-300/50 to-transparent',
+      meta: 'text-cyan-200/80',
+    },
+    {
+      border: 'border-blue-300/12',
+      surface: 'from-blue-400/14 via-indigo-400/5 to-transparent',
+      glow: 'bg-blue-400/12',
+      line: 'from-transparent via-blue-300/50 to-transparent',
+      meta: 'text-blue-200/80',
+    },
+    {
+      border: 'border-violet-300/12',
+      surface: 'from-violet-400/14 via-violet-400/5 to-transparent',
+      glow: 'bg-violet-400/12',
+      line: 'from-transparent via-violet-300/50 to-transparent',
+      meta: 'text-violet-200/80',
+    },
+    {
+      border: 'border-fuchsia-300/12',
+      surface: 'from-fuchsia-400/14 via-purple-400/5 to-transparent',
+      glow: 'bg-fuchsia-400/12',
+      line: 'from-transparent via-fuchsia-300/50 to-transparent',
+      meta: 'text-fuchsia-200/80',
+    },
+  ];
+
+  const projectCardLayouts = [
+    'xl:col-span-4',
+    'xl:col-span-4 xl:-mt-6',
+    'xl:col-span-4',
+    'xl:col-span-5',
+    'xl:col-span-3 xl:mt-4',
+    'xl:col-span-4',
+    'xl:col-span-4',
+    'xl:col-span-5 xl:-mt-4',
+    'xl:col-span-3',
+  ];
+
   return (
     <section className="relative px-4 py-20 text-white lg:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(16,185,129,0.12),transparent_24%),radial-gradient(circle_at_82%_80%,rgba(45,212,191,0.09),transparent_26%),linear-gradient(180deg,rgba(8,20,19,0)_0%,rgba(8,28,24,0.14)_100%)]" />
@@ -913,19 +964,45 @@ function ProjectsAndQualitySection() {
             subtitle="Omia se adapta tanto a negocios en etapa inicial como a empresas que necesitan ordenar y escalar su operación."
           />
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {projectTypes.map((project, index) => (
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-12">
+            {projectTypes.map((project, index) => {
+              const accent = projectCardAccents[index % projectCardAccents.length];
+              const layout = projectCardLayouts[index] ?? 'xl:col-span-4';
+
+              return (
               <motion.div
                 key={project}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.25, delay: index * 0.04 }}
-                className="rounded-xl bg-gradient-to-b from-emerald-400/12 via-teal-400/6 to-transparent p-4 sm:p-6"
+                whileHover={{ y: -4 }}
+                className={`group relative overflow-hidden rounded-[1.75rem] border ${accent.border} ${layout} bg-white/[0.03] p-5 backdrop-blur-sm sm:p-6`}
               >
-                <p className="text-white/90 text-sm lg:text-md leading-relaxed text-center">{project}</p>
+                <div className={`absolute inset-0 bg-gradient-to-b ${accent.surface}`} />
+                <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${accent.line}`} />
+                <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full ${accent.glow} blur-3xl transition-opacity duration-300 group-hover:opacity-100`} />
+
+                <div className="relative flex min-h-[168px] flex-col justify-between gap-7">
+                  <div className="space-y-5">
+                    <span className={`inline-flex rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[11px] uppercase tracking-[0.24em] ${accent.meta}`}>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <p className="max-w-[24ch] text-lg leading-[1.2] text-white sm:text-[1.35rem]">
+                      {project}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[11px] uppercase tracking-[0.24em] ${accent.meta}`}>
+                      Proyecto Omia
+                    </span>
+                    <ArrowRight className={`h-4 w-4 ${accent.meta}`} />
+                  </div>
+                </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -1040,14 +1117,13 @@ export function ServicesPageContent() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const endToEndRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const processRef = useRef<HTMLDivElement>(null);
   const differentialRef = useRef<HTMLDivElement>(null);
   const projectQualityRef = useRef<HTMLDivElement>(null);
   const involvementRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs = [heroRef, servicesRef, endToEndRef, processRef, differentialRef, projectQualityRef, involvementRef];
+  const sectionRefs = [heroRef, servicesRef, processRef, differentialRef, projectQualityRef, involvementRef];
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > SCROLL_CONFIGS.SCROLL_THRESHOLD);
@@ -1076,7 +1152,6 @@ export function ServicesPageContent() {
 
   const sections = useMemo(() => [
     { id: 'servicios-principales', label: 'Servicios', description: 'Oferta principal de Omia', icon: serviceCategories[0].icon, href: '#servicios-principales', type: 'scroll' as const },
-    { id: 'trabajo', label: 'Trabajo', description: 'De punta a punta', icon: endToEndFeatures[0].icon, href: '#trabajo', type: 'scroll' as const },
     { id: 'como-trabajamos', label: 'Proceso', description: 'Cómo trabajamos', icon: endToEndFeatures[1].icon, href: '#como-trabajamos', type: 'scroll' as const },
     { id: 'diferencial', label: 'Diferencial', description: 'Negocio y trazabilidad', icon: endToEndFeatures[4].icon, href: '#diferencial', type: 'scroll' as const },
     { id: 'proyectos-calidad', label: 'Proyectos', description: 'Dónde ayudamos y qué cuidamos', icon: qualityFocus[0].icon as LucideIcon, href: '#proyectos-calidad', type: 'scroll' as const },
@@ -1093,7 +1168,6 @@ export function ServicesPageContent() {
 
   const footerLinks = [
     { name: 'Servicios', href: '#servicios-principales', type: 'scroll' as const },
-    { name: 'Trabajo', href: '#trabajo', type: 'scroll' as const },
     { name: 'Proceso', href: '#como-trabajamos', type: 'scroll' as const },
     { name: 'Diferencial', href: '#diferencial', type: 'scroll' as const },
     { name: 'Partner', href: '#partner', type: 'scroll' as const },
@@ -1126,10 +1200,6 @@ export function ServicesPageContent() {
 
         <div id="servicios-principales" ref={servicesRef}>
           <ServicesMainSection />
-        </div>
-
-        <div id="trabajo" ref={endToEndRef}>
-          <EndToEndSection />
         </div>
 
         <div id="como-trabajamos" ref={processRef}>

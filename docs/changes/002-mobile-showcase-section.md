@@ -42,6 +42,9 @@ No incluye cambios en otras secciones de la pagina.
 - Se alterno el orden visual de los bloques de servicios para que imagen y texto vayan cambiando de lado en secuencia, y se reforzo una identidad cromatica distinta por bloque dentro de la misma paleta Omia.
 - Se extendio esa logica cromatica al resto de `/servicios`, dando una dominante distinta por seccion con fondos sutiles, headers y cards alineadas a verde, azul, cyan, violeta y lila.
 - Se redujo el peso tipografico de los titulos principales de los bloques de servicios, pasando de bold a medium para evitar cortes visuales demasiado bruscos.
+- Se rehizo la presentacion de `Nuestro trabajo de punta a punta`, mejorando la jerarquia entre panel editorial, tarjeta central y rail de etapas para que la seccion se vea mas premium sin cambiar su logica.
+- Se removio la fila de metricas inferiores del panel editorial de `Nuestro trabajo de punta a punta` para dejar la composicion mas limpia.
+- Se elimino la seccion `Nuestro trabajo de punta a punta` del recorrido visible de `/servicios` y se limpiaron sus accesos asociados en navegacion, footer y progreso.
 ## Archivos afectados
 - Se ajusto la tipografia del header de secciones y del hero para usar Termina Light en el texto base y Termina Medium en el destacado, en lugar de bold.
 
