@@ -40,6 +40,8 @@ No incluye cambios en otras secciones de la pagina.
 - Se alinearon los gradientes de los bloques de servicios con la paleta de Omia, usando solo variantes de verde, azul, cyan, violeta y lila.
 - Se reordeno la pagina para que la seccion `Nuestro trabajo de punta a punta` quede debajo de `Servicios principales`, manteniendo consistente el orden de navegacion, footer y barra de progreso.
 - Se alterno el orden visual de los bloques de servicios para que imagen y texto vayan cambiando de lado en secuencia, y se reforzo una identidad cromatica distinta por bloque dentro de la misma paleta Omia.
+- Se extendio esa logica cromatica al resto de `/servicios`, dando una dominante distinta por seccion con fondos sutiles, headers y cards alineadas a verde, azul, cyan, violeta y lila.
+- Se redujo el peso tipografico de los titulos principales de los bloques de servicios, pasando de bold a medium para evitar cortes visuales demasiado bruscos.
 ## Archivos afectados
 - Se ajusto la tipografia del header de secciones y del hero para usar Termina Light en el texto base y Termina Medium en el destacado, en lugar de bold.
 

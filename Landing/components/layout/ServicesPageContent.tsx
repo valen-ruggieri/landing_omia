@@ -592,6 +592,7 @@ function EndToEndSection() {
         <ServicesSectionHeader
           title="Nuestro trabajo"
           highlighted="de punta a punta"
+          accentClassName="bg-gradient-to-r from-violet-300 via-purple-500 to-fuchsia-500"
           subtitle="Discovery, UX/UI, desarrollo, automatización, IA, métricas, documentación y mejora continua dentro de un mismo proceso."
         />
 
@@ -713,10 +714,12 @@ function EndToEndSection() {
 function ServicesMainSection() {
   return (
     <section className="relative overflow-hidden py-20 text-white lg:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_16%,rgba(34,211,238,0.08),transparent_24%),radial-gradient(circle_at_82%_78%,rgba(96,165,250,0.08),transparent_24%),linear-gradient(180deg,rgba(7,17,26,0)_0%,rgba(8,22,31,0.12)_100%)]" />
       <div className="mx-auto max-w-7xl px-4">
         <ServicesSectionHeader
           title="Servicios"
           highlighted="principales"
+          accentClassName="bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-500"
           subtitle="Producto digital, software, automatizacion, IA, ecommerce y datos organizados dentro del mismo lenguaje visual de Omia."
         />
       </div>
@@ -758,7 +761,7 @@ function ShowcaseContentPanel({
       <div className="space-y-5">
         <div>
           <h3 className="max-w-[16ch] text-[2.25rem] leading-[0.94] tracking-[-0.05em] text-white sm:max-w-[15ch] sm:text-[3.1rem] lg:max-w-[14ch] lg:text-[3.45rem] xl:max-w-[15ch] xl:text-[3.75rem]">
-            <span className={`bg-gradient-to-r ${accentClassName} bg-clip-text text-transparent termina-bold`}>
+            <span className={`bg-gradient-to-r ${accentClassName} bg-clip-text text-transparent termina-medium`}>
               {title}
             </span>
           </h3>
@@ -784,11 +787,13 @@ function ShowcaseContentPanel({
 }
 function WorkProcessSection() {
   return (
-    <section className="relative text-white py-20 lg:py-24 px-4">
+    <section className="relative px-4 py-20 text-white lg:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(34,211,238,0.12),transparent_24%),radial-gradient(circle_at_84%_78%,rgba(59,130,246,0.1),transparent_26%),linear-gradient(180deg,rgba(8,15,24,0)_0%,rgba(8,27,38,0.14)_100%)]" />
       <div className="max-w-7xl mx-auto relative z-10">
         <ServicesSectionHeader
           title="Como"
           highlighted="trabajamos"
+          accentClassName="bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500"
           subtitle="Un proceso claro desde el entendimiento hasta la evolución continua para reducir fricción entre idea, diseño y ejecución."
         />
 
@@ -800,9 +805,9 @@ function WorkProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.25 }}
-              className="rounded-2xl bg-gradient-to-b from-violet-500/8 to-transparent p-6 shadow-lg"
+              className="rounded-2xl bg-gradient-to-b from-cyan-400/10 via-blue-500/6 to-transparent p-6 shadow-lg"
             >
-              <div className="w-12 h-12 rounded-2xl bg-violet-500/10 flex items-center justify-center text-violet-400 font-semibold mb-5">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 font-semibold text-cyan-300">
                 {String(step.id).padStart(2, '0')}
               </div>
               <h3 className="text-white text-2xl font-semibold mb-3">{step.title}</h3>
@@ -838,11 +843,13 @@ function DifferentialSection() {
   ];
 
   return (
-    <section className="relative text-white py-20 lg:py-24 px-4">
+    <section className="relative px-4 py-20 text-white lg:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(167,139,250,0.12),transparent_24%),radial-gradient(circle_at_78%_74%,rgba(192,132,252,0.1),transparent_26%),linear-gradient(180deg,rgba(15,12,26,0)_0%,rgba(29,16,44,0.14)_100%)]" />
       <div className="max-w-7xl mx-auto relative z-10">
         <ServicesSectionHeader
           title="Nuestro"
           highlighted="diferencial"
+          accentClassName="bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-500"
           subtitle="Negocio, trazabilidad, transparencia y seguimiento real para construir con mucha más alineación."
         />
 
@@ -865,8 +872,8 @@ function DifferentialSection() {
                       transition={{ delay: cardIndex * 0.05 }}
                       className={spacing}
                     >
-                      <div className="rounded-2xl p-6 shadow-lg bg-gradient-to-b from-purple-500/5 to-transparent transition-colors">
-                        <p className="text-violet-400 text-[11px] uppercase tracking-[0.22em] mb-3">{card.title}</p>
+                      <div className="rounded-2xl bg-gradient-to-b from-purple-400/8 via-violet-500/4 to-transparent p-6 shadow-lg transition-colors">
+                        <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-violet-300">{card.title}</p>
                         <p className="text-gray-300 text-[18px] mb-5 leading-relaxed">{card.quote}</p>
                         <div className="flex items-center gap-3">
                           <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-medium flex-shrink-0">
@@ -895,12 +902,14 @@ function DifferentialSection() {
 
 function ProjectsAndQualitySection() {
   return (
-    <section className="relative text-white py-20 lg:py-24 px-4">
+    <section className="relative px-4 py-20 text-white lg:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(16,185,129,0.12),transparent_24%),radial-gradient(circle_at_82%_80%,rgba(45,212,191,0.09),transparent_26%),linear-gradient(180deg,rgba(8,20,19,0)_0%,rgba(8,28,24,0.14)_100%)]" />
       <div className="max-w-7xl mx-auto relative z-10 space-y-20">
         <div>
           <ServicesSectionHeader
             title="En que tipo de proyectos"
             highlighted="podemos ayudar"
+            accentClassName="bg-gradient-to-r from-emerald-300 via-teal-400 to-cyan-500"
             subtitle="Omia se adapta tanto a negocios en etapa inicial como a empresas que necesitan ordenar y escalar su operación."
           />
 
@@ -912,7 +921,7 @@ function ProjectsAndQualitySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.25, delay: index * 0.04 }}
-                className="rounded-xl p-4 sm:p-6 bg-gradient-to-b from-violet-500/10 via-violet-500/5 to-transparent"
+                className="rounded-xl bg-gradient-to-b from-emerald-400/12 via-teal-400/6 to-transparent p-4 sm:p-6"
               >
                 <p className="text-white/90 text-sm lg:text-md leading-relaxed text-center">{project}</p>
               </motion.div>
@@ -924,6 +933,7 @@ function ProjectsAndQualitySection() {
           <ServicesSectionHeader
             title="Que cuidamos"
             highlighted="en cada proyecto"
+            accentClassName="bg-gradient-to-r from-emerald-300 via-cyan-400 to-blue-500"
             subtitle="Cada solución se construye con foco en calidad real, no solo en velocidad."
           />
 
@@ -937,9 +947,9 @@ function ProjectsAndQualitySection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.25, delay: index * 0.03 }}
-                  className="rounded-2xl p-5 bg-gray-900/30"
+                  className="rounded-2xl bg-gradient-to-b from-emerald-400/8 via-cyan-500/5 to-transparent p-5"
                 >
-                  <Icon className="w-8 h-8 text-violet-400 mb-4" />
+                  <Icon className="mb-4 h-8 w-8 text-emerald-300" />
                   <p className="text-white text-sm leading-relaxed">{item.label}</p>
                 </motion.div>
               );
@@ -953,16 +963,18 @@ function ProjectsAndQualitySection() {
 
 function InvolvementSection() {
   return (
-    <section className="relative text-white py-20 lg:py-24 px-4">
+    <section className="relative px-4 py-20 text-white lg:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(96,165,250,0.12),transparent_24%),radial-gradient(circle_at_80%_22%,rgba(139,92,246,0.12),transparent_24%),linear-gradient(180deg,rgba(12,14,23,0)_0%,rgba(14,18,40,0.16)_100%)]" />
       <div className="max-w-7xl mx-auto relative z-10 space-y-14">
         <ServicesSectionHeader
           title="Como nos"
           highlighted="involucramos"
+          accentClassName="bg-gradient-to-r from-blue-300 via-indigo-400 to-violet-500"
           subtitle="Nos involucramos en el proyecto como partner, no solo como proveedor."
         />
 
         <div className="grid lg:grid-cols-[1fr_1fr] gap-8 items-start">
-          <div className="rounded-2xl bg-gradient-to-b from-violet-500/10 to-transparent p-8">
+          <div className="rounded-2xl bg-gradient-to-b from-blue-400/10 via-indigo-500/6 to-transparent p-8">
             <h3 className="text-3xl font-termina text-white mb-4">
               Nos metemos en la lógica del negocio
             </h3>
@@ -988,9 +1000,9 @@ function InvolvementSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.04, duration: 0.25 }}
-                  className="rounded-2xl bg-gray-900/30 p-5"
+                  className="rounded-2xl bg-gradient-to-b from-indigo-400/8 via-blue-500/5 to-transparent p-5"
                 >
-                  <Icon className="w-8 h-8 text-violet-400 mb-4" />
+                  <Icon className="mb-4 h-8 w-8 text-blue-300" />
                   <p className="text-white leading-relaxed">{card.title}</p>
                 </motion.div>
               );
@@ -998,8 +1010,8 @@ function InvolvementSection() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-gradient-to-b from-violet-500/10 to-transparent px-6 py-12 text-center shadow-2xl md:px-12">
-          <p className="text-violet-400 text-[11px] uppercase tracking-[0.24em] mb-4">Propuesta de valor</p>
+        <div className="rounded-[2rem] border border-white/10 bg-gradient-to-b from-blue-400/10 via-violet-500/6 to-transparent px-6 py-12 text-center shadow-2xl md:px-12">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-blue-300">Propuesta de valor</p>
           <h2 className="mx-auto mb-4 max-w-4xl text-4xl font-termina text-white sm:text-4xl md:text-5xl lg:text-6xl">
             No vendemos solo software
           </h2>
@@ -1011,7 +1023,7 @@ function InvolvementSection() {
             target="_blank"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-400 to-violet-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-400 to-violet-600 px-8 py-4 font-semibold text-white transition-all duration-300"
           >
             <span>Hablar con Omia</span>
             <ArrowRight className="w-5 h-5" />
