@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Check, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Check, MonitorSmartphone, type LucideIcon } from 'lucide-react';
 import { Footer, Nav } from '@Landing/components';
 import {
   differentialCards,
@@ -247,6 +248,17 @@ function ServicesShowcaseSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeSlide = servicesShowcase[activeIndex];
   const ActiveIcon = activeSlide.icon;
+  const mobileMetrics = [
+    { label: 'UX', value: 'Clara' },
+    { label: 'Flujos', value: 'Reales' },
+    { label: 'Escala', value: 'Lista' },
+  ];
+
+  const mobileFeatures = [
+    'Apps para clientes y equipos internos',
+    'Experiencias mobile-first con foco operativo',
+    'Integraciones, notificaciones y seguimiento en tiempo real',
+  ];
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -260,8 +272,8 @@ function ServicesShowcaseSection() {
     <section className="relative px-4 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <ServicesSectionHeader
-          title="Ejemplos"
-          highlighted="en contexto"
+          title="Apps"
+          highlighted="moviles"
           subtitle="Mockups de web y mobile que van rotando para mostrar cómo podrían verse los distintos sistemas que construimos."
           accentClassName="bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-600"
         />
@@ -410,6 +422,254 @@ function ServicesShowcaseSection() {
   );
 }
 
+function MobileAppsShowcaseSection() {
+  const mobileMetrics = [
+    { label: 'UX', value: 'Clara' },
+    { label: 'Flujos', value: 'Reales' },
+    { label: 'Escala', value: 'Lista' },
+  ];
+
+  const mobileFeatures = [
+    'Apps para clientes y equipos internos',
+    'Experiencias mobile-first con foco operativo',
+    'Integraciones, notificaciones y seguimiento en tiempo real',
+  ];
+
+  return (
+    <section className="relative px-4 py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl">
+        <ServicesSectionHeader
+          title="Apps"
+          highlighted="moviles"
+          subtitle="Disenamos y desarrollamos aplicaciones moviles para operacion, seguimiento y experiencia de usuario con foco en negocio."
+          accentClassName="bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-600"
+        />
+
+        <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-14">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90">
+              <MonitorSmartphone className="h-3.5 w-3.5" />
+              <span>App movil</span>
+            </div>
+
+            <div className="space-y-5">
+              <div>
+                <h3 className="text-3xl font-termina text-white sm:text-4xl">
+                  <span className="bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-600 bg-clip-text text-transparent termina-bold">
+                    Productos pensados para telefono
+                  </span>
+                </h3>
+                <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
+                  Construimos apps moviles para procesos reales: seguimiento, aprobaciones, operacion interna, experiencia de cliente y tareas que necesitan resolverse rapido desde el celular.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3">
+                {mobileMetrics.map((metric) => (
+                  <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/20 px-3 py-4 text-center">
+                    <p className="text-lg font-semibold text-white">{metric.value}</p>
+                    <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-gray-400">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-3">
+                {mobileFeatures.map((feature) => (
+                  <div key={feature} className="flex items-start gap-3">
+                    <div className="mt-1 h-2.5 w-2.5 rounded-full bg-gradient-to-r from-cyan-300 to-blue-500" />
+                    <p className="text-sm text-gray-200 sm:text-base">{feature}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex justify-center lg:justify-end"
+          >
+            <div className="relative w-full max-w-[760px] border-0 bg-transparent shadow-none">
+              <div className="relative aspect-[5/6] border-0 bg-transparent shadow-none">
+                <Image
+                  src="/mockupiphone.png"
+                  alt="Mockup de app movil"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain object-center"
+                  priority
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServiceVisualSplitSection({
+  eyebrow,
+  title,
+  description,
+  metrics,
+  features,
+  imageSrc,
+  imageAlt,
+  accentClassName,
+  imageClassName = '',
+  reverse = false,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  metrics: { label: string; value: string }[];
+  features: string[];
+  imageSrc: string;
+  imageAlt: string;
+  accentClassName: string;
+  imageClassName?: string;
+  reverse?: boolean;
+}) {
+  return (
+    <section className="relative px-4 py-20 lg:py-24">
+      <div className={`mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.72fr_1.28fr] xl:gap-16 ${reverse ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1' : ''}`}>
+        <div className="space-y-6">
+          <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90 ${accentClassName}`}>
+            <span>{eyebrow}</span>
+          </div>
+
+          <div className="space-y-5">
+            <div>
+              <h3 className="text-3xl font-termina text-white sm:text-4xl">
+                <span className={`bg-gradient-to-r ${accentClassName} bg-clip-text text-transparent termina-bold`}>
+                  {title}
+                </span>
+              </h3>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
+                {description}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3">
+              {metrics.map((metric) => (
+                <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/20 px-3 py-4 text-center">
+                  <p className="text-lg font-semibold text-white">{metric.value}</p>
+                  <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-gray-400">{metric.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-3">
+              {features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3">
+                  <div className={`mt-1 h-2.5 w-2.5 rounded-full bg-gradient-to-r ${accentClassName}`} />
+                  <p className="text-sm text-gray-200 sm:text-base">{feature}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="relative flex justify-center lg:justify-end"
+        >
+          <div className="relative w-full max-w-[1240px] border-0 bg-transparent shadow-none">
+            <div className="relative aspect-[16/10] border-0 bg-transparent shadow-none">
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 64vw"
+                className={`object-contain object-center ${imageClassName}`}
+              />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function WebShowcaseSection() {
+  return (
+    <ServiceVisualSplitSection
+      eyebrow="Webs"
+      title="Sitios y plataformas web"
+      description="Desarrollamos sitios institucionales, landings, portales y plataformas web con foco en conversion, claridad de contenido y escalabilidad tecnica."
+      metrics={[
+        { label: 'Marca', value: 'Clara' },
+        { label: 'Conversion', value: 'Alta' },
+        { label: 'Escala', value: 'Lista' },
+      ]}
+      features={[
+        'Webs institucionales y comerciales',
+        'Landings y experiencias orientadas a captacion',
+        'Plataformas web para clientes, equipos y operacion',
+      ]}
+      imageSrc="/macbookpro.png"
+      imageAlt="Visual de plataforma web"
+      accentClassName="from-violet-400 via-fuchsia-500 to-indigo-600"
+      imageClassName="scale-[1.08]"
+    />
+  );
+}
+
+function SystemsShowcaseSection() {
+  return (
+    <ServiceVisualSplitSection
+      eyebrow="Sistemas"
+      title="CRM, gestion y multiagente"
+      description="Armamos sistemas internos, CRMs y entornos de gestion con automatizaciones, trazabilidad y logica operativa para equipos que necesitan orden real."
+      metrics={[
+        { label: 'Gestion', value: 'Ordenada' },
+        { label: 'Procesos', value: 'Trazables' },
+        { label: 'Soporte', value: 'Escalable' },
+      ]}
+      features={[
+        'CRMs y paneles administrativos',
+        'Sistemas multiusuario y multiagente',
+        'Flujos de trabajo, estados, permisos e integraciones',
+      ]}
+      imageSrc="/macpc.png"
+      imageAlt="Visual de sistema CRM y gestion"
+      accentClassName="from-emerald-300 via-cyan-400 to-blue-500"
+      imageClassName="scale-[1.42]"
+      reverse
+    />
+  );
+}
+
+function EcommerceShowcaseSection() {
+  return (
+    <ServiceVisualSplitSection
+      eyebrow="Ecommerce"
+      title="Tiendas y experiencias de venta"
+      description="Disenamos ecommerce, catalogos y funnels con foco en experiencia de compra, rendimiento y una operacion mas conectada con el negocio."
+      metrics={[
+        { label: 'Venta', value: 'Mejor' },
+        { label: 'Catalogo', value: 'Ordenado' },
+        { label: 'Operacion', value: 'Conectada' },
+      ]}
+      features={[
+        'Ecommerce y catalogos digitales',
+        'Experiencias de compra mas claras y rapidas',
+        'Integracion con pagos, stock, CRM y automatizaciones',
+      ]}
+      imageSrc="/web.png"
+      imageAlt="Visual de ecommerce"
+      accentClassName="from-amber-300 via-orange-400 to-rose-500"
+      imageClassName="scale-[1.08]"
+    />
+  );
+}
+
 function EndToEndSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeFeature = endToEndFeatures[activeIndex];
@@ -538,9 +798,15 @@ function EndToEndSection() {
   );
 }
 
+
 function ServicesMainSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeCategory = serviceCategories[activeIndex];
+  const categoryAccents = [
+    'from-cyan-300 via-blue-500 to-indigo-600',
+    'from-violet-400 via-fuchsia-500 to-indigo-600',
+    'from-emerald-300 via-cyan-400 to-blue-500',
+    'from-amber-300 via-orange-400 to-rose-500',
+    'from-sky-300 via-cyan-400 to-teal-500',
+  ];
 
   return (
     <section className="relative text-white py-20 lg:py-24 px-4 overflow-hidden">
@@ -548,77 +814,66 @@ function ServicesMainSection() {
         <ServicesSectionHeader
           title="Servicios"
           highlighted="principales"
-          subtitle="Producto digital, software, automatización, IA, ecommerce y datos organizados dentro del mismo lenguaje visual de Omia."
+          subtitle="Producto digital, software, automatizacion, IA, ecommerce y datos organizados dentro del mismo lenguaje visual de Omia."
         />
 
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+        <div className="space-y-8">
           {serviceCategories.map((category, index) => {
-            const isActive = activeIndex === index;
             const Icon = category.icon;
+            const accent = categoryAccents[index % categoryAccents.length];
 
             return (
-              <motion.button
+              <motion.div
                 key={category.title}
-                onClick={() => setActiveIndex(index)}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className={`px-4 py-2.5 rounded-xl backdrop-blur-md transition-all duration-300 text-sm font-medium overflow-hidden relative flex items-center gap-2 ${
-                  isActive
-                    ? 'bg-gradient-to-r from-violet-500/20 to-indigo-500/20 border border-violet-400/20 text-white'
-                    : 'bg-white/5 border border-white/10 text-gray-400'
-                }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.25, delay: index * 0.03 }}
+                className="grid gap-8 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm lg:grid-cols-[0.86fr_1.14fr] lg:p-8"
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-violet-400' : 'text-gray-500'}`} />
-                <span>{category.title}</span>
-              </motion.button>
+                <div className="space-y-5">
+                  <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90 ${accent}`}>
+                    <Icon className="h-3.5 w-3.5" />
+                    <span>{category.title}</span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-3xl font-termina text-white mb-4 sm:text-4xl">
+                      <span className={`bg-gradient-to-r ${accent} bg-clip-text text-transparent termina-bold`}>
+                        {category.title}
+                      </span>
+                    </h3>
+                    <p className="max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
+                      {category.description}
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+                    <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray-400">Enfoque Omia</p>
+                    <p className="text-gray-300 leading-relaxed">
+                      Disenamos cada servicio como una herramienta real para ordenar, automatizar y escalar, no solo como una entrega tecnica.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {category.items.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-transparent p-5"
+                    >
+                      <p className="text-lg font-medium leading-relaxed text-white">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             );
           })}
         </div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-            className="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-start"
-          >
-            <div className="rounded-2xl bg-gray-900/30 p-6">
-              <h3 className="text-3xl font-termina text-white mb-4">
-                <span className="bg-gradient-to-r from-violet-400 to-indigo-500 bg-clip-text text-transparent termina-bold">
-                  {activeCategory.title}
-                </span>
-              </h3>
-              <p className="text-gray-400 text-base leading-relaxed">{activeCategory.description}</p>
-              <div className="mt-6 rounded-2xl bg-gradient-to-b from-violet-500/10 to-transparent p-5">
-                <p className="text-sm uppercase tracking-[0.2em] text-violet-400 mb-3">Enfoque Omia</p>
-                <p className="text-gray-300 leading-relaxed">
-                  Diseñamos cada servicio como una herramienta real para ordenar, automatizar y escalar, no solo como una entrega técnica.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-4">
-              {activeCategory.items.map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="rounded-2xl bg-gradient-to-b from-violet-500/5 to-transparent p-5 shadow-lg"
-                >
-                  <p className="text-white text-lg font-medium leading-relaxed">{item}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   );
 }
-
 function WorkProcessSection() {
   return (
     <section className="relative text-white py-20 lg:py-24 px-4">
@@ -953,7 +1208,10 @@ export function ServicesPageContent() {
         </div>
 
         <div id="muestras" ref={showcaseRef}>
-          <ServicesShowcaseSection />
+          <MobileAppsShowcaseSection />
+          <WebShowcaseSection />
+          <SystemsShowcaseSection />
+          <EcommerceShowcaseSection />
         </div>
 
         <div id="trabajo" ref={endToEndRef}>
