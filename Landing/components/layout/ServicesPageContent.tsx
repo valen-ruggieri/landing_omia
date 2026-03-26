@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Check, MonitorSmartphone, type LucideIcon } from 'lucide-react';
+import { ArrowRight, MonitorSmartphone, type LucideIcon } from 'lucide-react';
 import { Footer, Nav } from '@Landing/components';
 import {
   differentialCards,
@@ -13,7 +13,6 @@ import {
   qualityFocus,
   serviceCategories,
   servicesHero,
-  servicesShowcase,
   transparencyPoints,
   valueCards,
   workProcess,
@@ -238,184 +237,6 @@ function ServicesHeroSection() {
   );
 }
 
-function ServicesShowcaseSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeSlide = servicesShowcase[activeIndex];
-  const ActiveIcon = activeSlide.icon;
-  const mobileMetrics = [
-    { label: 'UX', value: 'Clara' },
-    { label: 'Flujos', value: 'Reales' },
-    { label: 'Escala', value: 'Lista' },
-  ];
-
-  const mobileFeatures = [
-    'Apps para clientes y equipos internos',
-    'Experiencias mobile-first con foco operativo',
-    'Integraciones, notificaciones y seguimiento en tiempo real',
-  ];
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % servicesShowcase.length);
-    }, 4800);
-
-    return () => window.clearInterval(timer);
-  }, []);
-
-  return (
-    <section className="relative px-4 py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl">
-        <ServicesSectionHeader
-          title="Apps"
-          highlighted="moviles"
-          subtitle="Mockups de web y mobile que van rotando para mostrar cómo podrían verse los distintos sistemas que construimos."
-          accentClassName="bg-gradient-to-r from-cyan-300 via-blue-500 to-indigo-600"
-        />
-
-        <div className="grid items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] xl:gap-10">
-          <div className="space-y-6">
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_rgba(0,0,0,.22)] backdrop-blur-xl sm:p-8">
-              <div
-                className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${activeSlide.accent} px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/90`}
-              >
-                <ActiveIcon className="h-3.5 w-3.5" />
-                <span>{activeSlide.eyebrow}</span>
-              </div>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeSlide.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="mt-5 space-y-5"
-                >
-                  <div>
-                    <h3 className="text-3xl font-termina text-white sm:text-4xl">
-                      <span className={`bg-gradient-to-r ${activeSlide.accent} bg-clip-text text-transparent termina-bold`}>
-                        {activeSlide.title}
-                      </span>
-                    </h3>
-                    <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-300 sm:text-lg">
-                      {activeSlide.description}
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-3">
-                    {activeSlide.metrics.map((metric) => (
-                      <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/20 px-3 py-4 text-center">
-                        <p className="text-lg font-semibold text-white">{metric.value}</p>
-                        <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-gray-400">{metric.label}</p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {servicesShowcase.map((slide, index) => {
-                  const isActive = index === activeIndex;
-
-                  return (
-                    <button
-                      key={slide.title}
-                      type="button"
-                      onClick={() => setActiveIndex(index)}
-                      className={`rounded-full border px-3 py-2 text-xs font-medium transition-all duration-300 ${
-                        isActive
-                          ? `border-white/15 bg-gradient-to-r ${slide.accent} text-white shadow-[0_12px_30px_rgba(0,0,0,.18)]`
-                          : 'border-white/10 bg-white/5 text-gray-400 hover:border-white/15 hover:text-white'
-                      }`}
-                      aria-label={`Ver ejemplo ${slide.title}`}
-                    >
-                      {slide.title}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSlide.title}
-                initial={{ opacity: 0, scale: 0.96, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: -20 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 p-4 shadow-[0_50px_120px_rgba(0,0,0,.3)] backdrop-blur-2xl sm:p-5"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.surface}`} />
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-
-                <div className="relative">
-                  <div className="flex items-center justify-between rounded-[1.4rem] border border-white/10 bg-black/20 px-4 py-3 sm:px-5">
-                    <div className="flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/40" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-                    </div>
-                    <div className={`rounded-full border border-white/10 bg-gradient-to-r ${activeSlide.accent} px-3 py-1 text-[10px] uppercase tracking-[0.26em] text-white/90`}>
-                      {activeSlide.browserTitle}
-                    </div>
-                  </div>
-
-                  <div className="mt-5 grid gap-4 lg:grid-cols-[1.04fr_0.96fr]">
-                    <div className="rounded-[1.8rem] border border-white/10 bg-[#0d1018]/90 p-5 sm:p-6">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-[11px] uppercase tracking-[0.24em] text-gray-400">Web preview</p>
-                          <h4 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{activeSlide.title}</h4>
-                        </div>
-                        <ActiveIcon className="h-10 w-10 text-white/70" />
-                      </div>
-
-                      <div className="mt-6 space-y-3">
-                        {activeSlide.browserRows.map((row, index) => (
-                          <div key={row} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                            <div className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${activeSlide.accent}`} />
-                            <p className="text-sm text-gray-200 sm:text-base">{row}</p>
-                            <span className="ml-auto text-[11px] uppercase tracking-[0.22em] text-gray-500">
-                              {String(index + 1).padStart(2, '0')}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="relative flex items-center justify-center">
-                      <div className={`absolute inset-8 rounded-full bg-gradient-to-br ${activeSlide.accent} opacity-35 blur-3xl`} />
-                      <div className="relative w-full max-w-[280px] rounded-[2.4rem] border border-white/10 bg-[#0d1018]/92 p-3 shadow-[0_40px_100px_rgba(0,0,0,.28)]">
-                        <div className="mx-auto h-5 w-24 rounded-[999px] border border-white/10 bg-black/25" />
-                        <div className="mt-3 rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/6 to-black/20 p-4">
-                          <p className="text-[11px] uppercase tracking-[0.24em] text-gray-400">{activeSlide.phoneTitle}</p>
-                          <div className="mt-4 space-y-3">
-                            {activeSlide.phoneRows.map((row, index) => (
-                              <div key={row} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3">
-                                <div className={`h-9 w-9 rounded-xl bg-gradient-to-br ${activeSlide.accent}`} />
-                                <div className="min-w-0 flex-1">
-                                  <p className="text-sm font-medium text-white">{row}</p>
-                                  <p className="mt-1 text-[11px] text-gray-400">Paso {index + 1}</p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function MobileAppsShowcaseSection() {
   const mobileFeatures = [
     'Apps para clientes y equipos internos',
@@ -580,138 +401,6 @@ function EcommerceShowcaseSection() {
   );
 }
 
-function EndToEndSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeFeature = endToEndFeatures[activeIndex];
-  const ActiveIcon = activeFeature.icon;
-
-  return (
-    <section className="relative overflow-hidden px-4 py-20 text-white lg:py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(139,92,246,0.14),transparent_26%),radial-gradient(circle_at_82%_26%,rgba(168,85,247,0.12),transparent_24%),linear-gradient(180deg,rgba(12,14,21,0)_0%,rgba(36,18,56,0.12)_100%)]" />
-      <div className="max-w-7xl mx-auto relative z-10">
-        <ServicesSectionHeader
-          title="Nuestro trabajo"
-          highlighted="de punta a punta"
-          accentClassName="bg-gradient-to-r from-violet-300 via-purple-500 to-fuchsia-500"
-          subtitle="Discovery, UX/UI, desarrollo, automatización, IA, métricas, documentación y mejora continua dentro de un mismo proceso."
-        />
-
-        <div className="flex lg:hidden justify-center items-center gap-4 my-8 flex-wrap">
-          {endToEndFeatures.map((feature, index) => {
-            const Icon = feature.icon;
-            const isActive = activeIndex === index;
-
-            return (
-              <button
-                key={feature.title}
-                onClick={() => setActiveIndex(index)}
-                className={`relative p-3 rounded-lg ${
-                  isActive ? 'bg-gradient-to-b from-violet-500 via-violet-500/20 to-violet-500/0' : 'bg-gray-900/40 border border-white/10'
-                }`}
-                aria-label={`Ver etapa ${feature.title}`}
-              >
-                <Icon className={`w-6 h-6 ${isActive ? 'text-violet-400' : 'text-gray-400'}`} />
-                {isActive && (
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 w-4 rounded-full bg-violet-500" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="grid grid-cols-1 items-center gap-6 sm:gap-8 lg:grid-cols-[0.96fr_1.08fr_72px] lg:gap-10 xl:gap-14">
-          <div className="space-y-4 sm:space-y-5">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeFeature.title}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 30 }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm sm:p-8"
-              >
-                <div className="absolute inset-0 bg-gradient-to-b from-violet-400/8 via-violet-500/3 to-transparent" />
-                <div className="absolute -left-10 bottom-0 h-32 w-32 rounded-full bg-cyan-400/8 blur-3xl" />
-                <div className="relative">
-                <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-violet-300">
-                  Etapa {String(activeIndex + 1).padStart(2, '0')}
-                </p>
-                <h3 className="max-w-[12ch] bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-500 bg-clip-text text-[2.35rem] leading-[0.96] tracking-[-0.05em] text-transparent sm:text-[2.8rem]">
-                  {activeFeature.title}
-                </h3>
-                <p className="mt-5 max-w-[42ch] text-[1rem] leading-[1.75] text-gray-300 sm:text-[1.03rem]">{activeFeature.description}</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 pt-2">
-                  {(activeFeature.details ?? []).map((detail) => (
-                    <div key={detail} className="flex items-start gap-3 rounded-2xl border border-white/6 bg-white/[0.02] px-4 py-3">
-                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-violet-400 flex-shrink-0 mt-0.5" />
-                      <span className="font-medium text-gray-300 text-xs sm:text-sm leading-relaxed">{detail}</span>
-                    </div>
-                  ))}
-                </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <div className="hidden h-[400px] items-center justify-center sm:h-[540px] lg:flex">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeFeature.title}
-                initial={{ opacity: 0, scale: 0.92, x: 60 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                exit={{ opacity: 0, scale: 0.92, x: -60 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="relative flex h-full w-full max-w-[38rem] flex-col items-center justify-center overflow-hidden rounded-[2.35rem] border border-violet-300/14 bg-white/[0.03] p-10 text-center backdrop-blur-sm"
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(168,85,247,0.14),transparent_24%),linear-gradient(180deg,rgba(120,87,255,0.1)_0%,rgba(120,87,255,0.02)_100%)]" />
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/35 to-transparent" />
-                <div className="absolute left-1/2 top-12 h-40 w-40 -translate-x-1/2 rounded-full bg-violet-400/10 blur-3xl" />
-                <div className="relative mb-8">
-                  <div className="relative flex h-28 w-28 items-center justify-center rounded-[2rem] border border-violet-300/15 bg-violet-400/10">
-                    <ActiveIcon className="w-16 h-16 text-violet-400" />
-                  </div>
-                </div>
-                <p className="relative mb-4 text-sm uppercase tracking-[0.24em] text-violet-300">Etapa {String(activeIndex + 1).padStart(2, '0')}</p>
-                <h3 className="relative mb-4 max-w-[12ch] text-[2.6rem] leading-[1.02] tracking-[-0.05em] text-white">{activeFeature.title}</h3>
-                <p className="relative max-w-[26ch] text-base leading-[1.75] text-gray-300">{activeFeature.description}</p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <div className="hidden py-4 lg:flex lg:flex-col lg:items-center lg:gap-4">
-            {endToEndFeatures.map((feature, index) => {
-              const Icon = feature.icon;
-              const isActive = activeIndex === index;
-
-              return (
-                <div key={feature.title} className="flex flex-col items-center">
-                  <motion.button
-                    onClick={() => setActiveIndex(index)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.97 }}
-                    className={`relative flex h-14 w-14 items-center justify-center rounded-2xl border transition-all duration-300 ${
-                      isActive
-                        ? 'border-violet-300/25 bg-violet-400/12 shadow-[0_0_30px_rgba(168,85,247,0.22)]'
-                        : 'border-white/8 bg-white/[0.02]'
-                    }`}
-                    aria-label={`Ver etapa ${feature.title}`}
-                  >
-                    <Icon className={`${isActive ? 'h-6 w-6 text-violet-300' : 'h-5 w-5 text-gray-500'}`} />
-                  </motion.button>
-                  {index < endToEndFeatures.length - 1 && (
-                    <div className={`mt-2 h-8 w-px ${isActive ? 'bg-gradient-to-b from-violet-300/60 to-white/0' : 'bg-white/10'}`} />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
 function ServicesMainSection() {
   return (
     <section className="relative overflow-hidden py-20 text-white lg:py-24">
@@ -787,34 +476,176 @@ function ShowcaseContentPanel({
   );
 }
 function WorkProcessSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeStep = workProcess[activeIndex];
+  const previousStep = workProcess[(activeIndex - 1 + workProcess.length) % workProcess.length];
+  const nextStep = workProcess[(activeIndex + 1) % workProcess.length];
+  const activeGlowColors = [
+    'rgba(34, 211, 238, 0.52)',
+    'rgba(99, 102, 241, 0.5)',
+    'rgba(168, 85, 247, 0.5)',
+    'rgba(16, 185, 129, 0.5)',
+    'rgba(45, 212, 191, 0.5)',
+    'rgba(59, 130, 246, 0.5)',
+    'rgba(96, 165, 250, 0.5)',
+  ];
+  const activeGlow = activeGlowColors[activeIndex] ?? 'rgba(34, 211, 238, 0.5)';
+  const totalProgress = (activeIndex + 1) / workProcess.length;
+  const topProgress = Math.min(totalProgress / 0.25, 1);
+  const rightProgress = totalProgress <= 0.25 ? 0 : Math.min((totalProgress - 0.25) / 0.25, 1);
+  const bottomProgress = totalProgress <= 0.5 ? 0 : Math.min((totalProgress - 0.5) / 0.25, 1);
+  const leftProgress = totalProgress <= 0.75 ? 0 : Math.min((totalProgress - 0.75) / 0.25, 1);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % workProcess.length);
+    }, 4200);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative px-4 py-20 text-white lg:py-24">
+    <section className="relative overflow-hidden px-4 py-20 text-white lg:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(34,211,238,0.12),transparent_24%),radial-gradient(circle_at_84%_78%,rgba(59,130,246,0.1),transparent_26%),linear-gradient(180deg,rgba(8,15,24,0)_0%,rgba(8,27,38,0.14)_100%)]" />
       <div className="max-w-7xl mx-auto relative z-10">
         <ServicesSectionHeader
           title="Como"
           highlighted="trabajamos"
           accentClassName="bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500"
-          subtitle="Un proceso claro desde el entendimiento hasta la evolución continua para reducir fricción entre idea, diseño y ejecución."
+          subtitle="Un proceso claro desde la consultoria inicial hasta la evolucion continua, con una hoja de ruta visible para cada etapa."
         />
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {workProcess.map((step, index) => (
+        <div className="relative mt-14">
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[24%] items-center justify-start lg:flex">
             <motion.div
-              key={step.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.25 }}
-              className="rounded-2xl bg-gradient-to-b from-cyan-400/10 via-blue-500/6 to-transparent p-6 shadow-lg"
+              key={`prev-${previousStep.id}`}
+              initial={{ opacity: 0, x: -48, rotate: -12 }}
+              animate={{ opacity: 0.28, x: -14, rotate: -10 }}
+              exit={{ opacity: 0, x: -60, rotate: -14 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[20rem] w-[16rem] xl:h-[24rem] xl:w-[19rem]"
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 font-semibold text-cyan-300">
-                {String(step.id).padStart(2, '0')}
-              </div>
-              <h3 className="text-white text-2xl font-semibold mb-3">{step.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{step.description}</p>
+              <Image
+                src={previousStep.imageSrc}
+                alt={previousStep.title}
+                fill
+                sizes="320px"
+                className="object-contain opacity-70 blur-[0.6px]"
+              />
             </motion.div>
-          ))}
+          </div>
+
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[24%] items-center justify-end lg:flex">
+            <motion.div
+              key={`next-${nextStep.id}`}
+              initial={{ opacity: 0, x: 48, rotate: 12 }}
+              animate={{ opacity: 0.28, x: 14, rotate: 10 }}
+              exit={{ opacity: 0, x: 60, rotate: 14 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[20rem] w-[16rem] xl:h-[24rem] xl:w-[19rem]"
+            >
+              <Image
+                src={nextStep.imageSrc}
+                alt={nextStep.title}
+                fill
+                sizes="320px"
+                className="object-contain opacity-70 blur-[0.6px]"
+              />
+            </motion.div>
+          </div>
+
+          <div className="relative flex min-h-[34rem] items-center justify-center overflow-hidden rounded-[2.2rem] border border-white/10 bg-white/[0.03] px-4 py-8 sm:px-8 lg:min-h-[38rem]">
+            <div className="pointer-events-none absolute inset-0 rounded-[2.2rem]">
+              <div
+                className="absolute inset-0 rounded-[2.2rem]"
+                style={{
+                  boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.03), 0 0 48px ${activeGlow}, 0 0 110px ${activeGlow.replace('0.5', '0.24').replace('0.52', '0.26')}`,
+                }}
+              />
+              <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
+              <div className="absolute inset-y-0 right-0 w-px bg-white/10" />
+              <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
+              <div className="absolute inset-y-0 left-0 w-px bg-white/10" />
+
+              <motion.div
+                className={`absolute left-0 top-0 h-[2px] origin-left bg-gradient-to-r ${activeStep.accentClassName}`}
+                animate={{ width: `${topProgress * 100}%` }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                style={{ boxShadow: `0 0 24px ${activeGlow}, 0 0 42px ${activeGlow.replace('0.5', '0.26').replace('0.52', '0.28')}` }}
+              />
+              <motion.div
+                className={`absolute right-0 top-0 w-[2px] origin-top bg-gradient-to-b ${activeStep.accentClassName}`}
+                animate={{ height: `${rightProgress * 100}%` }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                style={{ boxShadow: `0 0 24px ${activeGlow}, 0 0 42px ${activeGlow.replace('0.5', '0.26').replace('0.52', '0.28')}` }}
+              />
+              <motion.div
+                className={`absolute bottom-0 right-0 h-[2px] origin-right bg-gradient-to-l ${activeStep.accentClassName}`}
+                animate={{ width: `${bottomProgress * 100}%` }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                style={{ boxShadow: `0 0 24px ${activeGlow}, 0 0 42px ${activeGlow.replace('0.5', '0.26').replace('0.52', '0.28')}` }}
+              />
+              <motion.div
+                className={`absolute bottom-0 left-0 w-[2px] origin-bottom bg-gradient-to-t ${activeStep.accentClassName}`}
+                animate={{ height: `${leftProgress * 100}%` }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                style={{ boxShadow: `0 0 24px ${activeGlow}, 0 0 42px ${activeGlow.replace('0.5', '0.26').replace('0.52', '0.28')}` }}
+              />
+            </div>
+
+            <div className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${activeStep.accentClassName} to-transparent opacity-40`} />
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep.id}
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.04 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="relative h-full w-full max-w-[68rem]">
+                  <Image
+                    src={activeStep.imageSrc}
+                    alt={activeStep.title}
+                    fill
+                    priority={activeIndex === 0}
+                    sizes="(min-width: 1024px) 900px, 100vw"
+                    className="object-contain opacity-[0.22]"
+                  />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(7,10,16,0.12),rgba(7,10,16,0.76)_62%,rgba(7,10,16,0.92)_100%)]" />
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`content-${activeStep.id}`}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                className="relative z-10 mx-auto flex w-full max-w-[46rem] flex-col items-center text-center"
+              >
+                <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-black/35 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+                  <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${activeStep.accentClassName}`} />
+                  Etapa {String(activeStep.id).padStart(2, '0')}
+                </div>
+
+                <h3 className="mt-6 max-w-[17ch] text-[2.4rem] leading-[0.94] tracking-[-0.05em] text-white sm:max-w-[16ch] sm:text-[3.15rem] lg:max-w-[18ch] lg:text-[4rem]">
+                  <span className={`bg-gradient-to-r ${activeStep.accentClassName} bg-clip-text text-transparent termina-medium`}>
+                    {activeStep.title}
+                  </span>
+                </h3>
+
+                <p className="mt-5 max-w-[40rem] text-base leading-[1.85] text-gray-300 sm:text-lg">
+                  {activeStep.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1225,3 +1056,5 @@ export function ServicesPageContent() {
     </motion.div>
   );
 }
+
+

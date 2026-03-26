@@ -45,6 +45,7 @@ No incluye cambios en otras secciones de la pagina.
 - Se rehizo la presentacion de `Nuestro trabajo de punta a punta`, mejorando la jerarquia entre panel editorial, tarjeta central y rail de etapas para que la seccion se vea mas premium sin cambiar su logica.
 - Se removio la fila de metricas inferiores del panel editorial de `Nuestro trabajo de punta a punta` para dejar la composicion mas limpia.
 - Se elimino la seccion `Nuestro trabajo de punta a punta` del recorrido visible de `/servicios` y se limpiaron sus accesos asociados en navegacion, footer y progreso.
+- Se removieron los componentes muertos de showcase y workflow que ya no formaban parte del recorrido visible de `/servicios`, dejando el archivo mas limpio y mantenible.
 ## Archivos afectados
 - Se ajusto la tipografia del header de secciones y del hero para usar Termina Light en el texto base y Termina Medium en el destacado, en lugar de bold.
 

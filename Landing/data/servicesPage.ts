@@ -289,33 +289,59 @@ export const serviceCategories: ServicesCategory[] = [
 export const workProcess = [
   {
     id: 1,
-    title: 'Entendimiento del negocio',
-    description: 'Analizamos contexto, objetivos, usuarios y lógica operativa.',
+    title: 'Consultoria inicial (sin costo)',
+    description:
+      'Tenemos una primera reunion donde entendemos tu negocio, detectamos necesidades y definimos que tipo de sistema o solucion necesitas.',
+    imageSrc: '/200shots_so.png',
+    accentClassName: 'from-cyan-300 via-sky-400 to-blue-500',
   },
   {
     id: 2,
-    title: 'Definición funcional',
-    description: 'Traducimos la necesidad en alcance, funcionalidades, prioridades y roadmap.',
+    title: 'Diagnostico y propuesta',
+    description:
+      'Bajamos todo a una definicion clara: alcance, tipo de producto, arquitectura inicial y presupuesto estimado para avanzar con seguridad.',
+    imageSrc: '/462shots_so.png',
+    accentClassName: 'from-blue-300 via-indigo-500 to-violet-500',
   },
   {
     id: 3,
-    title: 'UX/UI y prototipado',
-    description: 'Diseñamos la experiencia y la interfaz con foco en claridad y validación.',
+    title: 'Definicion del producto',
+    description:
+      'Estructuramos funcionalidades, prioridades y roadmap. Aca se traduce la idea en algo concreto y construible.',
+    imageSrc: '/605shots_so.png',
+    accentClassName: 'from-violet-300 via-purple-500 to-fuchsia-500',
   },
   {
     id: 4,
-    title: 'Arquitectura y desarrollo',
-    description: 'Construimos sobre bases sólidas, priorizando seguridad y escalabilidad.',
+    title: 'Diseno (UX/UI)',
+    description:
+      'Disenamos la experiencia y la interfaz para validar el producto antes de desarrollarlo, asegurando claridad y usabilidad.',
+    imageSrc: '/mockupiphonestwo.png',
+    accentClassName: 'from-cyan-300 via-emerald-400 to-teal-500',
   },
   {
     id: 5,
-    title: 'Testing y validación',
-    description: 'Probamos flujos, corregimos detalles y preparamos entregas funcionales.',
+    title: 'Desarrollo e implementacion',
+    description:
+      'Construimos el sistema con foco en calidad tecnica, escalabilidad y performance.',
+    imageSrc: '/macbookpro.png',
+    accentClassName: 'from-emerald-300 via-cyan-400 to-blue-500',
   },
   {
     id: 6,
-    title: 'Evolución continua',
-    description: 'Medimos, iteramos y mejoramos el producto a medida que crece.',
+    title: 'Testing y salida a produccion',
+    description:
+      'Probamos, ajustamos y dejamos todo listo para que el sistema funcione en un entorno real.',
+    imageSrc: '/macpc.png',
+    accentClassName: 'from-blue-300 via-cyan-400 to-violet-400',
+  },
+  {
+    id: 7,
+    title: 'Evolucion y mejora continua',
+    description:
+      'Medimos, iteramos y acompanamos el crecimiento del producto con nuevas mejoras y optimizaciones.',
+    imageSrc: '/web.png',
+    accentClassName: 'from-violet-300 via-blue-400 to-cyan-300',
   },
 ];
 
