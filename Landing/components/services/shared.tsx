@@ -160,7 +160,7 @@ export function MobileAppsShowcaseSection() {
   ];
 
   return (
-    <section className="relative px-4 py-20 lg:py-24">
+    <section className="relative px-4 ">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] xl:gap-14">
           <ShowcaseContentPanel
@@ -182,7 +182,7 @@ export function MobileAppsShowcaseSection() {
             <div className="relative w-full max-w-[760px] border-0 bg-transparent shadow-none">
               <div className="relative aspect-[5/6] border-0 bg-transparent shadow-none">
                 <Image
-                  src="/mockupiphone.png"
+                  src="/appmovil.png"
                   alt="Mockup de app movil"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

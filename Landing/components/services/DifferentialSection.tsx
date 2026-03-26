@@ -21,8 +21,6 @@ export function DifferentialSection() {
     })),
   ];
 
-  const leftColumnItems = cards.filter((_, index) => index % 2 === 0);
-  const rightColumnItems = cards.filter((_, index) => index % 2 !== 0);
   const cardAccents = [
     {
       border: 'border-violet-300/12',
@@ -43,6 +41,22 @@ export function DifferentialSection() {
       line: 'via-cyan-300/24',
     },
   ];
+  const desktopBadgePositions = [
+    // Columna interna (derecha pero más hacia el centro)
+    'right-[48%] top-[8%]',
+    'right-[50%] top-[42%]',
+    'right-[52%] top-[76%]',
+
+    'right-[22%] top-[8%]',
+    'right-[25%] top-[36%]',
+    'right-[28%] top-[60%]',
+    'right-[30%] top-[87%]',
+    // Columna externa (pegada a la derecha)
+    'right-[0%] top-[10%]',
+    'right-[3%] top-[34%]',
+    'right-[5%] top-[58%]',
+    'right-[7%] top-[82%]',
+  ];
 
   return (
     <section className="relative px-4 py-20 text-white lg:py-24">
@@ -50,19 +64,18 @@ export function DifferentialSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="relative overflow-hidden rounded-[2rem] border border-violet-300/10 bg-[#0b0b15]">
-          <div className="absolute inset-0 lg:left-[30%]">
+          <div className="absolute inset-0">
             <Image
-              src="/nuestrodiferencial.jpeg"
+              src="/nuestrodiferencial2.png"
               alt="Nuestro diferencial"
               fill
               sizes="(max-width: 1024px) 100vw, 1200px"
-              className="object-cover object-left"
+              className="object-cover"
             />
           </div>
 
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,16,0.18)_0%,rgba(8,8,16,0.36)_20%,rgba(8,8,16,0.58)_44%,rgba(8,8,16,0.82)_100%)] lg:bg-[linear-gradient(90deg,rgba(8,8,16,0.34)_0%,rgba(8,8,16,0.40)_24%,rgba(8,8,16,0.50)_44%,rgba(8,8,16,0.64)_60%,rgba(8,8,16,0.80)_78%)]" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(167,139,250,0.12),transparent_22%),radial-gradient(circle_at_80%_18%,rgba(192,132,252,0.10),transparent_18%),radial-gradient(circle_at_84%_82%,rgba(34,211,238,0.10),transparent_24%)]" />
-
+          
           <div className="relative z-10 flex min-h-[760px] flex-col px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[680px] lg:px-10 lg:py-10 xl:min-h-[720px] xl:px-12 xl:py-12">
             <div className="mx-auto w-full max-w-5xl text-center">
               <h2 className="mx-auto max-w-[18ch] text-4xl tracking-tighter text-white termina-light sm:max-w-[20ch] sm:text-4xl md:max-w-[22ch] md:text-5xl lg:max-w-[24ch] lg:text-6xl">
@@ -77,74 +90,42 @@ export function DifferentialSection() {
             </div>
 
             <div className="mt-10 flex flex-1 items-end">
-              <div className="hidden w-full grid-cols-[minmax(0,290px)_1fr_minmax(0,230px)] items-end gap-6 lg:grid xl:grid-cols-[minmax(0,310px)_1fr_minmax(0,240px)] xl:gap-8">
-                <div className="flex flex-col gap-2.5">
-                  {leftColumnItems.map((card, index) => {
-                    const accent = cardAccents[index % cardAccents.length];
+              <div className="relative hidden min-h-[520px] w-full lg:block">
+                {cards.map((card, index) => {
+                  const accent = cardAccents[index % cardAccents.length];
+                  const position = desktopBadgePositions[index] ?? desktopBadgePositions[desktopBadgePositions.length - 1];
 
-                    return (
-                      <motion.div
-                        key={`${card.title}-left-${index}`}
-                        initial={{ opacity: 0, x: -18 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.25, delay: index * 0.03 }}
-                        className={`group relative overflow-hidden rounded-[0.95rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(18,16,32,0.14)_0%,rgba(10,10,18,0.08)_100%)] px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-[10px]`}
+                  return (
+                    <motion.div
+                      key={`${card.title}-desktop-${index}`}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 0.24, delay: index * 0.025 }}
+                      className={`absolute ${position} w-[180px] xl:w-[195px]`}
+                    >
+                      <div
+                        className={`group relative overflow-hidden rounded-[0.85rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(18,16,32,0.12)_0%,rgba(10,10,18,0.06)_100%)] px-2.5 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-[8px]`}
                       >
-                        <div className={`absolute inset-0 bg-gradient-to-r ${accent.surface} opacity-70`} />
+                        <div className={`absolute inset-0 bg-gradient-to-r ${accent.surface} opacity-60`} />
                         <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${accent.line} to-transparent`} />
 
-                        <div className="relative space-y-2">
-                          <div className="flex items-center gap-2">
+                        <div className="relative space-y-1.5">
+                          <div className="flex items-center gap-1.5">
                             <span className={`h-1.5 w-1.5 rounded-full bg-current ${accent.meta}`} />
-                            <p className={`text-[0.58rem] uppercase tracking-[0.24em] ${accent.meta}`}>
+                            <p className={`text-[0.52rem] uppercase tracking-[0.22em] ${accent.meta}`}>
                               {card.title}
                             </p>
                           </div>
-                          <p className="text-[0.82rem] leading-snug text-white/90">{card.body}</p>
-                          <p className={`text-[0.65rem] uppercase tracking-[0.18em] ${accent.meta}`}>
+                          <p className="text-[0.76rem] leading-snug text-white/88">{card.body}</p>
+                          <p className={`text-[0.58rem] uppercase tracking-[0.16em] ${accent.meta}`}>
                             {card.meta}
                           </p>
                         </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                <div className="min-h-[1px]" />
-
-                <div className="flex flex-col gap-2.5">
-                  {rightColumnItems.map((card, index) => {
-                    const accent = cardAccents[(index + 1) % cardAccents.length];
-
-                    return (
-                      <motion.div
-                        key={`${card.title}-right-${index}`}
-                        initial={{ opacity: 0, x: 18 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.25, delay: index * 0.03 }}
-                        className={`group relative overflow-hidden rounded-[0.95rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(18,16,32,0.14)_0%,rgba(10,10,18,0.08)_100%)] px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-[10px]`}
-                      >
-                        <div className={`absolute inset-0 bg-gradient-to-r ${accent.surface} opacity-70`} />
-                        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${accent.line} to-transparent`} />
-
-                        <div className="relative space-y-2">
-                          <div className="flex items-center gap-2">
-                            <span className={`h-1.5 w-1.5 rounded-full bg-current ${accent.meta}`} />
-                            <p className={`text-[0.58rem] uppercase tracking-[0.24em] ${accent.meta}`}>
-                              {card.title}
-                            </p>
-                          </div>
-                          <p className="text-[0.82rem] leading-snug text-white/90">{card.body}</p>
-                          <p className={`text-[0.65rem] uppercase tracking-[0.18em] ${accent.meta}`}>
-                            {card.meta}
-                          </p>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               <div className="grid w-full grid-cols-1 gap-2.5 sm:grid-cols-2 lg:hidden">

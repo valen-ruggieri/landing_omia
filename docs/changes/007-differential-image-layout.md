@@ -23,6 +23,10 @@ No incluye cambios en otras secciones fuera de `Nuestro diferencial`.
 - Se agrego una variante mobile con grid compacto dentro del mismo bloque.
 - Se desplazo mas el visual hacia un costado para darle mayor protagonismo al asset dentro del bloque.
 - Se refino el estilo de las cards para que funcionen como badges mas livianos, compactos y con menos peso visual.
+- Se achicaron aun mas los badges laterales y se agrego una marca sutil en el borde inferior derecho del visual para reforzar la lectura de pantalla dentro de la computadora.
+- Se recentro la composicion desktop para que las columnas de badges queden mas cerca del visual y menos pegadas a los bordes del contenedor.
+- Se elimino la limitacion de ancho del bloque en desktop para que el visual y los badges ocupen todo el ancho disponible de pantalla.
+- Se restauro el ancho central del bloque y se redistribuyeron los badges desktop sobre toda la imagen para que acompanien el asset en lugar de quedar en columnas rigidas.
 
 ## Archivos afectados
 - `Landing/components/services/DifferentialSection.tsx`

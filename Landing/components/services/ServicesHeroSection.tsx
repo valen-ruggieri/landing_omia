@@ -39,7 +39,7 @@ export function ServicesHeroSection() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center scale-[1.22]"
+            className="object-cover object-center scale-[1]"
           />
         </motion.div>
 

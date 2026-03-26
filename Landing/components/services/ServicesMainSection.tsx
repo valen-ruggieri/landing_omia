@@ -34,7 +34,7 @@ function SystemsShowcaseSection() {
         'Sistemas multiusuario y multiagente',
         'Flujos de trabajo, estados, permisos e integraciones',
       ]}
-      imageSrc="/macpc.png"
+      imageSrc="/macpc2.png"
       imageAlt="Visual de sistema CRM y gestion"
       accentClassName="from-emerald-300 via-teal-400 to-cyan-500"
       imageClassName="scale-[1.62] shadow-none drop-shadow-none"
@@ -53,10 +53,10 @@ function EcommerceShowcaseSection() {
         'Experiencias de compra mas claras y rapidas',
         'Integracion con pagos, stock, CRM y automatizaciones',
       ]}
-      imageSrc="/web.png"
+      imageSrc="/web3.png"
       imageAlt="Visual de ecommerce"
       accentClassName="from-blue-300 via-indigo-500 to-violet-500"
-      imageClassName="scale-[1.08]"
+      imageClassName="scale-[1.28]"
       reverse
     />
   );
@@ -70,7 +70,7 @@ export function ServicesMainSection() {
         <ServicesSectionHeader
           title="Servicios"
           highlighted="principales"
-          accentClassName="bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-500"
+          accentClassName="bg-gradient-to-r from-blue-500 via-blue-500 to-cyan-500"
           subtitle="Producto digital, software, automatizacion, IA, ecommerce y datos organizados dentro del mismo lenguaje visual de Omia."
         />
       </div>
