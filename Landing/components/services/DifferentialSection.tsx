@@ -1,89 +1,186 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { differentialCards, transparencyPoints } from '@Landing/data/servicesPage';
-import { ServicesSectionHeader } from './shared';
 
 export function DifferentialSection() {
   const cards = [
     ...differentialCards.map((card) => ({
       title: card.title,
-      quote: card.body,
-      author: 'Omia',
-      position: 'Diferencial',
+      body: card.body,
+      meta: 'Omia',
+      role: 'Diferencial',
     })),
     ...transparencyPoints.map((point) => ({
       title: 'Transparencia y seguimiento',
-      quote: point,
-      author: 'Cliente',
-      position: 'Visibilidad real',
+      body: point,
+      meta: 'Cliente',
+      role: 'Visibilidad real',
     })),
   ];
 
-  const columns = [
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
+  const leftColumnItems = cards.filter((_, index) => index % 2 === 0);
+  const rightColumnItems = cards.filter((_, index) => index % 2 !== 0);
+  const cardAccents = [
+    {
+      border: 'border-violet-300/12',
+      surface: 'from-violet-400/14 via-violet-400/4 to-transparent',
+      meta: 'text-violet-200/80',
+      line: 'via-violet-300/26',
+    },
+    {
+      border: 'border-fuchsia-300/12',
+      surface: 'from-fuchsia-400/12 via-purple-400/4 to-transparent',
+      meta: 'text-fuchsia-200/80',
+      line: 'via-fuchsia-300/24',
+    },
+    {
+      border: 'border-cyan-300/12',
+      surface: 'from-cyan-400/12 via-sky-400/4 to-transparent',
+      meta: 'text-cyan-100/80',
+      line: 'via-cyan-300/24',
+    },
   ];
 
   return (
     <section className="relative px-4 py-20 text-white lg:py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(167,139,250,0.12),transparent_24%),radial-gradient(circle_at_78%_74%,rgba(192,132,252,0.1),transparent_26%),linear-gradient(180deg,rgba(15,12,26,0)_0%,rgba(29,16,44,0.14)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(167,139,250,0.16),transparent_22%),radial-gradient(circle_at_84%_16%,rgba(34,211,238,0.10),transparent_18%),radial-gradient(circle_at_78%_82%,rgba(167,139,250,0.12),transparent_26%),linear-gradient(180deg,rgba(12,10,22,0)_0%,rgba(14,12,26,0.16)_100%)]" />
+
       <div className="relative z-10 mx-auto max-w-7xl">
-        <ServicesSectionHeader
-          title="Nuestro"
-          highlighted="diferencial"
-          accentClassName="bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-500"
-          subtitle="Negocio, trazabilidad, transparencia y seguimiento real para construir con mucha mas alineacion."
-        />
+        <div className="relative overflow-hidden rounded-[2rem] border border-violet-300/10 bg-[#0b0b15]">
+          <div className="absolute inset-0 lg:left-[30%]">
+            <Image
+              src="/nuestrodiferencial.jpeg"
+              alt="Nuestro diferencial"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1200px"
+              className="object-cover object-left"
+            />
+          </div>
 
-        <div className="relative max-h-[760px] overflow-hidden">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            {columns.map((column, columnIndex) => (
-              <div key={columnIndex} className={`flex flex-col gap-0 ${columnIndex === 1 ? 'pt-15' : ''}`}>
-                {column.map((cardIndex, itemIndex) => {
-                  const card = cards[cardIndex];
-                  if (!card) return null;
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,16,0.18)_0%,rgba(8,8,16,0.36)_20%,rgba(8,8,16,0.58)_44%,rgba(8,8,16,0.82)_100%)] lg:bg-[linear-gradient(90deg,rgba(8,8,16,0.34)_0%,rgba(8,8,16,0.40)_24%,rgba(8,8,16,0.50)_44%,rgba(8,8,16,0.64)_60%,rgba(8,8,16,0.80)_78%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(167,139,250,0.12),transparent_22%),radial-gradient(circle_at_80%_18%,rgba(192,132,252,0.10),transparent_18%),radial-gradient(circle_at_84%_82%,rgba(34,211,238,0.10),transparent_24%)]" />
 
-                  const spacing =
-                    columnIndex === 2
-                      ? ['mb-6', 'mb-5', 'mb-4'][itemIndex] ?? 'mb-5'
-                      : columnIndex === 0
-                        ? 'mt-5'
-                        : 'mb-5';
+          <div className="relative z-10 flex min-h-[760px] flex-col px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[680px] lg:px-10 lg:py-10 xl:min-h-[720px] xl:px-12 xl:py-12">
+            <div className="mx-auto w-full max-w-5xl text-center">
+              <h2 className="mx-auto max-w-[18ch] text-4xl tracking-tighter text-white termina-light sm:max-w-[20ch] sm:text-4xl md:max-w-[22ch] md:text-5xl lg:max-w-[24ch] lg:text-6xl">
+                Nuestro{' '}
+                <span className="bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-500 bg-clip-text text-transparent termina-medium">
+                  diferencial
+                </span>
+              </h2>
+              <p className="mx-auto mt-4 max-w-4xl text-sm leading-relaxed text-gray-300/90 sm:text-base md:text-lg">
+                Negocio, trazabilidad, transparencia y seguimiento real para construir con mucha mas alineacion.
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-1 items-end">
+              <div className="hidden w-full grid-cols-[minmax(0,290px)_1fr_minmax(0,230px)] items-end gap-6 lg:grid xl:grid-cols-[minmax(0,310px)_1fr_minmax(0,240px)] xl:gap-8">
+                <div className="flex flex-col gap-2.5">
+                  {leftColumnItems.map((card, index) => {
+                    const accent = cardAccents[index % cardAccents.length];
+
+                    return (
+                      <motion.div
+                        key={`${card.title}-left-${index}`}
+                        initial={{ opacity: 0, x: -18 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.25, delay: index * 0.03 }}
+                        className={`group relative overflow-hidden rounded-[0.95rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(18,16,32,0.14)_0%,rgba(10,10,18,0.08)_100%)] px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-[10px]`}
+                      >
+                        <div className={`absolute inset-0 bg-gradient-to-r ${accent.surface} opacity-70`} />
+                        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${accent.line} to-transparent`} />
+
+                        <div className="relative space-y-2">
+                          <div className="flex items-center gap-2">
+                            <span className={`h-1.5 w-1.5 rounded-full bg-current ${accent.meta}`} />
+                            <p className={`text-[0.58rem] uppercase tracking-[0.24em] ${accent.meta}`}>
+                              {card.title}
+                            </p>
+                          </div>
+                          <p className="text-[0.82rem] leading-snug text-white/90">{card.body}</p>
+                          <p className={`text-[0.65rem] uppercase tracking-[0.18em] ${accent.meta}`}>
+                            {card.meta}
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                <div className="min-h-[1px]" />
+
+                <div className="flex flex-col gap-2.5">
+                  {rightColumnItems.map((card, index) => {
+                    const accent = cardAccents[(index + 1) % cardAccents.length];
+
+                    return (
+                      <motion.div
+                        key={`${card.title}-right-${index}`}
+                        initial={{ opacity: 0, x: 18 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.25, delay: index * 0.03 }}
+                        className={`group relative overflow-hidden rounded-[0.95rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(18,16,32,0.14)_0%,rgba(10,10,18,0.08)_100%)] px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-[10px]`}
+                      >
+                        <div className={`absolute inset-0 bg-gradient-to-r ${accent.surface} opacity-70`} />
+                        <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${accent.line} to-transparent`} />
+
+                        <div className="relative space-y-2">
+                          <div className="flex items-center gap-2">
+                            <span className={`h-1.5 w-1.5 rounded-full bg-current ${accent.meta}`} />
+                            <p className={`text-[0.58rem] uppercase tracking-[0.24em] ${accent.meta}`}>
+                              {card.title}
+                            </p>
+                          </div>
+                          <p className="text-[0.82rem] leading-snug text-white/90">{card.body}</p>
+                          <p className={`text-[0.65rem] uppercase tracking-[0.18em] ${accent.meta}`}>
+                            {card.meta}
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="grid w-full grid-cols-1 gap-2.5 sm:grid-cols-2 lg:hidden">
+                {cards.map((card, index) => {
+                  const accent = cardAccents[index % cardAccents.length];
 
                   return (
                     <motion.div
-                      key={`${columnIndex}-${cardIndex}`}
+                      key={`${card.title}-mobile-${index}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: cardIndex * 0.05 }}
-                      className={spacing}
+                      viewport={{ once: true, amount: 0.18 }}
+                      transition={{ duration: 0.25, delay: index * 0.02 }}
+                      className={`group relative overflow-hidden rounded-[0.95rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(18,16,32,0.16)_0%,rgba(10,10,18,0.10)_100%)] px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-[10px]`}
                     >
-                      <div className="rounded-2xl bg-gradient-to-b from-purple-400/8 via-violet-500/4 to-transparent p-6 shadow-lg transition-colors">
-                        <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-violet-300">{card.title}</p>
-                        <p className="mb-5 text-[18px] leading-relaxed text-gray-300">{card.quote}</p>
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full text-sm font-medium text-white">
-                            {card.author.charAt(0)}
-                          </div>
-                          <div>
-                            <p className="font-poppins text-[18px] font-medium text-white">{card.author}</p>
-                            <p className="font-poppins text-[13px] text-gray-500">{card.position}</p>
-                          </div>
+                      <div className={`absolute inset-0 bg-gradient-to-r ${accent.surface} opacity-70`} />
+                      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${accent.line} to-transparent`} />
+
+                      <div className="relative space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className={`h-1.5 w-1.5 rounded-full bg-current ${accent.meta}`} />
+                          <p className={`text-[0.58rem] uppercase tracking-[0.24em] ${accent.meta}`}>
+                            {card.title}
+                          </p>
                         </div>
+                        <p className="text-[0.82rem] leading-snug text-white/90">{card.body}</p>
+                        <p className={`text-[0.65rem] uppercase tracking-[0.18em] ${accent.meta}`}>
+                          {card.meta}
+                        </p>
                       </div>
                     </motion.div>
                   );
                 })}
               </div>
-            ))}
+            </div>
           </div>
-
-          <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-t from-transparent via-[#0c0e15]/50 to-[#0c0e15]/70" />
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-40 bg-gradient-to-b from-transparent via-[#0c0e15]/50 to-[#0c0e15]/60" />
         </div>
       </div>
     </section>

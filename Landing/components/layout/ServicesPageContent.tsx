@@ -7,7 +7,8 @@ import { Footer, Nav } from '@Landing/components';
 import {
   DifferentialSection,
   InvolvementSection,
-  ProjectsAndQualitySection,
+  ProjectsSection,
+  QualityCareSection,
   ServicesHeroSection,
   ServicesMainSection,
   WorkProcessSection,
@@ -106,10 +107,11 @@ export function ServicesPageContent() {
   const servicesRef = useRef<HTMLDivElement>(null);
   const processRef = useRef<HTMLDivElement>(null);
   const differentialRef = useRef<HTMLDivElement>(null);
-  const projectQualityRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const qualityRef = useRef<HTMLDivElement>(null);
   const involvementRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs = [heroRef, servicesRef, processRef, differentialRef, projectQualityRef, involvementRef];
+  const sectionRefs = [heroRef, servicesRef, processRef, differentialRef, projectsRef, qualityRef, involvementRef];
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > SCROLL_CONFIGS.SCROLL_THRESHOLD);
@@ -143,7 +145,8 @@ export function ServicesPageContent() {
       { id: 'servicios-principales', label: 'Servicios', color: 'from-cyan-300 via-blue-500 to-violet-500', icon: Sparkles },
       { id: 'como-trabajamos', label: 'Proceso', color: 'from-cyan-300 via-sky-400 to-blue-500', icon: Waypoints },
       { id: 'diferencial', label: 'Diferencial', color: 'from-violet-300 via-purple-400 to-fuchsia-500', icon: Sparkles },
-      { id: 'proyectos-calidad', label: 'Calidad', color: 'from-emerald-300 via-cyan-400 to-blue-500', icon: ShieldCheck },
+      { id: 'proyectos', label: 'Proyectos', color: 'from-emerald-300 via-cyan-400 to-blue-500', icon: BriefcaseBusiness },
+      { id: 'que-cuidamos', label: 'Calidad', color: 'from-emerald-300 via-teal-400 to-cyan-500', icon: ShieldCheck },
       { id: 'partner', label: 'Partner', color: 'from-blue-300 via-indigo-400 to-violet-500', icon: BriefcaseBusiness },
     ],
     []
@@ -182,6 +185,8 @@ export function ServicesPageContent() {
     { name: 'Servicios', href: '#servicios-principales', type: 'scroll' as const },
     { name: 'Proceso', href: '#como-trabajamos', type: 'scroll' as const },
     { name: 'Diferencial', href: '#diferencial', type: 'scroll' as const },
+    { name: 'Proyectos', href: '#proyectos', type: 'scroll' as const },
+    { name: 'Calidad', href: '#que-cuidamos', type: 'scroll' as const },
     { name: 'Partner', href: '#partner', type: 'scroll' as const },
   ];
 
@@ -222,8 +227,12 @@ export function ServicesPageContent() {
           <DifferentialSection />
         </div>
 
-        <div id="proyectos-calidad" ref={projectQualityRef}>
-          <ProjectsAndQualitySection />
+        <div id="proyectos" ref={projectsRef}>
+          <ProjectsSection />
+        </div>
+
+        <div id="que-cuidamos" ref={qualityRef}>
+          <QualityCareSection />
         </div>
 
         <div id="partner" ref={involvementRef}>
