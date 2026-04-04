@@ -2,7 +2,18 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Bot,
+  BrainCircuit,
+  BriefcaseBusiness,
+  LayoutPanelTop,
+  LineChart,
+  Network,
+  Rocket,
+  Waypoints,
+  Wrench,
+} from 'lucide-react';
 import { projectTypes } from '@Landing/data/servicesPage';
 import { ServicesSectionHeader } from './shared';
 
@@ -45,6 +56,19 @@ export function ProjectsSection() {
     },
   ];
 
+  const getProjectIcon = (project: string) => {
+    if (project.includes('MVP')) return Rocket;
+    if (project.includes('existente')) return Wrench;
+    if (project.includes('plataforma')) return LayoutPanelTop;
+    if (project.includes('Centralizar')) return BriefcaseBusiness;
+    if (project.includes('Automatizar')) return Waypoints;
+    if (project.includes('Integrar')) return Network;
+    if (project.includes('IA')) return BrainCircuit;
+    if (project.includes('métricas') || project.includes('dashboards')) return LineChart;
+    if (project.includes('clientes') || project.includes('equipos')) return Bot;
+    return LayoutPanelTop;
+  };
+
   return (
     <section className="relative px-4 py-20 text-white lg:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(16,185,129,0.12),transparent_24%),radial-gradient(circle_at_82%_80%,rgba(45,212,191,0.09),transparent_26%),linear-gradient(180deg,rgba(8,20,19,0)_0%,rgba(8,28,24,0.14)_100%)]" />
@@ -59,6 +83,7 @@ export function ProjectsSection() {
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
           {projectTypes.map((project, index) => {
             const accent = projectCardAccents[index % projectCardAccents.length];
+            const ProjectIcon = getProjectIcon(project);
 
             return (
               <motion.div
@@ -77,8 +102,8 @@ export function ProjectsSection() {
 
                 <div className="relative flex min-h-[178px] flex-col justify-between gap-8 sm:min-h-[190px]">
                   <div className="flex items-start justify-between gap-4">
-                    <span className={`inline-flex rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[11px] uppercase tracking-[0.24em] ${accent.meta}`}>
-                      {String(index + 1).padStart(2, '0')}
+                    <span className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 ${accent.meta}`}>
+                      <ProjectIcon className="h-5 w-5" />
                     </span>
                     <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/20 ${accent.meta}`}>
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
