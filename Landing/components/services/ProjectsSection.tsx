@@ -9,52 +9,40 @@ import { ServicesSectionHeader } from './shared';
 export function ProjectsSection() {
   const projectCardAccents = [
     {
-      border: 'border-emerald-300/12',
-      surface: 'from-emerald-400/14 via-emerald-400/5 to-transparent',
+      border: 'border-emerald-300/14',
+      surface: 'from-emerald-400/16 via-emerald-400/6 to-transparent',
       glow: 'bg-emerald-400/12',
-      line: 'from-transparent via-emerald-300/50 to-transparent',
-      meta: 'text-emerald-200/80',
+      line: 'from-transparent via-emerald-300/46 to-transparent',
+      meta: 'text-emerald-100',
     },
     {
-      border: 'border-cyan-300/12',
-      surface: 'from-cyan-400/14 via-sky-400/5 to-transparent',
+      border: 'border-cyan-300/14',
+      surface: 'from-cyan-400/16 via-sky-400/6 to-transparent',
       glow: 'bg-cyan-400/12',
-      line: 'from-transparent via-cyan-300/50 to-transparent',
-      meta: 'text-cyan-200/80',
+      line: 'from-transparent via-cyan-300/46 to-transparent',
+      meta: 'text-cyan-100',
     },
     {
-      border: 'border-blue-300/12',
-      surface: 'from-blue-400/14 via-indigo-400/5 to-transparent',
+      border: 'border-blue-300/14',
+      surface: 'from-blue-400/16 via-indigo-400/6 to-transparent',
       glow: 'bg-blue-400/12',
-      line: 'from-transparent via-blue-300/50 to-transparent',
-      meta: 'text-blue-200/80',
+      line: 'from-transparent via-blue-300/46 to-transparent',
+      meta: 'text-blue-100',
     },
     {
-      border: 'border-violet-300/12',
-      surface: 'from-violet-400/14 via-violet-400/5 to-transparent',
+      border: 'border-violet-300/14',
+      surface: 'from-violet-400/16 via-violet-400/6 to-transparent',
       glow: 'bg-violet-400/12',
-      line: 'from-transparent via-violet-300/50 to-transparent',
-      meta: 'text-violet-200/80',
+      line: 'from-transparent via-violet-300/46 to-transparent',
+      meta: 'text-violet-100',
     },
     {
-      border: 'border-fuchsia-300/12',
-      surface: 'from-fuchsia-400/14 via-purple-400/5 to-transparent',
+      border: 'border-fuchsia-300/14',
+      surface: 'from-fuchsia-400/16 via-purple-400/6 to-transparent',
       glow: 'bg-fuchsia-400/12',
-      line: 'from-transparent via-fuchsia-300/50 to-transparent',
-      meta: 'text-fuchsia-200/80',
+      line: 'from-transparent via-fuchsia-300/46 to-transparent',
+      meta: 'text-fuchsia-100',
     },
-  ];
-
-  const projectCardLayouts = [
-    'xl:col-span-4',
-    'xl:col-span-4 xl:-mt-6',
-    'xl:col-span-4',
-    'xl:col-span-5',
-    'xl:col-span-3 xl:mt-4',
-    'xl:col-span-4',
-    'xl:col-span-4',
-    'xl:col-span-5 xl:-mt-4',
-    'xl:col-span-3',
   ];
 
   return (
@@ -68,10 +56,9 @@ export function ProjectsSection() {
           subtitle="Omia se adapta tanto a negocios en etapa inicial como a empresas que necesitan ordenar y escalar su operacion."
         />
 
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-12">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
           {projectTypes.map((project, index) => {
             const accent = projectCardAccents[index % projectCardAccents.length];
-            const layout = projectCardLayouts[index] ?? 'xl:col-span-4';
 
             return (
               <motion.div
@@ -81,27 +68,28 @@ export function ProjectsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.25, delay: index * 0.04 }}
                 whileHover={{ y: -4 }}
-                className={`group relative overflow-hidden rounded-[1.75rem] border ${accent.border} ${layout} bg-white/[0.03] p-5 backdrop-blur-sm sm:p-6`}
+                className={`group relative overflow-hidden rounded-[1.55rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(10,20,24,0.72)_0%,rgba(8,14,18,0.96)_100%)] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm transition-transform duration-300 sm:p-6`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-b ${accent.surface}`} />
                 <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${accent.line}`} />
                 <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full ${accent.glow} blur-3xl transition-opacity duration-300 group-hover:opacity-100`} />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.04),transparent_26%)] opacity-70" />
 
-                <div className="relative flex min-h-[168px] flex-col justify-between gap-7">
-                  <div className="space-y-5">
+                <div className="relative flex min-h-[178px] flex-col justify-between gap-8 sm:min-h-[190px]">
+                  <div className="flex items-start justify-between gap-4">
                     <span className={`inline-flex rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[11px] uppercase tracking-[0.24em] ${accent.meta}`}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <p className="max-w-[24ch] text-lg leading-[1.2] text-white sm:text-[1.35rem]">
-                      {project}
-                    </p>
+                    <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/20 ${accent.meta}`}>
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </span>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <span className={`text-[11px] uppercase tracking-[0.24em] ${accent.meta}`}>
-                      Proyecto Omia
-                    </span>
-                    <ArrowRight className={`h-4 w-4 ${accent.meta}`} />
+                  <div className="space-y-3">
+                    <p className="max-w-[24ch] text-lg leading-[1.08] text-white sm:text-[1.42rem]">
+                      {project}
+                    </p>
+                    <div className="h-px w-16 bg-white/10" />
                   </div>
                 </div>
               </motion.div>

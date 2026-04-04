@@ -348,27 +348,27 @@ export const workProcess = [
 export const differentialCards = [
   {
     title: 'Pensamos el proyecto desde el negocio',
-    body: 'No resolvemos solo código. Entendemos prioridades reales, lógica operativa y valor para el día a día.',
+    body: 'No desarrollamos por desarrollar. Entendemos tu operación, prioridades y cómo generar impacto real.',
   },
   {
-    title: 'Combinamos estrategia, diseño, desarrollo, automatización e IA',
-    body: 'Producto, UX/UI y tecnología trabajan como un mismo sistema.',
+    title: 'Integramos todo en un solo sistema',
+    body: 'IA, automatización, desarrollo y UX trabajando en conjunto. Nada aislado. Todo conectado.',
   },
   {
-    title: 'Priorizamos MVPs funcionales con entregas reales y rápidas',
-    body: 'La idea es avanzar con entregas que sirven, no con promesas vacías.',
+    title: 'Avanzamos con resultados reales',
+    body: 'Entregas semanales, avances concretos y sin promesas vacías. Ves progreso desde el día uno.',
   },
   {
-    title: 'Construimos con visión de escalabilidad y mantenimiento',
-    body: 'La solución no se piensa solo para hoy, sino para crecer mañana.',
+    title: 'Diseñamos para escalar',
+    body: 'Tu sistema crece con tu negocio. Pensado para evolucionar, no para quedarse corto.',
   },
   {
-    title: 'Trabajamos con foco en claridad, orden y trazabilidad',
-    body: 'Cada etapa del proyecto queda visible y ordenada.',
+    title: 'Transparencia total del proceso',
+    body: 'Seguimiento en tiempo real, cambios visibles y control total. Siempre sabés qué está pasando.',
   },
   {
-    title: 'Dejamos documentación, validaciones y estructura para crecer bien',
-    body: 'El cliente no queda atado a una caja negra.',
+    title: 'No solo desarrollamos, te acompañamos',
+    body: 'Capacitación, mentoría y mejora continua. Te enseñamos a usar y potenciar tu sistema.',
   },
 ];
 
