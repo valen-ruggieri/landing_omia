@@ -32,15 +32,31 @@ export function ServicesHeroSection() {
         style={{ scale, y: translateY }}
         className="sticky top-0 h-[124vh] overflow-hidden bg-[radial-gradient(circle_at_14%_18%,rgba(120,87,255,0.18),transparent_26%),radial-gradient(circle_at_82%_22%,rgba(12,170,140,0.12),transparent_28%),linear-gradient(180deg,#0b0b14_0%,#091118_100%)] will-change-transform md:h-[124vh]"
       >
-        <motion.div className="absolute inset-0">
-          <Image
-            src="/heroscreen1.png"
-            alt="Fondo principal de servicios Omia"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center scale-[1]"
-          />
+        <motion.div className="absolute inset-0 md:hidden">
+          <div className="absolute left-1/2 top-[20svh] h-[54svh] w-[172vw] -translate-x-1/2 opacity-[0.82]">
+            <Image
+              src="/heromobile2.png"
+              alt="Hero mobile de servicios Omia"
+              fill
+              priority
+              sizes="100vw"
+              className="object-contain object-center scale-[1.96]"
+            />
+          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_16%,rgba(34,211,238,0.08),transparent_18%),radial-gradient(circle_at_18%_12%,rgba(139,92,246,0.16),transparent_26%),linear-gradient(180deg,rgba(5,8,18,0.52)_0%,rgba(5,8,18,0.28)_18%,rgba(5,8,18,0.80)_42%,rgba(5,8,18,0.98)_100%)]" />
+        </motion.div>
+
+        <motion.div className="absolute inset-0 hidden md:block">
+          <div className="relative h-full w-full">
+            <Image
+              src="/heroscreen1.png"
+              alt="Fondo principal de servicios Omia"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
         </motion.div>
 
         <motion.div
@@ -50,7 +66,7 @@ export function ServicesHeroSection() {
 
         <motion.div
           style={{ y: titleY, opacity: titleOpacity }}
-          className="relative z-10 grid h-full place-content-start px-6 pt-56 text-center md:place-content-center md:pt-0"
+          className="relative z-10 grid h-full place-content-start px-6 pt-[31svh] text-center md:place-content-center md:pt-0"
         >
           <motion.h1
             initial={{ opacity: 0, y: 30 }}

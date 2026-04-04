@@ -44,12 +44,12 @@ export function QualityCareSection() {
               alt="Que cuidamos en cada proyecto"
               fill
               sizes="(max-width: 1024px) 100vw, 1200px"
-              className="object-cover object-right "
+              className="object-cover object-center scale-[1.08] sm:object-right sm:scale-100"
             />
           </div>
 
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,10,11,0.18)_0%,rgba(4,10,11,0.34)_20%,rgba(4,10,11,0.56)_44%,rgba(4,10,11,0.78)_100%)] lg:bg-[linear-gradient(90deg,rgba(4,10,11,0.22)_0%,rgba(4,10,11,0.28)_24%,rgba(4,10,11,0.48)_46%,rgba(4,10,11,0.70)_64%,rgba(4,10,11,0.84)_100%)]" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(52,211,153,0.12),transparent_22%),radial-gradient(circle_at_80%_18%,rgba(20,184,166,0.10),transparent_18%),radial-gradient(circle_at_82%_80%,rgba(16,185,129,0.14),transparent_24%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,10,11,0.10)_0%,rgba(4,10,11,0.20)_18%,rgba(4,10,11,0.42)_44%,rgba(4,10,11,0.68)_100%)] lg:bg-[linear-gradient(90deg,rgba(4,10,11,0.22)_0%,rgba(4,10,11,0.28)_24%,rgba(4,10,11,0.48)_46%,rgba(4,10,11,0.70)_64%,rgba(4,10,11,0.84)_100%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_34%,rgba(52,211,153,0.18),transparent_24%),radial-gradient(circle_at_18%_18%,rgba(52,211,153,0.10),transparent_22%),radial-gradient(circle_at_80%_18%,rgba(20,184,166,0.08),transparent_18%),radial-gradient(circle_at_82%_80%,rgba(16,185,129,0.12),transparent_24%)]" />
 
           <div className="relative z-10 flex min-h-[720px] flex-col px-6 py-8 sm:px-8 sm:py-10 lg:min-h-[620px] lg:px-10 lg:py-10 xl:min-h-[660px] xl:px-12 xl:py-12">
             <div className="max-w-7xl mx-auto mb-20 ">
