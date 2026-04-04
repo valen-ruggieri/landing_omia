@@ -13,7 +13,8 @@ No se modificaron los textos de cada proyecto ni otras secciones.
 ## Cambios realizados
 - se eliminó la numeración superior de cada card
 - se agregó iconografía contextual para cada tipo de proyecto
-- se mantuvo la flecha de acción como remate visual secundario
+- se eliminó la flecha de acción para dejar un encabezado más limpio
+- se dejó el ícono sin contenedor para que funcione como acento visual simple y directo
 - se reforzó la jerarquía visual haciendo que el ícono sea el elemento principal del encabezado de cada card
 
 ## Archivos afectados

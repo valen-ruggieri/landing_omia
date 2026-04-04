@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
   Bot,
   BrainCircuit,
   BriefcaseBusiness,
@@ -101,14 +100,7 @@ export function ProjectsSection() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.04),transparent_26%)] opacity-70" />
 
                 <div className="relative flex min-h-[178px] flex-col justify-between gap-8 sm:min-h-[190px]">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 ${accent.meta}`}>
-                      <ProjectIcon className="h-5 w-5" />
-                    </span>
-                    <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/20 ${accent.meta}`}>
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </span>
-                  </div>
+                  <ProjectIcon className={`h-6 w-6 ${accent.meta}`} />
 
                   <div className="space-y-3">
                     <p className="max-w-[24ch] text-lg leading-[1.08] text-white sm:text-[1.42rem]">

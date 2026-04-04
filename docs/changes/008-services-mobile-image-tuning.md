@@ -13,6 +13,7 @@ No se modificaron otras secciones ni páginas fuera de este bloque.
 ## Cambios realizados
 - se ajustó el hero mobile para usar `heromobile.png` como visual específica en mobile, separada de la de desktop
 - se recentró el mockup mobile del hero y se redujo el espacio superior para que el texto arranque más arriba
+- se restauró el bloque de badges del hero a una fila simple sobre el fondo principal
 - se integró el texto de "Como nos involucramos" dentro de la misma imagen para evitar una franja separada arriba
 - se aumentó la altura mobile de "Como nos involucramos" para darle más aire a la composición
 - se incrementó la escala mobile del celular en "Como nos involucramos" para darle más protagonismo
