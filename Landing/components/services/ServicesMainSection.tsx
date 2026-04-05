@@ -7,7 +7,7 @@ function WebShowcaseSection() {
   return (
     <ServiceVisualSplitSection
       eyebrow="Webs"
-      title="Sitios y plataformas web"
+      title="Sitios web profesionales"
       description="Desarrollamos sitios institucionales, landings, portales y plataformas web con foco en conversion, claridad de contenido y escalabilidad tecnica."
       features={[
         'Webs institucionales y comerciales',
@@ -27,7 +27,7 @@ function SystemsShowcaseSection() {
   return (
     <ServiceVisualSplitSection
       eyebrow="Sistemas"
-      title="CRM, gestion y multiagente"
+      title="CRMs, Saas y Software personalizado"
       description="Armamos sistemas internos, CRMs y entornos de gestion con automatizaciones, trazabilidad y logica operativa para equipos que necesitan orden real."
       features={[
         'CRMs y paneles administrativos',
@@ -46,7 +46,7 @@ function EcommerceShowcaseSection() {
   return (
     <ServiceVisualSplitSection
       eyebrow="Ecommerce"
-      title="Tiendas y experiencias de venta"
+      title="Tiendas web completas"
       description="Disenamos ecommerce, catalogos y funnels con foco en experiencia de compra, rendimiento y una operacion mas conectada con el negocio."
       features={[
         'Ecommerce y catalogos digitales',

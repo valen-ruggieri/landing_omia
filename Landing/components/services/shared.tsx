@@ -54,12 +54,7 @@ export function ShowcaseContentPanel({
 }) {
   return (
     <div className="w-full max-w-[640px] space-y-7 lg:max-w-[640px] lg:flex-[0_0_44%]">
-      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.24em] text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r ${accentClassName}`}>
-          {EyebrowIcon ? <EyebrowIcon className="h-3 w-3 text-white" /> : <span className="h-1.5 w-1.5 rounded-full bg-white" />}
-        </span>
-        <span>{eyebrow}</span>
-      </div>
+      
 
       <div className="space-y-5">
         <div>
@@ -168,7 +163,7 @@ export function MobileAppsShowcaseSection() {
           <ShowcaseContentPanel
             eyebrow="App movil"
             eyebrowIcon={MonitorSmartphone}
-            title="Apps moviles "
+            title="Apps moviles intuitivas"
             description="Desarrollamos aplicaciones pensadas para el uso diario: seguimiento, aprobaciones, tareas internas y experiencia de cliente, todo desde el celular."
             features={mobileFeatures}
             accentClassName="from-cyan-300 via-sky-400 to-blue-600"

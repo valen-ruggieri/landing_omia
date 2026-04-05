@@ -28,8 +28,13 @@ export function DifferentialSection() {
   ];
 
   return (
-    <section className="relative px-4 py-14 text-white lg:py-16">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(167,139,250,0.14),transparent_22%),radial-gradient(circle_at_84%_16%,rgba(34,211,238,0.08),transparent_18%),linear-gradient(180deg,rgba(12,10,22,0)_0%,rgba(14,12,26,0.12)_100%)]" />
+    <section className="relative px-4 py-14 text-white lg:py-16 ">
+      <div className="" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,16,0.02)_0%,rgba(53, 16, 57, 0.08)_26%,rgba(7,10,16,0.02)_52%,rgba(37, 9, 60, 0.12)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_14%,rgba(114,102,255,0.34),transparent_33%),radial-gradient(circle_at_18%_82%,rgba(181,82,255,0.22),transparent_30%),radial-gradient(circle_at_56%_92%,rgba(145,71,255,0.18),transparent_24%)] mix-blend-screen" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_20%,rgba(121, 37, 211, 0.08),transparent_26%)] mix-blend-screen" />
+          <div className="absolute inset-x-0 top-0 h-[28%] bg-[linear-gradient(180deg,rgba(6,10,17,0.04)_0%,rgba(77, 15, 119, 0)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-[22%] bg-[linear-gradient(180deg,rgba(82, 11, 135, 0)_0%,rgba(6,10,17,0.12)_100%)]" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="relative overflow-hidden rounded-[2rem] border border-violet-300/10 bg-[#0b0b15]">
@@ -43,10 +48,7 @@ export function DifferentialSection() {
             />
           </div>
 
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,16,0.92)_0%,rgba(8,8,16,0.84)_30%,rgba(8,8,16,0.72)_100%)] lg:bg-[linear-gradient(90deg,rgba(8,8,16,0.94)_0%,rgba(8,8,16,0.80)_44%,rgba(8,8,16,0.70)_100%)]" />
-          <div className="pointer-events-none absolute -left-12 top-0 h-36 w-36 rounded-full bg-violet-500/12 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-0 right-0 h-40 w-40 rounded-full bg-cyan-400/8 blur-3xl" />
-
+     
           <div className="relative z-10 px-5 py-7 sm:px-8 sm:py-8 lg:px-10 lg:py-9 xl:px-12">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="mx-auto max-w-[14ch] text-4xl tracking-tighter text-white termina-light sm:text-5xl lg:text-[3.4rem]">
