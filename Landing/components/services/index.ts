@@ -4,4 +4,6 @@ export { WorkProcessSection } from './WorkProcessSection';
 export { DifferentialSection } from './DifferentialSection';
 export { ProjectsSection } from './ProjectsSection';
 export { QualityCareSection } from './QualityCareSection';
+export { TrainingMentoringSection } from './TrainingMentoringSection';
+export { TrackingEvolutionSection } from './TrackingEvolutionSection';
 export { InvolvementSection } from './InvolvementSection';

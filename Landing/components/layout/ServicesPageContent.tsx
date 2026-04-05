@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { BriefcaseBusiness, ShieldCheck, Sparkles, Waypoints } from 'lucide-react';
+import { Activity, BriefcaseBusiness, GraduationCap, ShieldCheck, Sparkles, Waypoints } from 'lucide-react';
 import { Footer, Nav } from '@Landing/components';
 import {
   DifferentialSection,
@@ -11,6 +11,8 @@ import {
   QualityCareSection,
   ServicesHeroSection,
   ServicesMainSection,
+  TrackingEvolutionSection,
+  TrainingMentoringSection,
   WorkProcessSection,
 } from '@Landing/components/services';
 
@@ -33,13 +35,11 @@ const AdvancedBackground = React.memo(() => (
 ));
 
 const SectionProgressBar = React.memo(({
-  sections,
   sectionRefs,
 }: {
-  sections: { name: string }[];
   sectionRefs: React.RefObject<HTMLDivElement | null>[];
 }) => {
-  const [sectionProgress, setSectionProgress] = useState<number[]>(new Array(sections.length).fill(0));
+  const [sectionProgress, setSectionProgress] = useState<number[]>(new Array(sectionRefs.length).fill(0));
 
   useEffect(() => {
     const updateProgress = () => {
@@ -89,7 +89,7 @@ const SectionProgressBar = React.memo(({
         <motion.div
           className="h-full origin-left bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500"
           style={{
-            scaleX: sectionProgress.reduce((acc, curr) => acc + curr, 0) / sections.length,
+            scaleX: sectionProgress.reduce((acc, curr) => acc + curr, 0) / sectionRefs.length,
           }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
         />
@@ -109,9 +109,21 @@ export function ServicesPageContent() {
   const differentialRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const qualityRef = useRef<HTMLDivElement>(null);
+  const trainingRef = useRef<HTMLDivElement>(null);
+  const trackingRef = useRef<HTMLDivElement>(null);
   const involvementRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs = [heroRef, servicesRef, processRef, differentialRef, projectsRef, qualityRef, involvementRef];
+  const sectionRefs = [
+    heroRef,
+    servicesRef,
+    processRef,
+    differentialRef,
+    projectsRef,
+    qualityRef,
+    trainingRef,
+    trackingRef,
+    involvementRef,
+  ];
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > SCROLL_CONFIGS.SCROLL_THRESHOLD);
@@ -147,6 +159,8 @@ export function ServicesPageContent() {
       { id: 'diferencial', label: 'Diferencial', color: 'from-violet-300 via-purple-400 to-fuchsia-500', icon: Sparkles },
       { id: 'proyectos', label: 'Proyectos', color: 'from-emerald-300 via-cyan-400 to-blue-500', icon: BriefcaseBusiness },
       { id: 'que-cuidamos', label: 'Calidad', color: 'from-emerald-300 via-teal-400 to-cyan-500', icon: ShieldCheck },
+      { id: 'capacitacion-mentoria', label: 'Capacitacion', color: 'from-violet-300 via-indigo-400 to-fuchsia-500', icon: GraduationCap },
+      { id: 'seguimiento-evolucion', label: 'Seguimiento', color: 'from-emerald-300 via-cyan-400 to-blue-500', icon: Activity },
       { id: 'partner', label: 'Partner', color: 'from-blue-300 via-indigo-400 to-violet-500', icon: BriefcaseBusiness },
     ],
     []
@@ -187,13 +201,15 @@ export function ServicesPageContent() {
     { name: 'Diferencial', href: '#diferencial', type: 'scroll' as const },
     { name: 'Proyectos', href: '#proyectos', type: 'scroll' as const },
     { name: 'Calidad', href: '#que-cuidamos', type: 'scroll' as const },
+    { name: 'Capacitacion', href: '#capacitacion-mentoria', type: 'scroll' as const },
+    { name: 'Seguimiento', href: '#seguimiento-evolucion', type: 'scroll' as const },
     { name: 'Partner', href: '#partner', type: 'scroll' as const },
   ];
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#0a0b11]">
       <AdvancedBackground />
-      <SectionProgressBar sections={sections.map((section) => ({ name: section.label }))} sectionRefs={sectionRefs} />
+      <SectionProgressBar sectionRefs={sectionRefs} />
 
       <Nav
         isMenuOpen={isMenuOpen}
@@ -233,6 +249,14 @@ export function ServicesPageContent() {
 
         <div id="que-cuidamos" ref={qualityRef}>
           <QualityCareSection />
+        </div>
+
+        <div id="capacitacion-mentoria" ref={trainingRef}>
+          <TrainingMentoringSection />
+        </div>
+
+        <div id="seguimiento-evolucion" ref={trackingRef}>
+          <TrackingEvolutionSection />
         </div>
 
         <div id="partner" ref={involvementRef}>
