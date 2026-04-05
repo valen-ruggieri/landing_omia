@@ -12,7 +12,7 @@ export function ServicesHeroSection() {
     offset: ['start start', 'end start'],
   });
 
-  const heroTitle = 'Tu empresa no necesita mas herramientas. Necesita un sistema.';
+  const heroTitle = 'Tu empresa necesita orden. Necesita un sistema.';
   const heroHighlighted = 'Necesita un sistema.';
   const heroDescription =
     'En Omia lo diseñamos, lo construimos y lo hacemos evolucionar.';
@@ -30,7 +30,7 @@ export function ServicesHeroSection() {
     <section ref={ref} className="relative pt-1">
       <motion.div
         style={{ scale, y: translateY }}
-        className="sticky top-0 h-[124vh] overflow-hidden 2,170,140,0.12),transparent_28%),linear-gradient(180deg,#0b0b14_0%,#091118_100%)] will-change-transform md:h-[124vh]"
+        className="sticky top-0 h-[104vh] overflow-hidden 2,170,140,0.12),transparent_28%),linear-gradient(180deg,#0b0b14_0%,#091118_100%)] will-change-transform md:h-[124vh]"
       >
         <motion.div className="absolute inset-0 md:hidden">
           <div className="absolute left-1/2 top-[25svh] h-[54svh] w-[172vw] -translate-x-1/2 opacity-[0.82]">
@@ -66,16 +66,16 @@ export function ServicesHeroSection() {
 
         <motion.div
           style={{ y: titleY, opacity: titleOpacity }}
-          className="relative z-10 grid h-full place-content-start px-6 pt-[31svh] text-center md:place-content-center md:pt-0"
+          className="relative z-10 grid h-full place-content-start px-6 pt-[24svh] text-center md:place-content-center md:pt-0"
         >
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05, duration: 0.25 }}
-            className="mx-auto max-w-[18ch] text-[33px] leading-[1.03] text-white termina-light md:text-[64px] font-termina  "
+            className="mx-auto max-w-[18ch] text-[33px] leading-[1.03] text-white termina-light md:text-[64px]  "
           >
             {titleParts[0]}{' '}
-            <span className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent termina-bold">
+            <span className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent termina-medium">
               {heroHighlighted}
             </span>
             {titleParts[1]}
