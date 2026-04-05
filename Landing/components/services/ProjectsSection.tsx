@@ -35,8 +35,8 @@ export function ProjectsSection() {
   }, [projectGroups.length]);
 
   const projectPalette = {
-    border: 'border-violet-300/16',
-    surface: 'from-fuchsia-400/12 via-violet-400/6 to-cyan-400/4',
+    border: 'border-violet-900/10',
+    surface: 'from-fuchsia-400/12 via-violet-400/5 to-violet-400/0',
     icon: 'text-violet-100',
     indicator: 'bg-violet-300',
   };
@@ -83,21 +83,21 @@ export function ProjectsSection() {
             transition={{ duration: 0.25 }}
             className="absolute inset-x-0 top-[5.5%] z-10 sm:top-[5%] lg:top-[4.5%]"
           >
-            <div className="mx-auto max-w-5xl px-5 text-center sm:px-8 lg:px-12">
-              <h2 className="mx-auto max-w-[15ch] text-[clamp(1.95rem,5.3vw,4.25rem)] leading-[0.92] tracking-[-0.055em] text-slate-100 termina-light lg:max-w-[18ch]">
-                <span className="block drop-shadow-[0_0_22px_rgba(157,139,255,0.12)]">Te ayudamos en tus</span>
+            <div className="mx-auto max-w-7xl px-5 text-center sm:px-8 lg:px-12">
+              <h2 className="mx-auto max-w-[62ch] text-[clamp(1.95rem,5.3vw,4.25rem)] leading-[0.92] tracking-[-0.055em] text-slate-100 termina-light lg:max-w-[38ch] ">
+                <span className="block drop-shadow-[0_0_22px_rgba(157,139,255,0.12)]">Impulsamos tus</span>
                 <span className="block termina-medium bg-gradient-to-r from-fuchsia-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent">
                   proyectos
                 </span>
               </h2>
               <p className="mx-auto mt-3 max-w-[36rem] px-3 text-[0.82rem] leading-[1.55] text-slate-200/90 sm:mt-4 sm:text-[0.94rem] lg:max-w-[40rem] lg:text-[1rem]">
-                Omia se adapta tanto a negocios en etapa inicial como a empresas que necesitan ordenar y escalar su operacion.
+              Creamos, mejoramos y escalamos sistemas digitales que hacen que tu negocio funcione mejor todos los días.
               </p>
             </div>
           </motion.div>
 
           <div className="absolute inset-x-0 top-[66%] z-10 -translate-y-1/2 px-4 sm:top-[66%] sm:px-8 lg:top-[67%] lg:px-12">
-            <div className="mx-auto w-[87%] max-w-[21rem] sm:w-[74%] sm:max-w-[33rem] lg:w-[58%] lg:max-w-[43rem]">
+            <div className="mx-auto w-[93%] max-w-[39rem] sm:w-[74%] sm:max-w-[43rem] lg:w-[58%] lg:max-w-[43rem]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`group-${activeGroupIndex}`}
@@ -105,7 +105,7 @@ export function ProjectsSection() {
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, y: -28, filter: 'blur(6px)' }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="space-y-4.5 sm:space-y-5"
+                  className="space-y-3 sm:space-y-5"
                 >
                   {activeProjects.map((project, index) => {
                     const ProjectIcon = getProjectIcon(project);
@@ -117,14 +117,14 @@ export function ProjectsSection() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -16 }}
                         transition={{ duration: 0.24, delay: index * 0.06 }}
-                        className={`relative overflow-hidden rounded-[1.15rem] border ${projectPalette.border} bg-[linear-gradient(180deg,rgba(10,18,24,0.14)_0%,rgba(8,12,18,0.24)_100%)] px-5 py-4.5 backdrop-blur-[12px] sm:px-6 sm:py-5`}
+                        className={`relative overflow-hidden rounded-[1rem] border ${projectPalette.border} bg-[linear-gradient(180deg,rgba(10, 18, 24, 0.07)_0%,rgba(8,12,18,0.24)_100%)] px-4 py-3.5 backdrop-blur-[12px] sm:rounded-[1.15rem] sm:px-6 sm:py-5`}
                       >
                         <div className={`absolute inset-0 bg-gradient-to-r ${projectPalette.surface}`} />
                         <div className="absolute inset-y-0 left-0 w-px bg-white/6" />
 
                         <div className="relative flex items-center gap-4 sm:gap-4.5">
-                          <ProjectIcon className={`h-[1.08rem] w-[1.08rem] shrink-0 ${projectPalette.icon} sm:h-[1.16rem] sm:w-[1.16rem]`} />
-                          <p className="text-left text-[0.95rem] leading-[1.1] text-white sm:text-[1.04rem] lg:text-[1.12rem]">
+                          <ProjectIcon className={`h-[0.95rem] w-[0.95rem] shrink-0 ${projectPalette.icon} sm:h-[1.16rem] sm:w-[1.16rem]`} />
+                          <p className="text-left text-[0.86rem] leading-[1.12] text-white sm:text-[1.04rem] lg:text-[1.12rem]">
                             {project}
                           </p>
                         </div>
@@ -134,18 +134,7 @@ export function ProjectsSection() {
                 </motion.div>
               </AnimatePresence>
 
-              <div className="mt-3 flex items-center justify-center gap-1.5">
-                {projectGroups.map((group, index) => {
-                  const isActive = index === activeGroupIndex;
-
-                  return (
-                    <span
-                      key={group.join('-')}
-                      className={`h-1 rounded-full transition-all duration-300 ${isActive ? `w-7 ${projectPalette.indicator}` : 'w-2 bg-white/12'}`}
-                    />
-                  );
-                })}
-              </div>
+              
             </div>
           </div>
         </div>
