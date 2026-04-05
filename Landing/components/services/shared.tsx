@@ -155,8 +155,10 @@ export function ServiceVisualSplitSection({
 export function MobileAppsShowcaseSection() {
   const mobileFeatures = [
     'Apps para clientes y equipos internos',
-    'Experiencias mobile-first con foco operativo',
-    'Integraciones, notificaciones y seguimiento en tiempo real',
+    'Disponibles en iOS, Android y multiplataforma',
+    'Experiencias claras, rápidas y orientadas al uso real',
+    'Integración total con sistemas y procesos existentes'
+    
   ];
 
   return (
@@ -166,8 +168,8 @@ export function MobileAppsShowcaseSection() {
           <ShowcaseContentPanel
             eyebrow="App movil"
             eyebrowIcon={MonitorSmartphone}
-            title="Productos pensados para telefono"
-            description="Construimos apps moviles para procesos reales: seguimiento, aprobaciones, operacion interna, experiencia de cliente y tareas que necesitan resolverse rapido desde el celular."
+            title="Apps moviles "
+            description="Desarrollamos aplicaciones pensadas para el uso diario: seguimiento, aprobaciones, tareas internas y experiencia de cliente, todo desde el celular."
             features={mobileFeatures}
             accentClassName="from-cyan-300 via-sky-400 to-blue-600"
           />

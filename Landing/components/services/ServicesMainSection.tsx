@@ -71,7 +71,7 @@ export function ServicesMainSection() {
           title="Servicios"
           highlighted="principales"
           accentClassName="bg-gradient-to-r from-blue-500 via-blue-500 to-cyan-500"
-          subtitle="Producto digital, software, automatizacion, IA, ecommerce y datos organizados dentro del mismo lenguaje visual de Omia."
+          subtitle="Desarrollamos soluciones a medida combinando software, automatización e inteligencia artificial para ordenar procesos, escalar operaciones y mejorar resultados reales."
         />
       </div>
 
