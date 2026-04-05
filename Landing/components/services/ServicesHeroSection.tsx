@@ -33,7 +33,7 @@ export function ServicesHeroSection() {
         className="sticky top-0 h-[124vh] overflow-hidden bg-[radial-gradient(circle_at_14%_18%,rgba(120,87,255,0.18),transparent_26%),radial-gradient(circle_at_82%_22%,rgba(12,170,140,0.12),transparent_28%),linear-gradient(180deg,#0b0b14_0%,#091118_100%)] will-change-transform md:h-[124vh]"
       >
         <motion.div className="absolute inset-0 md:hidden">
-          <div className="absolute left-1/2 top-[20svh] h-[54svh] w-[172vw] -translate-x-1/2 opacity-[0.82]">
+          <div className="absolute left-1/2 top-[20 svh] h-[54svh] w-[172vw] -translate-x-1/2 opacity-[0.82]">
             <Image
               src="/heromobile2.png"
               alt="Hero mobile de servicios Omia"

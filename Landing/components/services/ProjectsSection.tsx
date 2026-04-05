@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   Bot,
   BrainCircuit,
@@ -14,46 +15,31 @@ import {
   Wrench,
 } from 'lucide-react';
 import { projectTypes } from '@Landing/data/servicesPage';
-import { ServicesSectionHeader } from './shared';
+
+const CAROUSEL_INTERVAL_MS = 2800;
+const PROJECTS_PER_GROUP = 3;
 
 export function ProjectsSection() {
-  const projectCardAccents = [
-    {
-      border: 'border-emerald-300/14',
-      surface: 'from-emerald-400/16 via-emerald-400/6 to-transparent',
-      glow: 'bg-emerald-400/12',
-      line: 'from-transparent via-emerald-300/46 to-transparent',
-      meta: 'text-emerald-100',
-    },
-    {
-      border: 'border-cyan-300/14',
-      surface: 'from-cyan-400/16 via-sky-400/6 to-transparent',
-      glow: 'bg-cyan-400/12',
-      line: 'from-transparent via-cyan-300/46 to-transparent',
-      meta: 'text-cyan-100',
-    },
-    {
-      border: 'border-blue-300/14',
-      surface: 'from-blue-400/16 via-indigo-400/6 to-transparent',
-      glow: 'bg-blue-400/12',
-      line: 'from-transparent via-blue-300/46 to-transparent',
-      meta: 'text-blue-100',
-    },
-    {
-      border: 'border-violet-300/14',
-      surface: 'from-violet-400/16 via-violet-400/6 to-transparent',
-      glow: 'bg-violet-400/12',
-      line: 'from-transparent via-violet-300/46 to-transparent',
-      meta: 'text-violet-100',
-    },
-    {
-      border: 'border-fuchsia-300/14',
-      surface: 'from-fuchsia-400/16 via-purple-400/6 to-transparent',
-      glow: 'bg-fuchsia-400/12',
-      line: 'from-transparent via-fuchsia-300/46 to-transparent',
-      meta: 'text-fuchsia-100',
-    },
-  ];
+  const projectGroups = Array.from({ length: Math.ceil(projectTypes.length / PROJECTS_PER_GROUP) }, (_, groupIndex) =>
+    projectTypes.slice(groupIndex * PROJECTS_PER_GROUP, groupIndex * PROJECTS_PER_GROUP + PROJECTS_PER_GROUP)
+  );
+
+  const [activeGroupIndex, setActiveGroupIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveGroupIndex((current) => (current + 1) % projectGroups.length);
+    }, CAROUSEL_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  }, [projectGroups.length]);
+
+  const projectPalette = {
+    border: 'border-violet-300/16',
+    surface: 'from-fuchsia-400/12 via-violet-400/6 to-cyan-400/4',
+    icon: 'text-violet-100',
+    indicator: 'bg-violet-300',
+  };
 
   const getProjectIcon = (project: string) => {
     if (project.includes('MVP')) return Rocket;
@@ -68,50 +54,100 @@ export function ProjectsSection() {
     return LayoutPanelTop;
   };
 
+  const activeProjects = projectGroups[activeGroupIndex];
+
   return (
-    <section className="relative px-4 py-20 text-white lg:py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(16,185,129,0.12),transparent_24%),radial-gradient(circle_at_82%_80%,rgba(45,212,191,0.09),transparent_26%),linear-gradient(180deg,rgba(8,20,19,0)_0%,rgba(8,28,24,0.14)_100%)]" />
+    <section className="relative px-4 py-18 text-white lg:py-22">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_16%,rgba(126,92,255,0.14),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(56,189,248,0.12),transparent_28%),radial-gradient(circle_at_24%_84%,rgba(168,85,247,0.10),transparent_24%),linear-gradient(180deg,rgba(10,12,22,0)_0%,rgba(14,12,28,0.18)_100%)]" />
+
       <div className="relative z-10 mx-auto max-w-7xl">
-        <ServicesSectionHeader
-          title="En que tipo de proyectos"
-          highlighted="podemos ayudar"
-          accentClassName="bg-gradient-to-r from-emerald-300 via-teal-400 to-cyan-500"
-          subtitle="Omia se adapta tanto a negocios en etapa inicial como a empresas que necesitan ordenar y escalar su operacion."
-        />
+        <div className="relative isolate overflow-hidden rounded-[2rem] border border-violet-300/10 bg-[#080914] shadow-[0_30px_90px_rgba(14,10,40,0.42)] min-h-[35rem] sm:min-h-[38rem] lg:min-h-0 lg:aspect-[1365/768]">
+          <Image
+            src="/bgtypeproyects.png"
+            alt=""
+            fill
+            className="scale-[1.08] object-cover object-center saturate-[1.28] contrast-[1.1] brightness-[1.03] sm:scale-[1.06] lg:scale-[1.04]"
+            sizes="(min-width: 1280px) 1280px, 100vw"
+          />
 
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {projectTypes.map((project, index) => {
-            const accent = projectCardAccents[index % projectCardAccents.length];
-            const ProjectIcon = getProjectIcon(project);
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,16,0.02)_0%,rgba(7,10,16,0.08)_26%,rgba(7,10,16,0.02)_52%,rgba(7,10,16,0.12)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_14%,rgba(114,102,255,0.34),transparent_33%),radial-gradient(circle_at_18%_82%,rgba(181,82,255,0.22),transparent_30%),radial-gradient(circle_at_56%_92%,rgba(145,71,255,0.18),transparent_24%)] mix-blend-screen" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_20%,rgba(37,211,197,0.08),transparent_26%)] mix-blend-screen" />
+          <div className="absolute inset-x-0 top-0 h-[28%] bg-[linear-gradient(180deg,rgba(6,10,17,0.04)_0%,rgba(6,10,17,0)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-[22%] bg-[linear-gradient(180deg,rgba(6,10,17,0)_0%,rgba(6,10,17,0.12)_100%)]" />
 
-            return (
-              <motion.div
-                key={project}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.25, delay: index * 0.04 }}
-                whileHover={{ y: -4 }}
-                className={`group relative overflow-hidden rounded-[1.55rem] border ${accent.border} bg-[linear-gradient(180deg,rgba(10,20,24,0.72)_0%,rgba(8,14,18,0.96)_100%)] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm transition-transform duration-300 sm:p-6`}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-b ${accent.surface}`} />
-                <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${accent.line}`} />
-                <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full ${accent.glow} blur-3xl transition-opacity duration-300 group-hover:opacity-100`} />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.04),transparent_26%)] opacity-70" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.25 }}
+            className="absolute inset-x-0 top-[5.5%] z-10 sm:top-[5%] lg:top-[4.5%]"
+          >
+            <div className="mx-auto max-w-5xl px-5 text-center sm:px-8 lg:px-12">
+              <h2 className="mx-auto max-w-[15ch] text-[clamp(1.95rem,5.3vw,4.25rem)] leading-[0.92] tracking-[-0.055em] text-slate-100 termina-light lg:max-w-[18ch]">
+                <span className="block drop-shadow-[0_0_22px_rgba(157,139,255,0.12)]">Te ayudamos en tus</span>
+                <span className="block termina-medium bg-gradient-to-r from-fuchsia-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent">
+                  proyectos
+                </span>
+              </h2>
+              <p className="mx-auto mt-3 max-w-[36rem] px-3 text-[0.82rem] leading-[1.55] text-slate-200/90 sm:mt-4 sm:text-[0.94rem] lg:max-w-[40rem] lg:text-[1rem]">
+                Omia se adapta tanto a negocios en etapa inicial como a empresas que necesitan ordenar y escalar su operacion.
+              </p>
+            </div>
+          </motion.div>
 
-                <div className="relative flex min-h-[178px] flex-col justify-between gap-8 sm:min-h-[190px]">
-                  <ProjectIcon className={`h-6 w-6 ${accent.meta}`} />
+          <div className="absolute inset-x-0 top-[66%] z-10 -translate-y-1/2 px-4 sm:top-[66%] sm:px-8 lg:top-[67%] lg:px-12">
+            <div className="mx-auto w-[87%] max-w-[21rem] sm:w-[74%] sm:max-w-[33rem] lg:w-[58%] lg:max-w-[43rem]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`group-${activeGroupIndex}`}
+                  initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -28, filter: 'blur(6px)' }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-4.5 sm:space-y-5"
+                >
+                  {activeProjects.map((project, index) => {
+                    const ProjectIcon = getProjectIcon(project);
 
-                  <div className="space-y-3">
-                    <p className="max-w-[24ch] text-lg leading-[1.08] text-white sm:text-[1.42rem]">
-                      {project}
-                    </p>
-                    <div className="h-px w-16 bg-white/10" />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+                    return (
+                      <motion.article
+                        key={project}
+                        initial={{ opacity: 0, y: 22 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -16 }}
+                        transition={{ duration: 0.24, delay: index * 0.06 }}
+                        className={`relative overflow-hidden rounded-[1.15rem] border ${projectPalette.border} bg-[linear-gradient(180deg,rgba(10,18,24,0.14)_0%,rgba(8,12,18,0.24)_100%)] px-5 py-4.5 backdrop-blur-[12px] sm:px-6 sm:py-5`}
+                      >
+                        <div className={`absolute inset-0 bg-gradient-to-r ${projectPalette.surface}`} />
+                        <div className="absolute inset-y-0 left-0 w-px bg-white/6" />
+
+                        <div className="relative flex items-center gap-4 sm:gap-4.5">
+                          <ProjectIcon className={`h-[1.08rem] w-[1.08rem] shrink-0 ${projectPalette.icon} sm:h-[1.16rem] sm:w-[1.16rem]`} />
+                          <p className="text-left text-[0.95rem] leading-[1.1] text-white sm:text-[1.04rem] lg:text-[1.12rem]">
+                            {project}
+                          </p>
+                        </div>
+                      </motion.article>
+                    );
+                  })}
+                </motion.div>
+              </AnimatePresence>
+
+              <div className="mt-3 flex items-center justify-center gap-1.5">
+                {projectGroups.map((group, index) => {
+                  const isActive = index === activeGroupIndex;
+
+                  return (
+                    <span
+                      key={group.join('-')}
+                      className={`h-1 rounded-full transition-all duration-300 ${isActive ? `w-7 ${projectPalette.indicator}` : 'w-2 bg-white/12'}`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
