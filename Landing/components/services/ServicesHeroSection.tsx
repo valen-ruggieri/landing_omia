@@ -12,10 +12,10 @@ export function ServicesHeroSection() {
     offset: ['start start', 'end start'],
   });
 
-  const heroTitle = 'Tu negocio no necesita mas herramientas. Necesita un sistema.';
+  const heroTitle = 'Tu empresa no necesita mas herramientas. Necesita un sistema.';
   const heroHighlighted = 'Necesita un sistema.';
   const heroDescription =
-    'En Omia lo diseniamos, lo construimos y lo hacemos evolucionar.';
+    'En Omia lo diseñamos, lo construimos y lo hacemos evolucionar.';
 
   const scaleRaw = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.86, 0.72]);
   const scale = useSpring(scaleRaw, { stiffness: 170, damping: 22, mass: 0.3 });
@@ -30,20 +30,20 @@ export function ServicesHeroSection() {
     <section ref={ref} className="relative pt-1">
       <motion.div
         style={{ scale, y: translateY }}
-        className="sticky top-0 h-[124vh] overflow-hidden bg-[radial-gradient(circle_at_14%_18%,rgba(120,87,255,0.18),transparent_26%),radial-gradient(circle_at_82%_22%,rgba(12,170,140,0.12),transparent_28%),linear-gradient(180deg,#0b0b14_0%,#091118_100%)] will-change-transform md:h-[124vh]"
+        className="sticky top-0 h-[124vh] overflow-hidden 2,170,140,0.12),transparent_28%),linear-gradient(180deg,#0b0b14_0%,#091118_100%)] will-change-transform md:h-[124vh]"
       >
         <motion.div className="absolute inset-0 md:hidden">
-          <div className="absolute left-1/2 top-[20 svh] h-[54svh] w-[172vw] -translate-x-1/2 opacity-[0.82]">
+          <div className="absolute left-1/2 top-[25svh] h-[54svh] w-[172vw] -translate-x-1/2 opacity-[0.82]">
             <Image
               src="/heromobile2.png"
               alt="Hero mobile de servicios Omia"
               fill
               priority
               sizes="100vw"
-              className="object-contain object-center scale-[1.96]"
+              className="object-contain object-center scale-[2.5] opacity-30 transition-opacity duration-300  "
             />
           </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_16%,rgba(34,211,238,0.08),transparent_18%),radial-gradient(circle_at_18%_12%,rgba(139,92,246,0.16),transparent_26%),linear-gradient(180deg,rgba(5,8,18,0.52)_0%,rgba(5,8,18,0.28)_18%,rgba(5,8,18,0.80)_42%,rgba(5,8,18,0.98)_100%)]" />
+         
         </motion.div>
 
         <motion.div className="absolute inset-0 hidden md:block">
@@ -54,14 +54,14 @@ export function ServicesHeroSection() {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center"
+              className="object-cover object-center opacity-30 transition-opacity duration-300   "
             />
           </div>
         </motion.div>
 
         <motion.div
           style={{ opacity: heroOverlayOpacity }}
-          className="pointer-events-none absolute inset-0 bg-black"
+          className="pointer-events-none absolute inset-0 "
         />
 
         <motion.div
@@ -72,10 +72,10 @@ export function ServicesHeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05, duration: 0.25 }}
-            className="mx-auto max-w-[18ch] text-[35px] leading-[1.03] text-white termina-light md:text-[64px]"
+            className="mx-auto max-w-[18ch] text-[33px] leading-[1.03] text-white termina-light md:text-[64px] font-termina  "
           >
             {titleParts[0]}{' '}
-            <span className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent termina-medium">
+            <span className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent termina-bold">
               {heroHighlighted}
             </span>
             {titleParts[1]}
@@ -85,7 +85,7 @@ export function ServicesHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.25 }}
-            className="mx-auto mt-10 max-w-[92ch] text-md font-poppins text-white md:mt-10 md:text-xl"
+            className="mx-auto mt-10 max-w-[31ch] text-md font-poppins text-white md:mt-10 md:text-xl  md:max-w-[92ch]"
           >
             {heroDescription}
           </motion.p>
@@ -94,10 +94,10 @@ export function ServicesHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.25 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3 opacity-90 sm:mt-6 sm:gap-5 md:mt-8 md:gap-6"
+            className="mt-10 flex flex-wrap items-center justify-center gap-3 opacity-90 sm:mt-6 sm:gap-5 md:mt-8 md:gap-6 m d:max-w-4xl mx-auto px-4 "
           >
             {servicesHero.badges.map((badge) => (
-              <span key={badge} className="text-xs font-semibold text-white/80 sm:text-sm">
+              <span key={badge} className="text-xs font-semibold sm:text-sm bg-gradient-to-l from-violet-300 to-violet-400 bg-clip-text text-transparent termina-bold">
                 {badge}
               </span>
             ))}
@@ -114,7 +114,7 @@ export function ServicesHeroSection() {
               target="_blank"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="group flex items-center justify-center space-x-2 rounded-xl bg-gradient-to-r from-violet-400 to-violet-700 px-8 py-4 text-md font-semibold text-white transition-all duration-300 hover:bg-violet-600 sm:px-8 sm:py-4 sm:text-base"
+              className="group flex items-center justify-center space-x-2 rounded-xl bg-gradient-to-r from-violet-500 to-violet-800 px-8 py-4 text-md font-semibold text-white transition-all duration-300 hover:bg-violet-600 sm:px-8 sm:py-4 sm:text-base"
             >
               <span>Agenda una consultoria</span>
             </motion.a>

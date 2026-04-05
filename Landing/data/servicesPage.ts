@@ -59,10 +59,14 @@ export const servicesHero = {
   description:
     'Omia es una consultora especializada en sistemas y productos digitales. Diseñamos y desarrollamos plataformas, apps, automatizaciones, ecommerce, CRMs y soluciones con IA, acompañando cada proyecto desde la estrategia hasta la implementación y mejora continua.',
   badges: [
-    'Producto digital',
-    'Automatización',
-    'Integraciones',
-    'Inteligencia aplicada',
+    'Webs',
+    'Automatizaciones',
+    'App Moviles',
+    'CRMs',
+    'Ecommerce', 
+    'Sistemas internos', 
+    'Chatbots', 
+    'IA aplicada', 
   ],
   primaryCta: {
     label: 'Quiero agendar una consultoría',
